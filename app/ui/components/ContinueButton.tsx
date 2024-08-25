@@ -5,11 +5,13 @@ import React from "react";
 type ContinueButtonProps = {
   isDisabled: boolean;
   onClick: () => void;
+  text?: string;
 };
 
 const ContinueButton: React.FC<ContinueButtonProps> = ({
   isDisabled,
   onClick,
+  text = 'Continue',
 }) => {
   return (
     <button
@@ -17,7 +19,7 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
       disabled={isDisabled}
       onClick={onClick}
     >
-      Continue
+      {text}
     </button>
   );
 };

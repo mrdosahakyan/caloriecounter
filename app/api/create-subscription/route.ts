@@ -26,9 +26,9 @@ export async function POST(req: NextRequest) {
     // Create a SetupIntent to collect payment method details
     const setupIntent = await stripe.setupIntents.create({
       customer: customer.id,
-      // payment_method_types: ["card"], // You can add more payment methods if needed
+      payment_method_types: ["card"], // You can add more payment methods if needed
     });
- 
+
     return NextResponse.json({
       customerId: customer.id,
       subscriptionId: subscription.id,
