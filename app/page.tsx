@@ -11,23 +11,21 @@ const stripeSecretKey =
 export default function Home() {
   const [customerId, setCustomerId] = useState<string | null>(null);
   const [subscriptionId, setSubscriptionId] = useState<string | null>(null);
-  const [priceId, setPriceId] = useState<string | null>(null);
-
-  // const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [clientSecret, setClientSecret] = useState("");
 
   const getContent = () => {
-    if (!priceId && !subscriptionId && !customerId) {
+    if (!subscriptionId && !customerId) {
       return (
         <ChoosePlanStep
           setCustomerId={setCustomerId}
           setSubscriptionId={setSubscriptionId}
-          setPriceId={setPriceId}
+          setClientSecret={setClientSecret}
         />
       );
     }
 
-    if (!priceId && !subscriptionId && !customerId) {
-      return <ChoosePaymentMethodStep />;
+    if (clientSecret && subscriptionId && customerId) {
+      return <ChoosePaymentMethodStep clientSecret={clientSecret} />;
     }
   };
 

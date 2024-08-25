@@ -12,6 +12,7 @@ type PaymentFormProps = {
 
 const PaymentForm: FC<PaymentFormProps> = ({ clientSecret }) => {
   const stripe = useStripe();
+
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -19,11 +20,13 @@ const PaymentForm: FC<PaymentFormProps> = ({ clientSecret }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!stripe || !elements) {
+    if (!stripe || !elements || !clientSecret) {
       return;
     }
 
     setIsProcessing(true);
+
+    // attach payment method to customer or subscription I don`t know
 
     const { error } = await stripe.confirmSetup({
       elements,
@@ -35,6 +38,9 @@ const PaymentForm: FC<PaymentFormProps> = ({ clientSecret }) => {
     if (error) {
       setErrorMessage(error.message ?? "An unexpected error occurred.");
     } else {
+    
+
+
       setErrorMessage(null);
     }
 

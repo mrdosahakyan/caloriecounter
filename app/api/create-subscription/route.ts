@@ -1,3 +1,5 @@
+// app/api/create-subscription/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -10,24 +12,28 @@ export async function POST(req: NextRequest) {
   try {
     const { priceId } = await req.json();
 
+    // Create a new Stripe customer
     const customer = await stripe.customers.create();
-    console.log(customer, "::customer");
+
+    // Create a subscription with a trial period
     const subscription = await stripe.subscriptions.create({
       customer: customer.id,
       items: [{ price: priceId }],
-      payment_behavior: "default_incomplete",
-      expand: ["latest_invoice.payment_intent"],
-      trial_period_days: 7,
-    });
-    
-    const setupIntent = await stripe.setupIntents.create({
-      customer: customer.id,
-      payment_method_types: ["card"],
+      trial_period_days: 7, // The trial period in days
+      payment_behavior: "default_incomplete", // Create subscription but don't complete it until payment method is added
     });
 
-    const clientSecret = setupIntent.client_secret;
-    console.log(clientSecret, "::clientSecret");
-    return NextResponse.json({ clientSecret });
+    // Create a SetupIntent to collect payment method details
+    const setupIntent = await stripe.setupIntents.create({
+      customer: customer.id,
+      // payment_method_types: ["card"], // You can add more payment methods if needed
+    });
+ 
+    return NextResponse.json({
+      customerId: customer.id,
+      subscriptionId: subscription.id,
+      clientSecret: setupIntent.client_secret,
+    });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

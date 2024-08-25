@@ -3,26 +3,36 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import Plans from "../../payment/Plans";
 import ContinueButton from "../../components/ContinueButton";
+import axios from "axios";
 
 type TChoosePlanStepProps = {
   setCustomerId: Dispatch<SetStateAction<string | null>>;
   setSubscriptionId: Dispatch<SetStateAction<string | null>>;
-  setPriceId: Dispatch<SetStateAction<string | null>>;
+  setClientSecret: Dispatch<SetStateAction<string>>;
 };
 
 const ChoosePlanStep: FC<TChoosePlanStepProps> = ({
   setCustomerId,
-  setPriceId,
+  setClientSecret,
   setSubscriptionId,
 }) => {
   const [selectedPlanId, setSelectedPlanId] = useState("");
 
-  const handleChoosePlan = () => {
-    console.log("Selected Plan ID: ", selectedPlanId);
+  
+    const handleChoosePlan = async () => {
+      try {
+        const { data } = await axios.post("/api/create-subscription", {
+          priceId: selectedPlanId,
+        });
 
-    // Call the API to create a subscription ans stripe customer
-
-  };
+        setCustomerId(data.customerId);
+        setSubscriptionId(data.subscriptionId);
+        setClientSecret(data.clientSecret);
+      } catch (error) {
+        console.error("Error creating subscription:", error);
+      }
+    };
+   
 
   return (
     <>

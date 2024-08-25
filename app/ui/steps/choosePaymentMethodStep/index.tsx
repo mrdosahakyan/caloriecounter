@@ -9,7 +9,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "../../payment/PaymentForm";
 import { loadStripe } from "@stripe/stripe-js";
 
-type TChoosePaymentMethodProps = {};
+type TChoosePaymentMethodProps = {
+  clientSecret: string;
+};
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -17,7 +19,9 @@ const stripePublicKey =
 
 const stripePromise = loadStripe(stripePublicKey);
 
-const ChoosePaymentMethodStep: FC<TChoosePaymentMethodProps> = ({}) => {
+const ChoosePaymentMethodStep: FC<TChoosePaymentMethodProps> = ({
+  clientSecret,
+}) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<EPaymentMethod>(EPaymentMethod.CARD);
 
@@ -36,7 +40,7 @@ const ChoosePaymentMethodStep: FC<TChoosePaymentMethodProps> = ({}) => {
 
   if (showPaymentForm) {
     return (
-      <Elements stripe={stripePromise}>
+      <Elements stripe={stripePromise} options={{ clientSecret }}>
         <PaymentForm />
       </Elements>
     );
