@@ -6,7 +6,7 @@ const priceId1Month =
   process.env.PRICE_1_MONTH || "price_1PrBPGId23AXDIWwXW08PqsV";
 export const priceId3Month =
   process.env.PRICE_3_MONTH || "price_1PrBQpId23AXDIWwJAY1RgDV";
-const priceIdYear = process.env.PRICE_YEAR || "price_1PrBQpId23AXDIWwpWAhsO7b";
+export const priceIdYear = process.env.PRICE_YEAR || "price_1PrBQpId23AXDIWwpWAhsO7b";
 
 export interface IPlan {
   priceId: string;
@@ -22,22 +22,22 @@ const plans: IPlan[] = [
     priceId: priceId1Month,
     period: 1,
     measurement: "month",
-    pricePerMonth: "9.99",
-    priceForPeriod: "9.99",
-  },
-  {
-    priceId: priceId3Month,
-    period: 3,
-    measurement: "months",
-    pricePerMonth: "8.99",
-    priceForPeriod: "26.97",
+    pricePerMonth: "89.99",
+    priceForPeriod: "89.99",
   },
   {
     priceId: priceIdYear,
     period: 12,
     measurement: "months",
-    pricePerMonth: "7.99",
-    priceForPeriod: "95.88",
+    pricePerMonth: "29.99",
+    priceForPeriod: "299.99",
+  },
+  {
+    priceId: priceId3Month,
+    period: 3,
+    measurement: "months",
+    pricePerMonth: "49.99",
+    priceForPeriod: "149.99",
     isPopular: true,
   },
 ];

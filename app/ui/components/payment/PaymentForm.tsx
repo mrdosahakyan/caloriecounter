@@ -64,7 +64,8 @@ const PaymentForm = () => {
       </div>
 
       <Footer
-        onContinue={() => handleSubmit}
+        // @ts-ignore
+        onContinue={handleSubmit}
         isDisabled={!stripe || isProcessing}
       />
     </form>

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useState } from "react";
-import Plans, { priceId3Month } from "../components/payment/Plans";
+import Plans, { priceIdYear } from "../components/payment/Plans";
 import axios from "axios";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
@@ -11,7 +11,7 @@ type TChoosePlanProps = TStepMainTypes;
 
 const ChoosePlanStep: FC<TChoosePlanProps> = ({ onConitnue }) => {
   const { setOnboardingData } = useOnboardingStore();
-  const [selectedPlanId, setSelectedPlanId] = useState(priceId3Month);
+  const [selectedPlanId, setSelectedPlanId] = useState(priceIdYear);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChoosePlan = async () => {
