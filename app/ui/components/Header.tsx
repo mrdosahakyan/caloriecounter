@@ -1,4 +1,5 @@
-import { Button, Progress } from "@nextui-org/react";
+import { Progress } from "@nextui-org/progress";
+import { IoIosArrowBack } from "react-icons/io";
 
 interface HeaderProps {
   onBack: () => void;
@@ -16,15 +17,15 @@ export default function Header({
   if (hideHeader) return null;
 
   return (
-    <div>
-      <Button isIconOnly variant="faded" onClick={onBack}>
-        ArrowLeft
-      </Button>
-      <Progress
-        value={(currentStep / totalSteps) * 100}
-        className="w-1/2"
-        color="primary"
-      />
-    </div>
+    <>
+      <div>
+        <IoIosArrowBack size={30} onClick={onBack} />
+        <Progress
+          aria-label="Loading..."
+          value={Math.floor((currentStep / totalSteps) * 100)}
+          className="max-w-md"
+        />
+      </div>
+    </>
   );
 }

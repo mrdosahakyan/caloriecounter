@@ -18,8 +18,6 @@ const stripePromise = loadStripe(stripePublicKey);
 export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
-  console.log(onboardingData, "onboardingData");
-
   const [step, setStep] = useState(1);
   const totalSteps = 3;
 
@@ -53,7 +51,7 @@ export default function Home() {
 
   return (
     <main className="bg-bgBodyPrimary flex flex-col min-h-screen">
-      <header className="bg-bgBodyPrimary flex justify-between items-center px-6 py-2 fixed top-0 w-full z-10">
+      <header className="bg-bgBodyPrimary flex justify-between items-center px-6 py-4 fixed top-0 w-full z-10">
         <Header
           currentStep={step}
           onBack={handleBack}
