@@ -1,9 +1,10 @@
-'use client';
-
+"use client";
 import React from "react";
+import { Button } from "@nextui-org/react";
 
 type ContinueButtonProps = {
-  isDisabled: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
   onClick: () => void;
   text?: string;
 };
@@ -11,16 +12,20 @@ type ContinueButtonProps = {
 const ContinueButton: React.FC<ContinueButtonProps> = ({
   isDisabled,
   onClick,
-  text = 'Continue',
+  text = "Continue",
+  isLoading,
 }) => {
   return (
-    <button
-      className="w-full py-3 px-6 bg-blue-900 text-white text-center rounded-full hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
-      disabled={isDisabled}
+    <Button
+      isDisabled={isDisabled}
+      fullWidth
+      isLoading={isLoading}
+      radius="full"
+      size="lg"
       onClick={onClick}
     >
       {text}
-    </button>
+    </Button>
   );
 };
 

@@ -4,7 +4,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import ContinueButton from "../components/ContinueButton";
+import ContinueButton from "../ContinueButton";
 import axios from "axios";
 
 type PaymentFormProps = {

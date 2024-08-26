@@ -1,17 +1,17 @@
 "use client";
 
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import Plans from "../../payment/Plans";
-import ContinueButton from "../../components/ContinueButton";
+import Plans from "../components/payment/Plans";
+import ContinueButton from "../components/ContinueButton";
 import axios from "axios";
 
-type TChoosePlanStepProps = {
+type TChoosePlanProps = {
   setCustomerId: Dispatch<SetStateAction<string | null>>;
   setSubscriptionId: Dispatch<SetStateAction<string | null>>;
   setClientSecret: Dispatch<SetStateAction<string>>;
 };
 
-const ChoosePlanStep: FC<TChoosePlanStepProps> = ({
+const ChoosePlan: FC<TChoosePlanProps> = ({
   setCustomerId,
   setClientSecret,
   setSubscriptionId,
@@ -46,4 +46,4 @@ const ChoosePlanStep: FC<TChoosePlanStepProps> = ({
   );
 };
 
-export default ChoosePlanStep;
+export default ChoosePlan;

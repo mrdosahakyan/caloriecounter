@@ -1,15 +1,15 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
+import ContinueButton from "../components/ContinueButton";
+import { useStripe } from "@stripe/react-stripe-js";
+import PaymentForm from "../components/payment/PaymentForm";
+import axios from "axios";
 import ChoosePaymentMethod, {
   EPaymentMethod,
-} from "../../payment/ChoosePaymentMethod";
-import ContinueButton from "../../components/ContinueButton";
-import { useStripe } from "@stripe/react-stripe-js";
-import PaymentForm from "../../payment/PaymentForm";
-import axios from "axios";
+} from "../components/payment/ChoosePaymentMethod";
 
-type TChoosePaymentMethodProps = {
+type TChoosePaymentMethodStepProps = {
   clientSecret: string;
   customerId: string;
 };
@@ -17,7 +17,7 @@ type TChoosePaymentMethodProps = {
 const stripeCountryCode = process.env.STRIPE_COUNTRY_CODE || "PL";
 const stripeCurrency = process.env.STRIPE_CURRENCY || "pln";
 
-const ChoosePaymentMethodStep: FC<TChoosePaymentMethodProps> = ({
+const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
   clientSecret,
   customerId,
 }) => {
