@@ -1,55 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import ChoosePlan from "./ui/steps/ChoosePlan";
+import ChoosePlanStep from "./ui/steps/ChoosePlanStep";
 import ChoosePaymentMethodStep from "./ui/steps/ChoosePaymentMethodStep";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Header from "./ui/components/Header";
-import Footer from "./ui/components/Footer";
 import WelcomeStep from "./ui/steps/WelcomeStep";
+import { useOnboardingStore } from "./store/onboardingStore";
 
-const stripeSecretKey =
-  process.env.STRIPE_SECRET_KEY ||
-  "sk_test_51PqI3mId23AXDIWwsBfXIomhxvFM3el4YogZnzTM9BRvmFIKpxfZKWW6XIvF7RTdyWSIdM12UVyqX2VjhImy1atd00cUJqtHmQ";
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
   "pk_test_51PqI3mId23AXDIWwujdYBjtlJWwt58tkToDnhirQEjHZwmkehtnb1vBut5Mp0SakDsc3rSQJxe9JJKfcxfrP6ZYV00PX7TTSGO";
 
 const stripePromise = loadStripe(stripePublicKey);
 
-// export default function Home() {
-//   const [customerId, setCustomerId] = useState<string | null>(null);
-//   const [subscriptionId, setSubscriptionId] = useState<string | null>(null);
-//   const [clientSecret, setClientSecret] = useState("");
-
-//   const getContent = () => {
-//     if (!subscriptionId && !customerId) {
-//       return (
-//         <ChoosePlan
-//           setCustomerId={setCustomerId}
-//           setSubscriptionId={setSubscriptionId}
-//           setClientSecret={setClientSecret}
-//         />
-//       );
-//     }
-
-//     if (clientSecret && subscriptionId && customerId) {
-//       return (
-//         <Elements stripe={stripePromise} options={{ clientSecret }}>
-//           <ChoosePaymentMethodStep
-//             customerId={customerId}
-//             clientSecret={clientSecret}
-//           />
-//         </Elements>
-//       );
-//     }
-//   };
-
-//   return <main className=" ">{getContent()}</main>;
-// }
-
 export default function Home() {
+  const { onboardingData } = useOnboardingStore();
+
+  console.log(onboardingData, "onboardingData");
+
   const [step, setStep] = useState(1);
   const totalSteps = 3;
 
@@ -63,19 +33,24 @@ export default function Home() {
 
   const getCurrentStep = () => {
     if (step === 1) return <WelcomeStep onConitnue={handleContinue} />;
-    // if (step === 2)
-    //   return (
-    //     <ChoosePlanStep setPlanData={setPlanData} onContinue={handleContinue} />
-    //   );
-    // if (step === 3)
-    //   return (
-    //     <ChoosePaymentMethodStep
-    //       setPaymentData={setPaymentData}
-    //       onContinue={handleContinue}
-    //     />
-    //   );
+    if (step === 2) return <ChoosePlanStep onConitnue={handleContinue} />;
+    if (
+      step === 3 &&
+      onboardingData.clientSecret &&
+      onboardingData.stripeCustomerId
+    )
+      return (
+        <Elements
+          stripe={stripePromise}
+          options={{ clientSecret: onboardingData.clientSecret }}
+        >
+          <ChoosePaymentMethodStep />
+        </Elements>
+      );
   };
-  const hideHeader = step === 1;
+
+  const hideHeader = step === 1 || step === 3;
+
   return (
     <main className="bg-bgBodyPrimary flex flex-col min-h-screen">
       <header className="bg-bgBodyPrimary flex justify-between items-center px-6 py-2 fixed top-0 w-full z-10">

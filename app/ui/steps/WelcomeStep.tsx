@@ -9,7 +9,7 @@ import WelcomeImage from "../../../public/WelcomeStep.jpg";
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
-      <div className=" px-6 flex flex-col items-center text-center mt-10 pt-10">
+      <div className="px-6 flex flex-col items-center text-center mt-10 pt-10">
         <div>
           <Image alt="Welcome" src={WelcomeImage} width={350} />
         </div>

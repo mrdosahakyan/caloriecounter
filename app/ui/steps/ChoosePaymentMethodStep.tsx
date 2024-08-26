@@ -8,20 +8,18 @@ import axios from "axios";
 import ChoosePaymentMethod, {
   EPaymentMethod,
 } from "../components/payment/ChoosePaymentMethod";
-
-type TChoosePaymentMethodStepProps = {
-  clientSecret: string;
-  customerId: string;
-};
+import { TStepMainTypes } from "./StepTypes";
+import { useOnboardingStore } from "@/app/store/onboardingStore";
+import Footer from "../components/Footer";
 
 const stripeCountryCode = process.env.STRIPE_COUNTRY_CODE || "PL";
 const stripeCurrency = process.env.STRIPE_CURRENCY || "pln";
 
-const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
-  clientSecret,
-  customerId,
-}) => {
+const ChoosePaymentMethodStep = () => {
   const stripe = useStripe();
+  const { onboardingData } = useOnboardingStore();
+
+  const { stripeCustomerId, clientSecret } = onboardingData;
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<EPaymentMethod>(EPaymentMethod.CARD);
@@ -88,7 +86,7 @@ const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
 
         // Attach the payment method to the customer or subscription
         await axios.post("/api/set-default-payment-method", {
-          customerId,
+          customerId: stripeCustomerId,
           paymentMethodId: ev.paymentMethod.id,
         });
         // window.location.href = "/success";
@@ -109,12 +107,8 @@ const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
     }
   };
 
-  if (showPaymentForm) {
-    return (
-      // <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <PaymentForm clientSecret={clientSecret} customerId={customerId} />
-      // </Elements>
-    );
+  if (showPaymentForm && stripeCustomerId && clientSecret) {
+    return <PaymentForm />;
   }
 
   return (
@@ -123,17 +117,7 @@ const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
         selectedPaymentMethod={selectedPaymentMethod}
         setSelectedPaymentMethod={setSelectedPaymentMethod}
       />
-      <br />
-      <ContinueButton
-        onClick={handlePaymetMethod}
-        isDisabled={
-          !selectedPaymentMethod ||
-          (!isApplePayAvailable &&
-            selectedPaymentMethod === EPaymentMethod.APPLE_PAY)
-        }
-        text="Continue"
-      />
-      <br />
+
       {!isApplePayAvailable &&
         selectedPaymentMethod === EPaymentMethod.APPLE_PAY && (
           <p
@@ -144,6 +128,15 @@ const ChoosePaymentMethodStep: FC<TChoosePaymentMethodStepProps> = ({
             Apple pay is not available
           </p>
         )}
+      <Footer
+        onContinue={handlePaymetMethod}
+        isDisabled={
+          !selectedPaymentMethod ||
+          (!isApplePayAvailable &&
+            selectedPaymentMethod === EPaymentMethod.APPLE_PAY)
+        }
+      />
+      <br />
     </>
   );
 };

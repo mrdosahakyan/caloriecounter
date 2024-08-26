@@ -1,18 +1,18 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import ContinueButton from "../ContinueButton";
 import axios from "axios";
+import { useOnboardingStore } from "@/app/store/onboardingStore";
+import Footer from "../Footer";
 
-type PaymentFormProps = {
-  clientSecret?: string;
-  customerId: string;
-};
+const PaymentForm = () => {
+  const { onboardingData } = useOnboardingStore();
 
-const PaymentForm: FC<PaymentFormProps> = ({ clientSecret, customerId }) => {
+  const { clientSecret, stripeCustomerId: customerId } = onboardingData;
+
   const stripe = useStripe();
 
   const elements = useElements();
@@ -54,19 +54,19 @@ const PaymentForm: FC<PaymentFormProps> = ({ clientSecret, customerId }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <PaymentElement
-        options={{
-          paymentMethodOrder: ["card"],
-        }}
-      />
-      {errorMessage && <div className="text-red-600">{errorMessage}</div>}
-      <ContinueButton
-        // @ts-ignore
-        onClick={handleSubmit}
+      <div className="px-6">
+        <PaymentElement
+          options={{
+            paymentMethodOrder: ["card"],
+          }}
+        />
+        {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+      </div>
+
+      <Footer
+        onContinue={() => handleSubmit}
         isDisabled={!stripe || isProcessing}
-      >
-        {isProcessing ? "Processing..." : "Continue"}
-      </ContinueButton>
+      />
     </form>
   );
 };
