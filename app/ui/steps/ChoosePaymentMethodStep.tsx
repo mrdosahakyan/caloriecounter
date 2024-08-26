@@ -110,22 +110,34 @@ const ChoosePaymentMethodStep = () => {
   }
 
   return (
-    <>
-      <ChoosePaymentMethod
-        selectedPaymentMethod={selectedPaymentMethod}
-        setSelectedPaymentMethod={setSelectedPaymentMethod}
-      />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "81vh",
+        justifyContent: "flex-end",
+      }}
+    >
+      <div className="px-4">
+        <h2 className="text-lg font-bold text-orange-700 mb-4">
+          Choose your payment method
+        </h2>
 
-      {!isApplePayAvailable &&
-        selectedPaymentMethod === EPaymentMethod.APPLE_PAY && (
-          <p
-            style={{
-              color: "red",
-            }}
-          >
-            Apple pay is not available
-          </p>
-        )}
+        {!isApplePayAvailable &&
+          selectedPaymentMethod === EPaymentMethod.APPLE_PAY && (
+            <p
+              style={{
+                color: "red",
+              }}
+            >
+              Apple pay is not available
+            </p>
+          )}
+        <ChoosePaymentMethod
+          selectedPaymentMethod={selectedPaymentMethod}
+          setSelectedPaymentMethod={setSelectedPaymentMethod}
+        />
+      </div>
       <Footer
         onContinue={handlePaymetMethod}
         isDisabled={
@@ -134,8 +146,7 @@ const ChoosePaymentMethodStep = () => {
             selectedPaymentMethod === EPaymentMethod.APPLE_PAY)
         }
       />
-      <br />
-    </>
+    </div>
   );
 };
 

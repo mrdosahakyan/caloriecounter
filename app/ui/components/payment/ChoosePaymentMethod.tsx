@@ -1,11 +1,26 @@
-"use client";
-
-import { FC } from "react";
+import React, { FC } from 'react';
+import { Select, MenuItem, FormControl, Box, Typography, InputBase } from '@mui/material';
+import { SiApplepay } from 'react-icons/si';
+import { CiCreditCard2 } from 'react-icons/ci';
+import { FaCheck } from 'react-icons/fa';
 
 export enum EPaymentMethod {
-  CARD = "card",
-  APPLE_PAY = "apple_pay",
+  CARD = 'card',
+  APPLE_PAY = 'apple_pay',
 }
+
+const options = [
+  {
+    label: 'Credit Card',
+    value: EPaymentMethod.CARD,
+    icon: <CiCreditCard2 size={42} />, // Increase icon size
+  },
+  {
+    label: 'Apple Pay',
+    value: EPaymentMethod.APPLE_PAY,
+    icon: <SiApplepay size={42} />, // Increase icon size
+  },
+];
 
 type TChoosePaymentMethodProps = {
   selectedPaymentMethod: EPaymentMethod;
@@ -16,30 +31,75 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
   selectedPaymentMethod,
   setSelectedPaymentMethod,
 }) => {
-  return (
-    <div className="flex space-x-4">
-      <div
-        className={`p-4 border rounded-lg cursor-pointer flex items-center justify-center w-1/2 ${
-          selectedPaymentMethod === EPaymentMethod.CARD
-            ? "border-blue-500 bg-blue-100"
-            : "border-gray-300 bg-white"
-        }`}
-        onClick={() => setSelectedPaymentMethod(EPaymentMethod.CARD)}
-      >
-        <span className="text-lg font-semibold">Card</span>
-      </div>
+  const handleSelect = (event: any) => {
+    setSelectedPaymentMethod(event.target.value as EPaymentMethod);
+  };
 
-      <div
-        className={`p-4 border rounded-lg cursor-pointer flex items-center justify-center w-1/2 ${
-          selectedPaymentMethod === EPaymentMethod.APPLE_PAY
-            ? "border-blue-500 bg-blue-100"
-            : "border-gray-300 bg-white"
-        }`}
-        onClick={() => setSelectedPaymentMethod(EPaymentMethod.APPLE_PAY)}
+  return (
+    <FormControl fullWidth>
+      <Select
+        value={selectedPaymentMethod}
+        onChange={handleSelect}
+        input={
+          <InputBase
+            style={{
+              backgroundColor: '#fff9f1',
+              padding: '12px 16px', // Add padding to the select box
+              border: 'none', // Remove border
+              outline: 'none', // Remove outline on focus
+              boxShadow: 'none', // Remove box-shadow
+            }}
+          />
+        }
+        MenuProps={{
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'left',
+          },
+          transformOrigin: {
+            vertical: 'bottom',
+            horizontal: 'left',
+          },
+          PaperProps: {
+            style: {
+              maxHeight: 350, // Increase the dropdown size
+              width: '300px',
+              marginTop: '10px', // Add space between select and dropdown
+              borderRadius: '8px', // Add border radius to dropdown container
+            },
+          },
+        }}
+        renderValue={(selected) => (
+          <Box display="flex" alignItems="center">
+            {options.find(option => option.value === selected)?.icon}
+            <Typography variant="h5" fontWeight="bold" style={{ marginLeft: '10px' }}>
+              {options.find(option => option.value === selected)?.label}
+            </Typography>
+          </Box>
+        )}
       >
-        <span className="text-lg font-semibold">Apple Pay</span>
-      </div>
-    </div>
+        {options.map((option) => (
+          <MenuItem
+            key={option.value}
+            value={option.value}
+            style={{
+              backgroundColor: 'transparent', // Remove background color of selected option
+              padding: '18px 16px', // Add padding to the options
+            }}
+          >
+            <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+              <Box display="flex" alignItems="center">
+                {option.icon}
+                <Typography variant="h5" fontWeight="bold" style={{ marginLeft: '8px' }}>
+                  {option.label}
+                </Typography>
+              </Box>
+              {option.value === selectedPaymentMethod && <FaCheck size={16} className="text-green-500" />}
+            </Box>
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
