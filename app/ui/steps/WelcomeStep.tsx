@@ -14,7 +14,7 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           <Image alt="Welcome" src={WelcomeImage} width={350} />
         </div>
         <p className="text-xl font-bold mt-6">
-          Let's begin with a few questions to create your customized plan
+          Lets begin with a few questions to create your customized plan
         </p>
       </div>
       <Footer onContinue={onConitnue} text="Get Started" />
