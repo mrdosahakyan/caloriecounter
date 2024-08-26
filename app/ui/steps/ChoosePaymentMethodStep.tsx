@@ -1,14 +1,12 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
-import ContinueButton from "../components/ContinueButton";
+import { useEffect, useState } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import PaymentForm from "../components/payment/PaymentForm";
 import axios from "axios";
 import ChoosePaymentMethod, {
   EPaymentMethod,
 } from "../components/payment/ChoosePaymentMethod";
-import { TStepMainTypes } from "./StepTypes";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import Footer from "../components/Footer";
 
