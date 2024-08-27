@@ -27,8 +27,6 @@ const PaymentForm = () => {
 
     setIsProcessing(true);
 
-    // attach payment method to customer or subscription I don`t know
-
     const { error } = await stripe.confirmSetup({
       elements,
       redirect: "if_required",
@@ -41,12 +39,11 @@ const PaymentForm = () => {
       paymentMethodId: setupIntent?.payment_method,
     });
 
-    window.location.href = "/success";
-
     if (error) {
       console.log(error);
       setErrorMessage(error.message ?? "An unexpected error occurred.");
     } else {
+      window.location.href = "/success";
       setErrorMessage(null);
     }
     setIsProcessing(false);
