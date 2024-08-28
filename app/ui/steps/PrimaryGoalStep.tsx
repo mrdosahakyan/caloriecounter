@@ -43,7 +43,7 @@ const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-between px-6 h-[78vh] ">
+      <div className="flex flex-col justify-between px-3 h-[78vh] ">
         <div>
           <StepperTitle>
             What is your <br /> primary goal?

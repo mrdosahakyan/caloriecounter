@@ -14,7 +14,7 @@ export default function Footer({
   text = "Continue",
 }: FooterProps) {
   return (
-    <footer className="bg-transparent fixed bottom-0 w-full px-6 py-2 flex justify-center">
+    <footer className="bg-transparent fixed bottom-0 w-full px-3 py-2 flex justify-center">
       <Button
         isLoading={isLoading}
         radius="full"

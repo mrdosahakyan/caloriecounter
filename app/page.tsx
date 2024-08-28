@@ -58,6 +58,7 @@ export default function Home() {
         onBack={handleBack}
         totalSteps={totalSteps}
         hideHeader={hideHeader}
+        hideBackButton={step === 2}
       />
 
       <div

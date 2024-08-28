@@ -1,3 +1,4 @@
+import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
 
 export default function RootLayout({
@@ -7,7 +8,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#FFF5E5]">{children}</body>
+      <body className="bg-[#FFF5E5]">
+        <NextUIProvider>{children}</NextUIProvider>
+      </body>
     </html>
   );
 }

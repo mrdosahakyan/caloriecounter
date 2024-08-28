@@ -1,4 +1,4 @@
-import { Progress } from "@nextui-org/progress";
+import { Progress } from "@nextui-org/react";
 import { IoIosArrowBack } from "react-icons/io";
 
 interface HeaderProps {
@@ -19,15 +19,24 @@ export default function Header({
   if (hideHeader) return null;
 
   return (
-    <>
-      <header className="bg-transparent flex justify-between items-center px-6 py-4 fixed top-0 w-full z-10">
-        {!hideBackButton && <IoIosArrowBack size={30} onClick={onBack} />}
+    <header className="bg-transparent flex justify-start items-center px-3 py-4 fixed top-0 w-full z-10 h-[64px]">
+      {!hideBackButton && (
+        <IoIosArrowBack size={30} className="text-[#021533]" onClick={onBack} />
+      )}
+      <div className="flex-1 flex justify-center">
         <Progress
           aria-label="Loading..."
           value={Math.floor((currentStep / totalSteps) * 100)}
-          className="max-w-md"
+          className="w-[130px]"
+          style={{
+            height: "5px",
+            backgroundColor: "#F4EDE3",
+          }}
+          classNames={{
+            indicator: "bg-[#FEB816]",
+          }}
         />
-      </header>
-    </>
+      </div>
+    </header>
   );
 }
