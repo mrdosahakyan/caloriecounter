@@ -20,9 +20,18 @@ export default function Header({
 
   return (
     <header className="bg-transparent flex justify-start items-center px-3 py-4 fixed top-0 w-full z-10 h-[64px]">
-      {!hideBackButton && (
-        <IoIosArrowBack size={30} className="text-[#021533]" onClick={onBack} />
-      )}
+      <div
+        className={`flex items-center ${
+          hideBackButton ? "visibility-hidden" : ""
+        }`}
+      >
+        <IoIosArrowBack
+          size={30}
+          className="text-[#021533]"
+          style={{ visibility: hideBackButton ? "hidden" : "visible" }}
+          onClick={onBack}
+        />
+      </div>
       <div className="flex-1 flex justify-center">
         <Progress
           aria-label="Loading..."

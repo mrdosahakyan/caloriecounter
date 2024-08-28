@@ -6,6 +6,7 @@ export type TOnboardingData = {
   subscriptionId: string | null;
   clientSecret: string;
   goal: string;
+  gender: string;
   // Add other fields as needed
 };
 
@@ -20,6 +21,7 @@ const initialState: TOnboardingData = {
   subscriptionId: null,
   clientSecret: "",
   goal: "",
+  gender: "",
   // Initialize other fields
 };
 

@@ -10,6 +10,7 @@ import StayInShape from "../../../public/icons/stayInShape.svg";
 import GetHealtier from "../../../public/icons/getHealtier.svg";
 import StepperTitle from "../components/StepperTitle";
 import Image from "next/image";
+import StepperBodyWrapper from "../components/StepperBodyWrapper";
 
 type TPrimaryGoalStepProps = TStepMainTypes;
 
@@ -43,7 +44,7 @@ const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-between px-3 h-[78vh] ">
+      <StepperBodyWrapper>
         <div>
           <StepperTitle>
             What is your <br /> primary goal?
@@ -57,7 +58,7 @@ const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
             }}
           />
         </div>
-      </div>
+      </StepperBodyWrapper>
 
       <Footer isDisabled={!selectedGoalId} onContinue={handleChoosePlan} />
     </>
