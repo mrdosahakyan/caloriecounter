@@ -10,6 +10,7 @@ import WelcomeStep from "./ui/steps/WelcomeStep";
 import { useOnboardingStore } from "./store/onboardingStore";
 import PrimaryGoalStep from "./ui/steps/PrimaryGoalStep";
 import GenderStep from "./ui/steps/GenderStep";
+import BirthyearStep from "./ui/steps/BirthyearStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -35,10 +36,11 @@ export default function Home() {
     if (step === 1) return <WelcomeStep onConitnue={handleContinue} />;
     if (step === 2) return <PrimaryGoalStep onConitnue={handleContinue} />;
     if (step === 3) return <GenderStep onConitnue={handleContinue} />;
+    if (step === 4) return <BirthyearStep onConitnue={handleContinue} />;
     
-    if (step === 4) return <ChoosePlanStep onConitnue={handleContinue} />;
+    if (step === 5) return <ChoosePlanStep onConitnue={handleContinue} />;
     if (
-      step === 5 &&
+      step === 6 &&
       onboardingData.clientSecret &&
       onboardingData.stripeCustomerId
     )
@@ -52,7 +54,7 @@ export default function Home() {
       );
   };
 
-  const hideHeader = step === 1 || step === 5;
+  const hideHeader = step === 1 || step === 6;
 
   return (
     <main className="bg-transparent flex flex-col min-h-screen">

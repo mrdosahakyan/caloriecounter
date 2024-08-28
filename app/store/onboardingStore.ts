@@ -7,6 +7,7 @@ export type TOnboardingData = {
   clientSecret: string;
   goal: string;
   gender: string;
+  birthYear: string;
   // Add other fields as needed
 };
 
@@ -22,6 +23,7 @@ const initialState: TOnboardingData = {
   clientSecret: "",
   goal: "",
   gender: "",
+  birthYear: "",
   // Initialize other fields
 };
 
