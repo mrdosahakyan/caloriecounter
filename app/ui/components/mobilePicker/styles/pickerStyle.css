@@ -1,0 +1,5 @@
+.picker-container > div:last-child {
+  background: #e7a22a;
+  border-radius: 33px;
+  opacity: 0.2;
+}

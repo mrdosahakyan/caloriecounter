@@ -3,15 +3,15 @@
 import { FC, useState } from "react";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
-import Footer from "../components/Footer";
+import Footer from "../components/stepperLayout/Footer";
 import SelectableCards, { TCardItem } from "../components/SelectableCard";
 import Female from "../../../public/icons/female.svg";
 import Male from "../../../public/icons/male.svg";
 import NonBinary from "../../../public/icons/nonBinaryGender.svg";
-import StepperTitle from "../components/StepperTitle";
+import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
-import StepperBodyWrapper from "../components/StepperBodyWrapper";
-import StepperSubtitle from "../components/StepperSubTitle";
+import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 
 type TGenderStepProps = TStepMainTypes;
 

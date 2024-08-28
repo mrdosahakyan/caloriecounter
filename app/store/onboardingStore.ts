@@ -1,5 +1,11 @@
 import { create } from "zustand";
-import { persist, createJSONStorage, StateStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
+
+export interface IHeightWeight {
+  height: string;
+  weight: string;
+  isMetric: boolean;
+}
 
 export type TOnboardingData = {
   stripeCustomerId: string | null;
@@ -7,6 +13,8 @@ export type TOnboardingData = {
   clientSecret: string;
   goal: string;
   gender: string;
+  birthYear: string;
+  heightWeight: IHeightWeight;
   // Add other fields as needed
 };
 
@@ -22,6 +30,12 @@ const initialState: TOnboardingData = {
   clientSecret: "",
   goal: "",
   gender: "",
+  birthYear: "1999",
+  heightWeight: {
+    height: "167cm",
+    weight: "53kg",
+    isMetric: true,
+  },
   // Initialize other fields
 };
 

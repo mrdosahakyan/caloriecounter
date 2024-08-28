@@ -8,7 +8,7 @@ import ChoosePaymentMethod, {
   EPaymentMethod,
 } from "../components/payment/ChoosePaymentMethod";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
-import Footer from "../components/Footer";
+import Footer from "../components/stepperLayout/Footer";
 
 const stripeCountryCode = process.env.STRIPE_COUNTRY_CODE || "PL";
 const stripeCurrency = process.env.STRIPE_CURRENCY || "pln";

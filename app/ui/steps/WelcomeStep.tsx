@@ -3,11 +3,11 @@
 import { FC } from "react";
 import { TStepMainTypes } from "./StepTypes";
 import Image from "next/image";
-import Footer from "../components/Footer";
+import Footer from "../components/stepperLayout/Footer";
 import ScanAi from "../../../public/ScanAi.svg";
 import OneMDownloads from "../../../public/1MDownloads.svg";
-import StepperTitle from "../components/StepperTitle";
-import StepperSubtitle from "../components/StepperSubTitle";
+import StepperTitle from "../components/stepperLayout/StepperTitle";
+import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (

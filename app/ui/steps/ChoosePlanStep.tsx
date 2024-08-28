@@ -5,7 +5,7 @@ import Plans, { priceIdYear } from "../components/payment/Plans";
 import axios from "axios";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
-import Footer from "../components/Footer";
+import Footer from "../components/stepperLayout/Footer";
 
 type TChoosePlanProps = TStepMainTypes;
 

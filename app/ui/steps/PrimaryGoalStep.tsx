@@ -3,14 +3,14 @@
 import { FC, useState } from "react";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
-import Footer from "../components/Footer";
+import Footer from "../components/stepperLayout/Footer";
 import SelectableCards, { TCardItem } from "../components/SelectableCard";
 import LooseWeight from "../../../public/icons/looseWeight.svg";
 import StayInShape from "../../../public/icons/stayInShape.svg";
 import GetHealtier from "../../../public/icons/getHealtier.svg";
-import StepperTitle from "../components/StepperTitle";
+import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
-import StepperBodyWrapper from "../components/StepperBodyWrapper";
+import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 
 type TPrimaryGoalStepProps = TStepMainTypes;
 

@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
-import Footer from "../Footer";
+import Footer from "../stepperLayout/Footer";
 
 const PaymentForm = () => {
   const { onboardingData } = useOnboardingStore();
