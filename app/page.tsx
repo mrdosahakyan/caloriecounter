@@ -50,16 +50,19 @@ export default function Home() {
   const hideHeader = step === 1 || step === 3;
 
   return (
-    <main className="bg-bgBodyPrimary flex flex-col min-h-screen">
-      <header className="bg-bgBodyPrimary flex justify-between items-center px-6 py-4 fixed top-0 w-full z-10">
+    <main className="bg-transparent flex flex-col min-h-screen">
         <Header
           currentStep={step}
           onBack={handleBack}
           totalSteps={totalSteps}
           hideHeader={hideHeader}
         />
-      </header>
-      <div className="flex-grow overflow-y-auto mt-[64px] mb-[64px]">
+      
+      <div
+        className={`flex-grow overflow-y-auto ${
+          hideHeader ? "" : "mt-[64px]"
+        }  mb-[64px]`}
+      >
         {getCurrentStep()}
       </div>
     </main>

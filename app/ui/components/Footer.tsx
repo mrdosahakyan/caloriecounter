@@ -14,14 +14,14 @@ export default function Footer({
   text = "Continue",
 }: FooterProps) {
   return (
-    <footer className="bg-bgBodyPrimary fixed bottom-0 w-full px-6 py-2 flex justify-center">
+    <footer className="bg-transparent fixed bottom-0 w-full px-6 py-2 flex justify-center">
       <Button
         isLoading={isLoading}
         radius="full"
         size="lg"
         onClick={onContinue}
         fullWidth
-        className={`bg-[#021534] text-white ${
+        className={`bg-[#021533] text-white ${
           isDisabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
         disabled={isDisabled}

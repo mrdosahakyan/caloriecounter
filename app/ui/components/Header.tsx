@@ -18,14 +18,14 @@ export default function Header({
 
   return (
     <>
-      {/* <div> */}
+      <header className="bg-transparent flex justify-between items-center px-6 py-4 fixed top-0 w-full z-10">
         <IoIosArrowBack size={30} onClick={onBack} />
         <Progress
           aria-label="Loading..."
           value={Math.floor((currentStep / totalSteps) * 100)}
           className="max-w-md"
         />
-      {/* </div> */}
+      </header>
     </>
   );
 }
