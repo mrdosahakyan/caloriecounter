@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
-import { Card } from '@nextui-org/react';
+import React, { useEffect, useState } from "react";
+import { Card } from "@nextui-org/react";
 
-type CardItem = {
-  id: number;
+export type TCardItem = {
+  id: string;
   title: string;
   description?: string;
-  icon?: React.ReactNode;
+  icon?: JSX.Element;
 };
 
 type SelectableCardsProps = {
-  items: CardItem[];
-  onSelect: (id: number) => void;
+  items: TCardItem[];
+  onSelect: (id: string) => void;
+  defaultValue?: string;
 };
 
-const SelectableCards: React.FC<SelectableCardsProps> = ({ items, onSelect }) => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+const SelectableCards: React.FC<SelectableCardsProps> = ({
+  items,
+  onSelect,
+  defaultValue,
+}) => {
+  const [selectedId, setSelectedId] = useState<string | null>(
+    defaultValue || null
+  );
 
-  const handleSelect = (id: number) => {
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedId(defaultValue);
+    }
+  }, [defaultValue]);
+
+  const handleSelect = (id: string) => {
     setSelectedId(id);
     onSelect(id);
   };
@@ -28,13 +41,13 @@ const SelectableCards: React.FC<SelectableCardsProps> = ({ items, onSelect }) =>
           key={item.id}
           isPressable
           onClick={() => handleSelect(item.id)}
-          className={`flex items-center p-4 rounded-lg shadow-md w-[358px] h-[90px] ${
+          className={`flex items-center p-4 rounded-lg shadow-md w-full h-[90px] ${
             selectedId === item.id
-              ? 'border-2 border-[#FEB816] bg-[#FFF2D5]'
-              : 'bg-white'
+              ? "border-2 border-[#FEB816] bg-[#FFF2D5]"
+              : "bg-white"
           }`}
         >
-          <div className="flex items-center space-x-4">
+          <div className="flex w-full h-full items-center space-x-5">
             {item.icon && <div>{item.icon}</div>}
             <div>
               <h4 className="font-inter text-[16px] font-semibold leading-[22px] text-left text-[#021533]">

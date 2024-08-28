@@ -8,6 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Header from "./ui/components/Header";
 import WelcomeStep from "./ui/steps/WelcomeStep";
 import { useOnboardingStore } from "./store/onboardingStore";
+import PrimaryGoalStep from "./ui/steps/PrimaryGoalStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -31,9 +32,10 @@ export default function Home() {
 
   const getCurrentStep = () => {
     if (step === 1) return <WelcomeStep onConitnue={handleContinue} />;
-    if (step === 2) return <ChoosePlanStep onConitnue={handleContinue} />;
+    if (step === 2) return <PrimaryGoalStep onConitnue={handleContinue} />;
+    if (step === 3) return <ChoosePlanStep onConitnue={handleContinue} />;
     if (
-      step === 3 &&
+      step === 4 &&
       onboardingData.clientSecret &&
       onboardingData.stripeCustomerId
     )
@@ -47,17 +49,17 @@ export default function Home() {
       );
   };
 
-  const hideHeader = step === 1 || step === 3;
+  const hideHeader = step === 1 || step === 4;
 
   return (
     <main className="bg-transparent flex flex-col min-h-screen">
-        <Header
-          currentStep={step}
-          onBack={handleBack}
-          totalSteps={totalSteps}
-          hideHeader={hideHeader}
-        />
-      
+      <Header
+        currentStep={step}
+        onBack={handleBack}
+        totalSteps={totalSteps}
+        hideHeader={hideHeader}
+      />
+
       <div
         className={`flex-grow overflow-y-auto ${
           hideHeader ? "" : "mt-[64px]"

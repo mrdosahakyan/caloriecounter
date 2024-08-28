@@ -5,6 +5,7 @@ export type TOnboardingData = {
   stripeCustomerId: string | null;
   subscriptionId: string | null;
   clientSecret: string;
+  goal: string;
   // Add other fields as needed
 };
 
@@ -18,6 +19,7 @@ const initialState: TOnboardingData = {
   stripeCustomerId: null,
   subscriptionId: null,
   clientSecret: "",
+  goal: "",
   // Initialize other fields
 };
 
