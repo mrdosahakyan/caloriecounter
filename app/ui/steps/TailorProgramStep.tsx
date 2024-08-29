@@ -13,7 +13,7 @@ const TailorProgramStep: FC<TStepMainTypes> = ({ onConitnue }) => {
     <>
       <StepperBodyWrapper justify="start" className="mt-[64px]">
         <StepperTitle>Tailoring your program</StepperTitle>
-        <div className="flex flex-col justify-around h-full">
+        <div className="flex flex-col justify-around h-full w-full">
           <div className="flex flex-col gap-6 w-full px-4 mt-5">
             <ProgressBar label="Analysing profile" timeInSeconds={4} />
             <ProgressBar label="Calculating metabolism" timeInSeconds={2} />

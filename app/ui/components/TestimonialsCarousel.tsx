@@ -56,7 +56,7 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <div className="w-80">
+    <div className="w-100">
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <TestimonialCard

@@ -9,7 +9,7 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ stars, text, author }) => {
   return (
     <div
-      className="bg-[#FFFEFF] rounded-[20px] py-[20px] px-[40px] shadow-md text-center max-w-sm mx-auto h-[150px] mx-2"
+      className="bg-[#FFFEFF] rounded-[20px] py-[20px] px-[40px] shadow-md text-center max-w-sm mx-auto h-[150px] mx-4"
       style={{ boxShadow: "0px 4px 40px 0px #EBEBEB0D" }}
     >
       <div className="flex justify-center mb-2">
