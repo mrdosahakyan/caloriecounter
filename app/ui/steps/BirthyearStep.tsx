@@ -10,14 +10,13 @@ import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import YearsPicker from "../components/mobilePicker/YearsPicker";
 
 type TBirthyearStepProps = TStepMainTypes;
- 
 
 const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedBirthyear, setSelectedBirthyear] = useState<string | null>(
-    null
+    onboardingData.birthYear
   );
-  
+
   const handleChooseYear = () => {
     if (!selectedBirthyear) return;
     setOnboardingData({ birthYear: selectedBirthyear });
@@ -34,7 +33,10 @@ const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
           </StepperSubtitle>
         </div>
         <div className="mb-10 pb-10">
-          <YearsPicker defaultValue="1999" onYearChange={(year) => setSelectedBirthyear(year)} />
+          <YearsPicker
+            defaultValue={onboardingData.birthYear}
+            onYearChange={(year) => setSelectedBirthyear(year)}
+          />
         </div>
       </StepperBodyWrapper>
 

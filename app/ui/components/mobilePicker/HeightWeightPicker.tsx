@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Picker from "react-mobile-picker";
 
 import "./styles/pickerStyle.css";
-import { Switch } from "@nextui-org/react";
 import { pickerItemStyles, pickerStyles } from "./styles/style";
 import {
   generateHeightOptions,
   generateImperialHeightOptions,
   generateWeightOptions,
 } from "./pickerData";
+import { IOSSwitch } from "../IOSswitch";
 
 interface HeightWeightPickerProps {
   defaultValue?: {
@@ -77,19 +77,16 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
       <div className="flex items-center justify-center mb-6">
         <span
           className={`text-[20px] font-semibold mr-2 ${
-            !isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
+            isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
           }`}
         >
           Imperial
         </span>
-        <Switch
-          defaultChecked
-          checked={isMetric}
-          onChange={handleToggleMetric}
-        />
+        <IOSSwitch checked={isMetric} onChange={handleToggleMetric} />
+
         <span
           className={`text-[20px] font-semibold ml-2 ${
-            isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
+            !isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
           }`}
         >
           Metric

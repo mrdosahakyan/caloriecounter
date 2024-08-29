@@ -7,7 +7,6 @@ import Footer from "../components/stepperLayout/Footer";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
-import YearsPicker from "../components/mobilePicker/YearsPicker";
 import HeightWeightPicker from "../components/mobilePicker/HeightWeightPicker";
 
 type THeightWeightStepProps = TStepMainTypes;
@@ -42,7 +41,9 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
       </StepperBodyWrapper>
 
       <Footer
-        isDisabled={!selectedHeightWeight?.height || !selectedHeightWeight?.weight || !selectedHeightWeight?.isMetric}
+        isDisabled={
+          !selectedHeightWeight?.height || !selectedHeightWeight?.weight
+        }
         onContinue={handleChooseHeightWeight}
       />
     </>
