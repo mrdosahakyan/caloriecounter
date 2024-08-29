@@ -74,9 +74,9 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
 
   return (
     <div className="flex flex-col items-center bg-[#FFF5E5] py-4">
-      <div className="flex items-center justify-center mb-6">
+      <div className="flex items-center justify-center mb-10">
         <span
-          className={`text-[20px] font-semibold mr-2 ${
+          className={`text-[20px] font-semibold mr-4 ${
             isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
           }`}
         >
@@ -85,7 +85,7 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
         <IOSSwitch checked={isMetric} onChange={handleToggleMetric} />
 
         <span
-          className={`text-[20px] font-semibold ml-2 ${
+          className={`text-[20px] font-semibold ml-4 ${
             !isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
           }`}
         >

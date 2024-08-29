@@ -15,6 +15,8 @@ export type TOnboardingData = {
   gender: string;
   birthYear: string;
   heightWeight: IHeightWeight;
+  activityLevel: string;
+  experienceLevel: string;
   // Add other fields as needed
 };
 
@@ -36,6 +38,8 @@ const initialState: TOnboardingData = {
     weight: "53kg",
     isMetric: true,
   },
+  activityLevel: "",
+  experienceLevel: "",
   // Initialize other fields
 };
 
