@@ -66,7 +66,7 @@ export default function Home() {
       );
   };
 
-  const hideHeader = step === 1 || step === 10;
+  const hideHeader = step === 1 || step >= 10;
 
   return (
     <main className="bg-transparent flex flex-col min-h-screen">
