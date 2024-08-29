@@ -15,6 +15,8 @@ import HeightWeightPicker from "./ui/components/mobilePicker/HeightWeightPicker"
 import HeightWeightStep from "./ui/steps/HeightWeightStep";
 import ActivityLevelStep from "./ui/steps/ActivityLevelStep";
 import ExperienceStep from "./ui/steps/ExperienceStep";
+import AiScanStep from "./ui/steps/AiScanStep";
+import FoodChoiseStep from "./ui/steps/FoodChoiseStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -25,8 +27,8 @@ const stripePromise = loadStripe(stripePublicKey);
 export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
-  const [step, setStep] = useState(4);
-  const totalSteps = 8;
+  const [step, setStep] = useState(8);
+  const totalSteps = 10;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -44,10 +46,12 @@ export default function Home() {
     if (step === 5) return <HeightWeightStep onConitnue={handleContinue} />;
     if (step === 6) return <ActivityLevelStep onConitnue={handleContinue} />;
     if (step === 7) return <ExperienceStep onConitnue={handleContinue} />;
+    if (step === 8) return <AiScanStep onConitnue={handleContinue} />;
+    if (step === 9) return <FoodChoiseStep onConitnue={handleContinue} />;
     
-    if (step === 8) return <ChoosePlanStep onConitnue={handleContinue} />;
+    if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
     if (
-      step === 9 &&
+      step === 11 &&
       onboardingData.clientSecret &&
       onboardingData.stripeCustomerId
     )
@@ -61,7 +65,7 @@ export default function Home() {
       );
   };
 
-  const hideHeader = step === 1 || step === 8;
+  const hideHeader = step === 1 || step === 10;
 
   return (
     <main className="bg-transparent flex flex-col min-h-screen">
