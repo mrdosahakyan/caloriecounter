@@ -17,6 +17,7 @@ import ActivityLevelStep from "./ui/steps/ActivityLevelStep";
 import ExperienceStep from "./ui/steps/ExperienceStep";
 import AiScanStep from "./ui/steps/AiScanStep";
 import FoodChoiseStep from "./ui/steps/FoodChoiseStep";
+import TailorProgramStep from "./ui/steps/TailorProgramStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -27,8 +28,8 @@ const stripePromise = loadStripe(stripePublicKey);
 export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
-  const [step, setStep] = useState(8);
-  const totalSteps = 10;
+  const [step, setStep] = useState(1);
+  const totalSteps = 12;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -48,10 +49,11 @@ export default function Home() {
     if (step === 7) return <ExperienceStep onConitnue={handleContinue} />;
     if (step === 8) return <AiScanStep onConitnue={handleContinue} />;
     if (step === 9) return <FoodChoiseStep onConitnue={handleContinue} />;
-    
-    if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
+    if (step === 10) return <TailorProgramStep onConitnue={handleContinue} />;
+
+    if (step === 11) return <ChoosePlanStep onConitnue={handleContinue} />;
     if (
-      step === 11 &&
+      step === 12 &&
       onboardingData.clientSecret &&
       onboardingData.stripeCustomerId
     )

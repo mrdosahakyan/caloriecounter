@@ -50,7 +50,7 @@ const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
             What is your <br /> primary goal?
           </StepperTitle>
         </div>
-        <div>
+        <div className="w-full">
           <SelectableCards
             items={primaryGoalOptions}
             onSelect={(id) => {

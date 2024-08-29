@@ -53,7 +53,7 @@ const GenderStep: FC<TGenderStepProps> = ({ onConitnue }) => {
             that will best benefit your body type
           </StepperSubtitle>
         </div>
-        <div>
+        <div className="w-full">
           <SelectableCards
             items={genderGoalOptions}
             onSelect={(id) => {

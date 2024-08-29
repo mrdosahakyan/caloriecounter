@@ -32,7 +32,7 @@ const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
             Please enter your birth year to improve your experience!
           </StepperSubtitle>
         </div>
-        <div className="mb-10 pb-10">
+        <div className="mb-10 pb-10 w-full">
           <YearsPicker
             defaultValue={onboardingData.birthYear}
             onYearChange={(year) => setSelectedBirthyear(year)}

@@ -31,7 +31,7 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
             This will be used to calibrate your <br /> custom plan.
           </StepperSubtitle>
         </div>
-        <div className="mb-10">
+        <div className="mb-10 w-full">
           <HeightWeightPicker
             onChange={(value) => {
               setSelectedHeightWeight(value);
