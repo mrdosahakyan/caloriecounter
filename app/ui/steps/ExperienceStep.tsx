@@ -37,9 +37,9 @@ const experienceOptions: TCardItem[] = [
 ];
 
 const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedExperience, setSelectedExperience] = useState<string | null>(
-    null
+    onboardingData.experienceLevel || null
   );
 
   const handleChooseExperience = () => {
@@ -70,6 +70,7 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
             />
           )}
           <SelectableCards
+            defaultValue={onboardingData.experienceLevel}
             items={experienceOptions}
             onSelect={(id) => {
               setSelectedExperience(id);

@@ -5,11 +5,17 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 interface ProgressBarProps {
   label: string;
   timeInSeconds: number;
+  completed: boolean;
+  setCompleted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ label, timeInSeconds }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({
+  label,
+  timeInSeconds,
+  completed,
+  setCompleted,
+}) => {
   const [progress, setProgress] = useState(0);
-  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {

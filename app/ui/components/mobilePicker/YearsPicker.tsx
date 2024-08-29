@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Picker from "react-mobile-picker";
 import "./styles/pickerStyle.css";
 import { getYearsTillCurrent } from "./pickerData";
@@ -14,11 +14,17 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
   onYearChange,
 }) => {
   const currentYear = new Date().getFullYear();
-  const years = getYearsTillCurrent(1900)
+  const years = getYearsTillCurrent(1900);
 
   const [pickerValue, setPickerValue] = useState({
     year: defaultValue || currentYear.toString(),
   });
+
+  useEffect(() => {
+    if (defaultValue) {
+      setPickerValue({ year: defaultValue });
+    }
+  }, [defaultValue]);
 
   const handleChange = (newPickerValue: { year: string }, key: string) => {
     setPickerValue(newPickerValue);
@@ -42,11 +48,7 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
           {years.map((year) => (
             <Picker.Item key={year} value={year}>
               {({ selected }) => (
-                <div
-                  style={pickerItemStyles(selected)}
-                >
-                  {year}
-                </div>
+                <div style={pickerItemStyles(selected)}>{year}</div>
               )}
             </Picker.Item>
           ))}

@@ -10,7 +10,7 @@ import WelcomeStep from "./ui/steps/WelcomeStep";
 import { useOnboardingStore } from "./store/onboardingStore";
 import PrimaryGoalStep from "./ui/steps/PrimaryGoalStep";
 import GenderStep from "./ui/steps/GenderStep";
-import BirthyearStep from "./ui/steps/BirthyearStep"; 
+import BirthyearStep from "./ui/steps/BirthyearStep";
 import HeightWeightStep from "./ui/steps/HeightWeightStep";
 import ActivityLevelStep from "./ui/steps/ActivityLevelStep";
 import ExperienceStep from "./ui/steps/ExperienceStep";
@@ -27,8 +27,8 @@ const stripePromise = loadStripe(stripePublicKey);
 export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
-  const [step, setStep] = useState(1);
-  const totalSteps = 12;
+  const [step, setStep] = useState(0);
+  const totalSteps = 11;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -38,21 +38,23 @@ export default function Home() {
     if (step < totalSteps) setStep(step + 1);
   };
 
-  const getCurrentStep = () => {
-    if (step === 1) return <WelcomeStep onConitnue={handleContinue} />;
-    if (step === 2) return <PrimaryGoalStep onConitnue={handleContinue} />;
-    if (step === 3) return <GenderStep onConitnue={handleContinue} />;
-    if (step === 4) return <BirthyearStep onConitnue={handleContinue} />;
-    if (step === 5) return <HeightWeightStep onConitnue={handleContinue} />;
-    if (step === 6) return <ActivityLevelStep onConitnue={handleContinue} />;
-    if (step === 7) return <ExperienceStep onConitnue={handleContinue} />;
-    if (step === 8) return <AiScanStep onConitnue={handleContinue} />;
-    if (step === 9) return <FoodChoiseStep onConitnue={handleContinue} />;
-    if (step === 10) return <TailorProgramStep onConitnue={handleContinue} />;
+  console.log(onboardingData, '::onboardingData')
 
-    if (step === 11) return <ChoosePlanStep onConitnue={handleContinue} />;
+  const getCurrentStep = () => {
+    if (step === 0) return <WelcomeStep onConitnue={handleContinue} />;
+    if (step === 1) return <PrimaryGoalStep onConitnue={handleContinue} />;
+    if (step === 2) return <GenderStep onConitnue={handleContinue} />;
+    if (step === 3) return <BirthyearStep onConitnue={handleContinue} />;
+    if (step === 4) return <HeightWeightStep onConitnue={handleContinue} />;
+    if (step === 5) return <ActivityLevelStep onConitnue={handleContinue} />;
+    if (step === 6) return <ExperienceStep onConitnue={handleContinue} />;
+    if (step === 7) return <AiScanStep onConitnue={handleContinue} />;
+    if (step === 8) return <FoodChoiseStep onConitnue={handleContinue} />;
+    if (step === 9) return <TailorProgramStep onConitnue={handleContinue} />;
+
+    if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
     if (
-      step === 12 &&
+      step === 11 &&
       onboardingData.clientSecret &&
       onboardingData.stripeCustomerId
     )
@@ -66,16 +68,17 @@ export default function Home() {
       );
   };
 
-  const hideHeader = step === 1 || step >= 10;
+  const stepsNotInSteper = [0, 9, 10, 11];
+  const hideHeader = stepsNotInSteper.includes(step);
 
   return (
     <main className="bg-transparent flex flex-col min-h-screen">
       <Header
         currentStep={step}
         onBack={handleBack}
-        totalSteps={totalSteps}
-        hideHeader={hideHeader}
-        hideBackButton={step === 2}
+        totalSteps={12}
+        stepsNotInSteper={stepsNotInSteper}
+        hideBackButton={step === 1}
       />
 
       <div

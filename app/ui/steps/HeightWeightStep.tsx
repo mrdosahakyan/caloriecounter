@@ -12,9 +12,9 @@ import HeightWeightPicker from "../components/mobilePicker/HeightWeightPicker";
 type THeightWeightStepProps = TStepMainTypes;
 
 const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedHeightWeight, setSelectedHeightWeight] =
-    useState<IHeightWeight | null>(null);
+    useState<IHeightWeight | null>(onboardingData.heightWeight || null);
 
   const handleChooseHeightWeight = () => {
     if (!selectedHeightWeight) return;
@@ -33,6 +33,7 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
         </div>
         <div className="mb-10 w-full">
           <HeightWeightPicker
+            defaultValue={onboardingData.heightWeight}
             onChange={(value) => {
               setSelectedHeightWeight(value);
             }}

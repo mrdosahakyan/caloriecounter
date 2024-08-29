@@ -14,7 +14,7 @@ type TBirthyearStepProps = TStepMainTypes;
 const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
   const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedBirthyear, setSelectedBirthyear] = useState<string | null>(
-    onboardingData.birthYear
+    onboardingData.birthYear || null
   );
 
   const handleChooseYear = () => {

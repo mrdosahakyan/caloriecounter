@@ -11,9 +11,11 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 const FoodChoiseStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
-      <StepperBodyWrapper>
+      <StepperBodyWrapper >
         <StepperTitle>Learn to make better food choices</StepperTitle>
-        <Image src={FoodChoise} alt="" />
+        <div className="mb-6">
+          <Image src={FoodChoise} alt="" />
+        </div>
       </StepperBodyWrapper>
 
       <Footer onContinue={onConitnue} />

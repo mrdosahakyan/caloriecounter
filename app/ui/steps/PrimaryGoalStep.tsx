@@ -12,8 +12,6 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 
-type TPrimaryGoalStepProps = TStepMainTypes;
-
 const primaryGoalOptions: TCardItem[] = [
   {
     id: "loseWeight",
@@ -32,9 +30,11 @@ const primaryGoalOptions: TCardItem[] = [
   },
 ];
 
-const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
-  const [selectedGoalId, setSelectedGoalId] = useState<string | null>(null);
+const PrimaryGoalStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
+  const [selectedGoalId, setSelectedGoalId] = useState<string | null>(
+    onboardingData.goal || null
+  );
 
   const handleChoosePlan = () => {
     if (!selectedGoalId) return;
@@ -46,12 +46,11 @@ const PrimaryGoalStep: FC<TPrimaryGoalStepProps> = ({ onConitnue }) => {
     <>
       <StepperBodyWrapper>
         <div>
-          <StepperTitle>
-            What is your <br /> primary goal?
-          </StepperTitle>
+          <StepperTitle>What is your primary goal?</StepperTitle>
         </div>
         <div className="w-full">
           <SelectableCards
+            defaultValue={onboardingData.goal}
             items={primaryGoalOptions}
             onSelect={(id) => {
               setSelectedGoalId(id);

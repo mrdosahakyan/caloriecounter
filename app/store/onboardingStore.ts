@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+// import { persist } from "zustand/middleware";
 
 export interface IHeightWeight {
   height: string;
@@ -32,31 +32,30 @@ const initialState: TOnboardingData = {
   clientSecret: "",
   goal: "",
   gender: "",
-  birthYear: "1999",
+  birthYear: "2002",
   heightWeight: {
-    height: "167cm",
+    height: "169cm",
     weight: "53kg",
     isMetric: true,
   },
-  activityLevel: "",
-  experienceLevel: "",
-  // Initialize other fields
+  activityLevel: "sedentary",
+  experienceLevel: "beginner",
 };
 
 export const useOnboardingStore = create<OnboardingStore>()(
-  persist(
-    (set) => ({
-      onboardingData: initialState,
-      setOnboardingData: (data: Partial<TOnboardingData>) =>
-        set((state) => ({
-          onboardingData: { ...state.onboardingData, ...data },
-        })),
-      resetOnboardingData: () => set({ onboardingData: initialState }),
-    }),
-    {
-      name: "onboarding-storage", // Name of the storage
-      //   storage: createJSONStorage(() => sessionStorage as StateStorage), // Use session storage
-      //   partialize: (state) => ({ onboardingData: state.onboardingData }), // Only store the necessary part of the state
-    }
-  )
+  // persist(
+  (set) => ({
+    onboardingData: initialState,
+    setOnboardingData: (data: Partial<TOnboardingData>) =>
+      set((state) => ({
+        onboardingData: { ...state.onboardingData, ...data },
+      })),
+    resetOnboardingData: () => set({ onboardingData: initialState }),
+  })
+  // {
+  //   // name: "onboarding-storage", // Name of the storage
+  //   //   storage: createJSONStorage(() => sessionStorage as StateStorage), // Use session storage
+  //   //   partialize: (state) => ({ onboardingData: state.onboardingData }), // Only store the necessary part of the state
+  // }
 );
+// );

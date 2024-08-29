@@ -44,10 +44,10 @@ const activityLevelOptions: TCardItem[] = [
 ];
 
 const ActivityLevelStep: FC<TActivityLevelStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedActivityLevel, setSelectedActivityLevel] = useState<
     string | null
-  >(null);
+  >(onboardingData.activityLevel || null);
 
   const handleChooseAktivityLevel = () => {
     if (!selectedActivityLevel) return;
@@ -59,10 +59,11 @@ const ActivityLevelStep: FC<TActivityLevelStepProps> = ({ onConitnue }) => {
     <>
       <StepperBodyWrapper>
         <div>
-          <StepperTitle>What's your activity level?</StepperTitle>
+          <StepperTitle>What is your activity level?</StepperTitle>
         </div>
         <div>
           <SelectableCards
+            defaultValue={onboardingData.activityLevel}
             items={activityLevelOptions}
             onSelect={(id) => {
               setSelectedActivityLevel(id);

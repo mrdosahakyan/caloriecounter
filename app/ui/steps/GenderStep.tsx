@@ -13,8 +13,6 @@ import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 
-type TGenderStepProps = TStepMainTypes;
-
 const genderGoalOptions: TCardItem[] = [
   {
     id: "male",
@@ -33,9 +31,11 @@ const genderGoalOptions: TCardItem[] = [
   },
 ];
 
-const GenderStep: FC<TGenderStepProps> = ({ onConitnue }) => {
-  const { setOnboardingData } = useOnboardingStore();
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
+const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+  const { setOnboardingData, onboardingData } = useOnboardingStore();
+  const [selectedGender, setSelectedGender] = useState<string | null>(
+    onboardingData.gender || null
+  );
 
   const handleChooseGender = () => {
     if (!selectedGender) return;
@@ -55,6 +55,7 @@ const GenderStep: FC<TGenderStepProps> = ({ onConitnue }) => {
         </div>
         <div className="w-full">
           <SelectableCards
+            defaultValue={onboardingData.gender}
             items={genderGoalOptions}
             onSelect={(id) => {
               setSelectedGender(id);

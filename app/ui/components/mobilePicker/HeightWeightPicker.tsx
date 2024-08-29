@@ -24,8 +24,8 @@ interface HeightWeightPickerProps {
 }
 
 const metricOptions = {
-  height: generateHeightOptions(150, 170, "cm"),
-  weight: generateWeightOptions(40, 60, "kg"),
+  height: generateHeightOptions(150, 200, "cm"),
+  weight: generateWeightOptions(40, 100, "kg"),
 };
 
 const imperialOptions = {
@@ -46,6 +46,15 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
     weight: defaultValue.weight,
   });
   const [isMetric, setIsMetric] = useState(defaultValue.isMetric);
+
+  useEffect(() => {
+    if (!defaultValue) return;
+    setPickerValue({
+      height: defaultValue.height,
+      weight: defaultValue.weight,
+    });
+    setIsMetric(defaultValue.isMetric);
+  }, [defaultValue]);
 
   useEffect(() => {
     onChange({ ...pickerValue, isMetric });
