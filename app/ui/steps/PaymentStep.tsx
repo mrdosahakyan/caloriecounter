@@ -10,7 +10,7 @@ import PaymentCarousel from "../components/carousel/PaymentCarousel";
 const PaymentStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
-      <StepperBodyWrapper justify="start" className="mt-[64px]">
+      <StepperBodyWrapper justify="start" className="mt-2">
         <div className="flex flex-col justify-around content-center h-full w-full">
           <PaymentCarousel />
 
@@ -25,7 +25,7 @@ const PaymentStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         </div>
       </StepperBodyWrapper>
 
-      <Footer onContinue={onConitnue} />
+      <Footer onContinue={onConitnue} isDisabled />
     </>
   );
 };

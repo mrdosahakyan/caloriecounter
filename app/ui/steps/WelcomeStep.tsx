@@ -23,13 +23,7 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         </StepperSubtitle>
 
         <BlurOverlay>
-          <Image
-            alt="Welcome"
-            src={ScanAi}
-            style={{
-              objectFit: "cover",
-            }}
-          />
+          <Image alt="Welcome" src={ScanAi} height={350} />
         </BlurOverlay>
 
         <div className="mt-1">

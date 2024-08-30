@@ -20,7 +20,7 @@ const PaymentCarousel = () => {
     dotsClass: "slick-dots slick-thumb",
   };
 
-  const imageHeight = 250;
+  const imageHeight = 300;
 
   return (
     <div className="w-100">

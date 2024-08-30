@@ -36,7 +36,7 @@ export default function Header({
         <Progress
           aria-label="Loading..."
           value={Math.floor(
-            (currentStep / (totalSteps - stepsNotInSteper.length)) * 100
+            (currentStep / (totalSteps - stepsNotInSteper.length + 2)) * 100
           )}
           className="w-[130px]"
           style={{
