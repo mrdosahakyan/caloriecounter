@@ -12,6 +12,7 @@ import PercentUSer from "../../../public/75PercentUser.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
 
 type TExperienceStepProps = TStepMainTypes;
 
@@ -57,7 +58,7 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
           </StepperTitle>
         </div>
 
-        <div>
+        <StepperContentEndWrapper>
           {selectedExperience === "beginner" && (
             <Image
               style={{
@@ -76,7 +77,7 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
               setSelectedExperience(id);
             }}
           />
-        </div>
+        </StepperContentEndWrapper>
       </StepperBodyWrapper>
 
       <Footer

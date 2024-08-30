@@ -12,6 +12,7 @@ import Level4 from "../../../public/icons/level4.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
 
 const activityLevelOptions: TCardItem[] = [
   {
@@ -58,7 +59,7 @@ const ActivityLevelStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         <div>
           <StepperTitle>What is your activity level?</StepperTitle>
         </div>
-        <div>
+        <StepperContentEndWrapper >
           <SelectableCards
             defaultValue={onboardingData.activityLevel}
             items={activityLevelOptions}
@@ -66,7 +67,7 @@ const ActivityLevelStep: FC<TStepMainTypes> = ({ onConitnue }) => {
               setSelectedActivityLevel(id);
             }}
           />
-        </div>
+        </StepperContentEndWrapper>
       </StepperBodyWrapper>
 
       <Footer

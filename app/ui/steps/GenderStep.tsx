@@ -12,6 +12,7 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
+import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
 
 const genderGoalOptions: TCardItem[] = [
   {
@@ -53,7 +54,7 @@ const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
             that will best benefit your body type
           </StepperSubtitle>
         </div>
-        <div className="w-full">
+        <StepperContentEndWrapper className="w-full">
           <SelectableCards
             defaultValue={onboardingData.gender}
             items={genderGoalOptions}
@@ -61,7 +62,7 @@ const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
               setSelectedGender(id);
             }}
           />
-        </div>
+        </StepperContentEndWrapper>
       </StepperBodyWrapper>
 
       <Footer isDisabled={!selectedGender} onContinue={handleChooseGender} />
