@@ -16,7 +16,7 @@ const TailorProgramStep: FC<TStepMainTypes> = ({ onConitnue }) => {
 
   return (
     <>
-      <StepperBodyWrapper justify="start" className="mt-[64px]">
+      <StepperBodyWrapper justify="start" className="mt-6">
         <StepperTitle>Tailoring your program</StepperTitle>
         <div className="flex flex-col justify-around h-full w-full">
           <div className="flex flex-col gap-6 w-full px-4 mt-5">

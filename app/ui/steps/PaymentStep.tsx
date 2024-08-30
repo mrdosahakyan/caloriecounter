@@ -14,7 +14,7 @@ const PaymentStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         <div className="flex flex-col justify-around content-center h-full w-full">
           <PaymentCarousel />
 
-          <div>
+          <div className="mt-5">
             <StepperTitle className="mb-2">
               Get unlimited access to your plan!
             </StepperTitle>

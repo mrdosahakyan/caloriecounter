@@ -18,6 +18,8 @@ import AiScanStep from "./ui/steps/AiScanStep";
 import FoodChoiseStep from "./ui/steps/FoodChoiseStep";
 import TailorProgramStep from "./ui/steps/TailorProgramStep";
 import PaymentStep from "./ui/steps/PaymentStep";
+import AiTrackerStep from "./ui/steps/AiTrackerStep";
+import DailyMacrosStep from "./ui/steps/DailyMacrosStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -29,7 +31,7 @@ export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
   const [step, setStep] = useState(0);
-  const totalSteps = 10;
+  const totalSteps = 12;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -48,10 +50,12 @@ export default function Home() {
     if (step === 5) return <ActivityLevelStep onConitnue={handleContinue} />;
     if (step === 6) return <ExperienceStep onConitnue={handleContinue} />;
     if (step === 7) return <AiScanStep onConitnue={handleContinue} />;
-    if (step === 8) return <FoodChoiseStep onConitnue={handleContinue} />;
-    if (step === 9) return <TailorProgramStep onConitnue={handleContinue} />;
+    if (step === 8) return <AiTrackerStep onConitnue={handleContinue} />;
+    if (step === 9) return <FoodChoiseStep onConitnue={handleContinue} />;
+    if (step === 10) return <DailyMacrosStep onConitnue={handleContinue} />;
+    if (step === 11) return <TailorProgramStep onConitnue={handleContinue} />;
 
-    if (step === 10) return <PaymentStep onConitnue={handleContinue} />;
+    if (step === 12) return <PaymentStep onConitnue={handleContinue} />;
     // if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
     // if (
     //   step === 11 &&
@@ -68,7 +72,7 @@ export default function Home() {
     //   );
   };
 
-  const stepsNotInSteper = [0, 9, 10];
+  const stepsNotInSteper = [0, 11, 12];
   const hideHeader = stepsNotInSteper.includes(step);
 
   return (

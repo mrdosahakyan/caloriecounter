@@ -18,7 +18,7 @@ const testimonials = [
   {
     text: "Obsessed with the delicious recipes!",
     author: "Healdie87",
-    rating: 4,
+    rating: 5,
   },
   {
     text: "AI makes calorie counting effortless.",
@@ -28,12 +28,12 @@ const testimonials = [
   {
     text: "The recipe library keeps me motivated!",
     author: "CookNF12",
-    rating: 3,
+    rating: 5,
   },
   {
     text: "Reaching goals is easy with AI tracking.",
     author: "ActLife99",
-    rating: 4,
+    rating: 5,
   },
   {
     text: "So many great recipes to choose from!",
@@ -56,7 +56,7 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <div className="w-100">
+    <div className="w-100 mt-3">
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <TestimonialCard

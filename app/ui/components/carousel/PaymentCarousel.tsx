@@ -6,6 +6,8 @@ import BlurOverlay from "../BlurOverlay";
 import Image from "next/image";
 import FoodChoise from "../../../../public/FoodChoise.svg";
 import ScanAi from "../../../../public/ScanAi.svg";
+import AiTracker from "../../../../public/AiTracker.svg";
+import DailyMacros from "../../../../public/DailyMacros.png";
 
 const PaymentCarousel = () => {
   const settings = {
@@ -14,7 +16,7 @@ const PaymentCarousel = () => {
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
     dotsClass: "slick-dots slick-thumb",
@@ -40,6 +42,24 @@ const PaymentCarousel = () => {
             src={ScanAi}
             alt=""
             style={{
+              objectFit: "cover",
+            }}
+          />
+        </BlurOverlay>
+        <BlurOverlay height={imageHeight}>
+          <Image
+            src={AiTracker}
+            alt=""
+            style={{
+              objectFit: "cover",
+            }}
+          />
+        </BlurOverlay>
+        <BlurOverlay height={imageHeight}>
+          <Image
+            src={DailyMacros}
+            alt=""
+          style={{
               objectFit: "cover",
             }}
           />
