@@ -53,7 +53,7 @@ const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
             that will best benefit your body type
           </StepperSubtitle>
         </div>
-        <div className="w-full">
+        <div className="w-full mb-6">
           <SelectableCards
             defaultValue={onboardingData.gender}
             items={genderGoalOptions}

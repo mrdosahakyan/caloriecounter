@@ -48,7 +48,7 @@ const PrimaryGoalStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         <div>
           <StepperTitle>What is your primary goal?</StepperTitle>
         </div>
-        <div className="w-full">
+        <div className="w-full mb-6">
           <SelectableCards
             defaultValue={onboardingData.goal}
             items={primaryGoalOptions}

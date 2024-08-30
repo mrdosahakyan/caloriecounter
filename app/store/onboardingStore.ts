@@ -38,8 +38,8 @@ const initialState: TOnboardingData = {
     weight: "53kg",
     isMetric: true,
   },
-  activityLevel: "sedentary",
-  experienceLevel: "beginner",
+  activityLevel: "",
+  experienceLevel: "",
 };
 
 export const useOnboardingStore = create<OnboardingStore>()(
