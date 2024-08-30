@@ -63,6 +63,7 @@ const TestimonialsCarousel = () => {
             author={testimonial.author}
             stars={testimonial.rating}
             text={testimonial.text}
+            key={index}
           />
         ))}
       </Slider>
