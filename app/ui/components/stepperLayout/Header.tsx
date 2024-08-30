@@ -19,7 +19,7 @@ export default function Header({
   if (stepsNotInSteper.includes(currentStep)) return null;
    
   return (
-    <header className="bg-transparent flex justify-start items-center px-3 py-4 fixed top-0 w-full z-10 h-[64px]">
+    <header className="bg-[#FFF5E5] flex justify-start items-center px-3 py-4 fixed top-0 w-full z-10 h-[64px]">
       <div
         className={`flex items-center ${
           hideBackButton ? "visibility-hidden" : ""
