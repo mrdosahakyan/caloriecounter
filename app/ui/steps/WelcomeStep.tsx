@@ -9,12 +9,15 @@ import OneMDownloads from "../../../public/1MDownloads.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import BlurOverlay from "../components/BlurOverlay";
+import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
-      <div className="px-6 py-4 flex flex-col items-center text-center gap-y-2">
-        <StepperTitle>AI-powered calorie tracking</StepperTitle>
+      <StepperBodyWrapper className="gap-y-3">
+        <StepperTitle className="mt-6">
+          AI-powered calorie tracking
+        </StepperTitle>
         <StepperSubtitle>
           Lets begin with a few questions to <br /> create your customized plan
         </StepperSubtitle>
@@ -24,17 +27,15 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
             alt="Welcome"
             src={ScanAi}
             style={{
-              height: 350,
-              width: "100%",
               objectFit: "cover",
             }}
           />
         </BlurOverlay>
 
-        <div>
+        <div className="mt-1">
           <Image alt="Welcome" src={OneMDownloads} />
         </div>
-      </div>
+      </StepperBodyWrapper>
       <Footer onContinue={onConitnue} text="Get Started" />
     </>
   );

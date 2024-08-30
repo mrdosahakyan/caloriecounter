@@ -17,6 +17,7 @@ import ExperienceStep from "./ui/steps/ExperienceStep";
 import AiScanStep from "./ui/steps/AiScanStep";
 import FoodChoiseStep from "./ui/steps/FoodChoiseStep";
 import TailorProgramStep from "./ui/steps/TailorProgramStep";
+import PaymentStep from "./ui/steps/PaymentStep";
 
 const stripePublicKey =
   process.env.STRIPE_PUBLIC_KEY ||
@@ -28,7 +29,7 @@ export default function Home() {
   const { onboardingData } = useOnboardingStore();
 
   const [step, setStep] = useState(0);
-  const totalSteps = 11;
+  const totalSteps = 10;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -37,8 +38,6 @@ export default function Home() {
   const handleContinue = () => {
     if (step < totalSteps) setStep(step + 1);
   };
-
-  console.log(onboardingData, '::onboardingData')
 
   const getCurrentStep = () => {
     if (step === 0) return <WelcomeStep onConitnue={handleContinue} />;
@@ -52,23 +51,24 @@ export default function Home() {
     if (step === 8) return <FoodChoiseStep onConitnue={handleContinue} />;
     if (step === 9) return <TailorProgramStep onConitnue={handleContinue} />;
 
-    if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
-    if (
-      step === 11 &&
-      onboardingData.clientSecret &&
-      onboardingData.stripeCustomerId
-    )
-      return (
-        <Elements
-          stripe={stripePromise}
-          options={{ clientSecret: onboardingData.clientSecret }}
-        >
-          <ChoosePaymentMethodStep />
-        </Elements>
-      );
+    if (step === 10) return <PaymentStep onConitnue={handleContinue} />;
+    // if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
+    // if (
+    //   step === 11 &&
+    //   onboardingData.clientSecret &&
+    //   onboardingData.stripeCustomerId
+    // )
+    //   return (
+    //     <Elements
+    //       stripe={stripePromise}
+    //       options={{ clientSecret: onboardingData.clientSecret }}
+    //     >
+    //       <ChoosePaymentMethodStep />
+    //     </Elements>
+    //   );
   };
 
-  const stepsNotInSteper = [0, 9, 10, 11];
+  const stepsNotInSteper = [0, 9, 10];
   const hideHeader = stepsNotInSteper.includes(step);
 
   return (
@@ -76,7 +76,7 @@ export default function Home() {
       <Header
         currentStep={step}
         onBack={handleBack}
-        totalSteps={12}
+        totalSteps={totalSteps}
         stepsNotInSteper={stepsNotInSteper}
         hideBackButton={step === 1}
       />

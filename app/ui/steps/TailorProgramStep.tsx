@@ -6,7 +6,7 @@ import Footer from "../components/stepperLayout/Footer";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import ProgressBar from "../components/ProgressBar";
-import TestimonialsCarousel from "../components/TestimonialsCarousel";
+import TestimonialsCarousel from "../components/carousel/TestimonialsCarousel";
 
 const TailorProgramStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   const [completed1, setCompleted1] = useState(false);

@@ -44,7 +44,7 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
 
   const handleChooseExperience = () => {
     if (!selectedExperience) return;
-    setOnboardingData({ gender: selectedExperience });
+    setOnboardingData({ experienceLevel: selectedExperience });
     onConitnue();
   };
 

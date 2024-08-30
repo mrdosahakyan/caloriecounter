@@ -2,13 +2,21 @@ import React, { FC } from "react";
 
 type TBlurOverlayProps = {
   children: React.ReactNode;
+  height?: number;
+  width?: number;
 };
 
-const BlurOverlay: FC<TBlurOverlayProps> = ({ children }) => {
+const BlurOverlay: FC<TBlurOverlayProps> = ({ children, height, width }) => {
   return (
     <div
       style={{
         position: "relative",
+        height: height || "100%",
+        width: width || "100%",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       {/* <img
@@ -27,7 +35,7 @@ const BlurOverlay: FC<TBlurOverlayProps> = ({ children }) => {
           top: 0,
           left: 0,
           right: 0,
-          bottom: 0,
+          bottom: "-3px",
           background:
             "linear-gradient(180deg, rgba(255, 245, 229, 0) 56%, #FFF5E5 94%)",
         }}

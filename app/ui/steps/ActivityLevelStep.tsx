@@ -48,7 +48,7 @@ const ActivityLevelStep: FC<TStepMainTypes> = ({ onConitnue }) => {
 
   const handleChooseAktivityLevel = () => {
     if (!selectedActivityLevel) return;
-    setOnboardingData({ gender: selectedActivityLevel });
+    setOnboardingData({ activityLevel: selectedActivityLevel });
     onConitnue();
   };
 
