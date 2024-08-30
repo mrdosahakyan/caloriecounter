@@ -8,6 +8,7 @@ import ScanAi from "../../../public/ScanAi.svg";
 import OneMDownloads from "../../../public/1MDownloads.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
+import BlurOverlay from "../components/BlurOverlay";
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
@@ -18,9 +19,18 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           Lets begin with a few questions to <br /> create your customized plan
         </StepperSubtitle>
 
-        <div>
-          <Image alt="Welcome" src={ScanAi} />
-        </div>
+        <BlurOverlay>
+          <Image
+            alt="Welcome"
+            src={ScanAi}
+            style={{
+              height: 350,
+              width: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </BlurOverlay>
+
         <div>
           <Image alt="Welcome" src={OneMDownloads} />
         </div>
