@@ -1,6 +1,6 @@
 "use client";
 
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import ChoosePlanStep from "./ui/steps/ChoosePlanStep";
 import ChoosePaymentMethodStep from "./ui/steps/ChoosePaymentMethodStep";
 import { Elements } from "@stripe/react-stripe-js";
@@ -72,12 +72,33 @@ export default function Home() {
     //     </Elements>
     //   );
   };
-
+  
   const stepsNotInSteper = [0, 11, 12];
   const hideHeader = stepsNotInSteper.includes(step);
 
+  useEffect(() => {
+    function setDynamicHeight() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+  
+      const element = document.querySelector('.dynamic-height') as HTMLElement;
+      if (element) {
+        const dynamicHeight = hideHeader
+          ? `calc(var(--vh, 1vh) * 100)`
+          : `calc(var(--vh, 1vh) * 100 - 64px)`;
+        element.style.height = dynamicHeight;
+      }
+    }
+  
+    window.addEventListener('resize', setDynamicHeight);
+    setDynamicHeight(); // Set the initial height
+  
+    return () => window.removeEventListener('resize', setDynamicHeight);
+  }, [hideHeader]);
+
+
   return (
-    <main className="bg-transparent flex flex-col full-height overflow-hidden">
+    <main className="bg-transparent flex flex-col full-height">
       <Header
         currentStep={step}
         onBack={handleBack}
@@ -87,9 +108,9 @@ export default function Home() {
       />
 
       <div
-        className={`${
-          hideHeader ? "full-height" : "h-[calc(100vh-64px)]"
-        }  `}
+         className={`dynamic-height ${
+          hideHeader ? "full-height" : ""
+        } bg-transparent flex flex-col`}
       >
         <div className="flex flex-col h-full">{getCurrentStep()}</div>
       </div>
