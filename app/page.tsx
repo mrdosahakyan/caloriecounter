@@ -76,7 +76,7 @@ export default function Home() {
   const hideHeader = stepsNotInSteper.includes(step);
 
   return (
-    <main className="bg-transparent flex flex-col min-h-screen">
+    <main className="bg-transparent flex flex-col h-screen max-h-screen min-h-screen">
       <Header
         currentStep={step}
         onBack={handleBack}
