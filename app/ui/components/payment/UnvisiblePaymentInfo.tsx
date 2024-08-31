@@ -1,22 +1,9 @@
 const UnvisiblePaymentInfo = () => {
   const supportEmail = process.env.SUPPORT_EMAIL || "support@example.com";
   const moneyBackPolicyLink = process.env.MONEY_BACK_POLICY_LINK || "#";
-  const termsOfServiceLink = process.env.TERMS_OF_SERVICE_LINK || "#";
-  const privacyPolicyLink = process.env.PRIVACY_POLICY_LINK || "#";
 
   return (
     <>
-      <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-center bg-[#FFF5E5] py-2">
-        By proceeding, you acknowledge and agree to our{" "}
-        <a href={termsOfServiceLink} className="underline">
-          Terms of Service
-        </a>{" "}
-        &{" "}
-        <a href={privacyPolicyLink} className="underline">
-          Privacy Policy
-        </a>
-        .
-      </div>
       <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-justify bg-[#FFF5E5] py-2">
         Your plan will be available immediately after registration. Today you
         will be charged 6,99$ for 7-days trial, then 29,99$ after trial for your

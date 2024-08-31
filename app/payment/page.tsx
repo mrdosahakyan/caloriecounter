@@ -8,6 +8,7 @@ import PaymentCarousel from "../ui/components/carousel/PaymentCarousel";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
 import { Button } from "@nextui-org/react";
 import UnvisiblePaymentInfo from "../ui/components/payment/UnvisiblePaymentInfo";
+import TermsConditions from "../ui/components/payment/TermsContditions";
 
 const PaymentPage = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -15,10 +16,10 @@ const PaymentPage = () => {
   const isDisabled = true;
   return (
     <>
-      <div className="min-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
+      <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
         <div className="flex-1 flex flex-col w-full justify-around">
           <PaymentCarousel />
-          <div>
+          <div className="mt-5">
             <StepperTitle className="mb-2">
               Get unlimited access to your plan!
             </StepperTitle>
@@ -27,7 +28,7 @@ const PaymentPage = () => {
             </p>
           </div>
         </div>
-        <div className="h-fit">
+        <div className="h-fit mt-2">
           <ChoosePaymentMethod
             selectedPaymentMethod={selectedPaymentMethod}
             setSelectedPaymentMethod={setSelectedPaymentMethod}
@@ -45,6 +46,7 @@ const PaymentPage = () => {
           >
             Continue
           </Button>
+          <TermsConditions />
         </div>
       </div>
       <div className="bg-[#FFF5E5] px-3">

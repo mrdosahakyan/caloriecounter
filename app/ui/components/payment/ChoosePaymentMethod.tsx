@@ -11,6 +11,7 @@ import ApplePay from "../../../../public/icons/ApplePay.svg";
 import { FaCheck } from "react-icons/fa";
 import Image from "next/image";
 import { CiCreditCard1 } from "react-icons/ci";
+import { SiApplepay } from "react-icons/si";
 
 export enum EPaymentMethod {
   CARD = "card",
@@ -21,12 +22,12 @@ const options = [
   {
     label: "Credit Card",
     value: EPaymentMethod.CARD,
-    icon: <CiCreditCard1 fontSize={60} />, // Increase icon size: ;
+    icon: <CiCreditCard1 fontSize={45} />, // Increase icon size: ;
   },
   {
     label: "Apple Pay",
     value: EPaymentMethod.APPLE_PAY,
-    icon: <Image width={60} height={40} src={ApplePay} alt="apple pay" />, // Increase icon size: ;
+    icon: <SiApplepay fontSize={45} />, // Increase icon size: ;
   },
 ];
 
@@ -56,7 +57,7 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
               border: "none", // Remove border
               outline: "none", // Remove outline on focus
               boxShadow: "none", // Remove box-shadow
-              height: '60px'
+              height: "30px",
             }}
           />
         }
@@ -71,11 +72,11 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           },
           PaperProps: {
             style: {
-              width: '100%',
+              width: "100%",
               minWidth: "80%",
-              marginTop: "8px", // Add space between select and dropdown
+              marginTop: "30px", // Add space between select and dropdown
               borderRadius: "8px", // Add border radius to dropdown container
-              marginRight: "14px", 
+              marginRight: "14px",
             },
           },
           MenuListProps: {
@@ -91,7 +92,7 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
               fontWeight="bold"
               style={{
                 paddingLeft: "18px",
-                fontSize: "20px",
+                fontSize: "18px",
                 color: "#021533",
               }}
             >
@@ -121,7 +122,7 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
                   fontWeight="bold"
                   style={{
                     paddingLeft: "18px",
-                    fontSize: "20px",
+                    fontSize: "18px",
                     color: "#021533",
                   }}
                 >

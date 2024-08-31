@@ -22,46 +22,55 @@ const PaymentCarousel = () => {
     dotsClass: "slick-dots slick-thumb",
   };
 
-  const imageHeight = 300;
+  const imageHeight = 250;
 
   return (
     <div className="w-100">
-      <Slider centerPadding="10px" centerMode {...settings}>
-        <BlurOverlay height={imageHeight}>
+      <Slider
+        centerPadding="10px"
+        adaptiveHeight={false}
+        swipeToSlide
+        {...settings}
+      >
+        <BlurOverlay>
           <Image
             src={FoodChoise}
             alt=""
             style={{
               objectFit: "cover",
             }}
+            height={imageHeight}
           />
         </BlurOverlay>
 
-        <BlurOverlay height={imageHeight}>
+        <BlurOverlay>
           <Image
             src={ScanAi}
             alt=""
             style={{
               objectFit: "cover",
             }}
+            height={imageHeight}
           />
         </BlurOverlay>
-        <BlurOverlay height={imageHeight}>
+        <BlurOverlay>
           <Image
             src={AiTracker}
             alt=""
             style={{
               objectFit: "cover",
             }}
+            height={imageHeight}
           />
         </BlurOverlay>
-        <BlurOverlay height={imageHeight}>
+        <BlurOverlay>
           <Image
             src={DailyMacros}
             alt=""
-          style={{
+            style={{
               objectFit: "cover",
             }}
+            height={imageHeight}
           />
         </BlurOverlay>
       </Slider>
