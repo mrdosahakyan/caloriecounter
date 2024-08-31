@@ -23,6 +23,16 @@ export default function RootLayout({
     };
   }, []);
 
+  useEffect(() => {
+    // Disable scroll when the component mounts (picker is active)
+    document.body.classList.add('no-scroll');
+  
+    // Re-enable scroll when the component unmounts (picker is closed)
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
+
   return (
     <html lang="en">
       <body className="bg-[#FFF5E5] full-height">
