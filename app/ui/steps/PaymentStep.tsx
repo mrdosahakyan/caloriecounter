@@ -22,6 +22,15 @@ const PaymentStep: FC<TStepMainTypes> = ({ onConitnue }) => {
               Unlimited access for just $6.99 Try for one week. Cancel anytime
             </p>
           </div>
+          {/* TODO:  remove after test */}
+          <div className="mt-5">
+            <StepperTitle className="mb-2">
+              Get unlimited access to your plan!
+            </StepperTitle>
+            <p className="font-roboto text-[14px] font-normal text-center text-[#000000]">
+              Unlimited access for just $6.99 Try for one week. Cancel anytime
+            </p>
+          </div>
         </div>
       </StepperBodyWrapper>
 
