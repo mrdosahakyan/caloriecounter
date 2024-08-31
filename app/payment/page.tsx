@@ -71,8 +71,8 @@ const Payment = () => {
           will be charged 6,99$ for 7-days trial, then 29,99$ after trial for
           your 1-month plan. You can cancel anytime before then and will not be
           charged the next payment. No hidden payments. AI Tracker will
-          automatically charge your card every billing period so you don't lose
-          access to your account. No refunds or credits except if you don't get
+          automatically charge your card every billing period so you don&apos;t lose
+          access to your account. No refunds or credits except if you don&apos;t get
           any results and follow our{" "}
           <a href={moneyBackPolicyLink} className=" underline">
             money-back policy
