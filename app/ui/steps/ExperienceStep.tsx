@@ -12,7 +12,6 @@ import PercentUSer from "../../../public/75PercentUser.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 type TExperienceStepProps = TStepMainTypes;
 
@@ -21,19 +20,19 @@ const experienceOptions: TCardItem[] = [
     id: "beginner",
     title: "Beginner",
     description: "I'm new to weight loss and need to learn a lot",
-    icon: <Image src={Beginner} alt="Level1" />,
+    icon: <Image width={36} src={Beginner} alt="Level1" />,
   },
   {
     id: "intermidiate",
     title: "Intermidiate",
     description: "I have some experience but Still need some guidance",
-    icon: <Image src={Intermedite} alt="Level2" />,
+    icon: <Image width={36} src={Intermedite} alt="Level2" />,
   },
   {
     id: "master",
     title: "Master",
     description: "I have rich experience",
-    icon: <Image src={Master} alt="Level3" />,
+    icon: <Image width={36} src={Master} alt="Level3" />,
   },
 ];
 
