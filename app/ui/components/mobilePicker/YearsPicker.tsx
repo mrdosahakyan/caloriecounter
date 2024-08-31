@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Picker from "react-mobile-picker";
 import "./styles/pickerStyle.css";
 import { getYearsTillCurrent } from "./pickerData";
@@ -15,6 +15,7 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
 }) => {
   const currentYear = new Date().getFullYear();
   const years = getYearsTillCurrent(1900);
+  const pickerRef = useRef<HTMLDivElement>(null);
 
   const [pickerValue, setPickerValue] = useState({
     year: defaultValue || currentYear.toString(),
@@ -26,13 +27,32 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
     }
   }, [defaultValue]);
 
+  useEffect(() => {
+    const handleTouchMove = (e: TouchEvent) => {
+      if (pickerRef.current && pickerRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
+
   const handleChange = (newPickerValue: { year: string }, key: string) => {
     setPickerValue(newPickerValue);
     onYearChange(newPickerValue.year);
   };
 
   return (
-    <div className="picker-wrapper flex justify-center items-center bg-[#FFF5E5] w-full">
+    <div
+      className="picker-wrapper flex justify-center items-center bg-[#FFF5E5] w-full"
+      ref={pickerRef}
+    >
       <Picker
         value={pickerValue}
         onChange={handleChange}
