@@ -13,7 +13,10 @@ const StepperContentEndWrapper: React.FC<StepperContentEndWrapperProps> = ({
 }) => {
   return (
     <div
-      className={`mb-2 mt-2 h-full flex flex-col justify-${justify} ${className}`}
+      className={`mb-2 mt-2 h-full flex flex-col ${className}`}
+      style={{
+        justifyContent: justify,
+      }}
     >
       {children}
     </div>
