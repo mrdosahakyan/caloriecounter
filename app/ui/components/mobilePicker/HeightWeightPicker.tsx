@@ -60,6 +60,16 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
     onChange({ ...pickerValue, isMetric });
   }, [pickerValue, isMetric]);
 
+  useEffect(() => {
+    // Disable scroll when the component mounts (picker is active)
+    document.body.classList.add('no-scroll');
+  
+    // Re-enable scroll when the component unmounts (picker is closed)
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
+
   const handleChange = (newPickerValue: { [key: string]: string }) => {
     setPickerValue((prev) => ({
       ...prev,
