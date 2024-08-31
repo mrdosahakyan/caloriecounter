@@ -16,7 +16,7 @@ const PaymentCarousel = () => {
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 2000,
     arrows: false,
     dotsClass: "slick-dots slick-thumb",

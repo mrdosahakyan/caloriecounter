@@ -20,7 +20,7 @@ const Payment = () => {
   const isDisabled = false;
   return (
     <>
-      <div className="full-height w-full flex flex-col justify-between py-2 px-3">
+      <div className="min-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
         <div className="flex-1 flex flex-col w-full justify-around">
           <PaymentCarousel />
           <div>
