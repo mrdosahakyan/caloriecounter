@@ -12,7 +12,7 @@ import PercentUSer from "../../../public/75PercentUser.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 type TExperienceStepProps = TStepMainTypes;
 
@@ -58,26 +58,24 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
           </StepperTitle>
         </div>
 
-        <StepperContentEndWrapper>
-          {selectedExperience === "beginner" && (
-            <Image
-              style={{
-                maxHeight: "135px",
-                margin: "8px",
-              }}
-              width={360}
-              src={PercentUSer}
-              alt=""
-            />
-          )}
-          <SelectableCards
-            defaultValue={onboardingData.experienceLevel}
-            items={experienceOptions}
-            onSelect={(id) => {
-              setSelectedExperience(id);
+        {selectedExperience === "beginner" && (
+          <Image
+            style={{
+              maxHeight: "135px",
+              margin: "8px",
             }}
+            width={360}
+            src={PercentUSer}
+            alt=""
           />
-        </StepperContentEndWrapper>
+        )}
+        <SelectableCards
+          defaultValue={onboardingData.experienceLevel}
+          items={experienceOptions}
+          onSelect={(id) => {
+            setSelectedExperience(id);
+          }}
+        />
       </StepperBodyWrapper>
 
       <Footer

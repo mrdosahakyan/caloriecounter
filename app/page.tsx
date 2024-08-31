@@ -77,7 +77,7 @@ export default function Home() {
   const hideHeader = stepsNotInSteper.includes(step);
 
   return (
-    <main className="bg-transparent flex flex-col full-height">
+    <main className="bg-transparent flex flex-col full-height overflow-hidden">
       <Header
         currentStep={step}
         onBack={handleBack}
@@ -87,11 +87,11 @@ export default function Home() {
       />
 
       <div
-        className={`flex-grow overflow-y-auto ${
-          hideHeader ? "" : "mt-[64px]"
-        }  mb-[64px]`}
+        className={`${
+          hideHeader ? "full-height" : "h-[calc(100vh-64px)]"
+        }  `}
       >
-        {getCurrentStep()}
+        <div className="flex flex-col h-full">{getCurrentStep()}</div>
       </div>
     </main>
   );

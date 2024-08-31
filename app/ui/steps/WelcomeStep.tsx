@@ -14,22 +14,33 @@ import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
-      <StepperBodyWrapper className="gap-y-3">
-        <StepperTitle className="mt-6">
-          AI-powered calorie tracking
-        </StepperTitle>
-        <StepperSubtitle>
-          Lets begin with a few questions to <br /> create your customized plan
-        </StepperSubtitle>
+      <div
+        className={`overflow-y-auto py-2 w-full`}
+        style={{
+          height: "88%",
+        }}
+      >
+        <div
+          className={`flex flex-col justify-between px-3 h-full items-center`}
+        >
+          <StepperTitle className="mt-2">
+            AI-powered calorie tracking
+          </StepperTitle>
+          <StepperSubtitle>
+            Lets begin with a few questions to <br /> create your customized
+            plan
+          </StepperSubtitle>
 
-        <BlurOverlay>
-          <Image alt="Welcome" src={ScanAi} height={350} />
-        </BlurOverlay>
+          <BlurOverlay>
+            <Image alt="Welcome" src={ScanAi} height={350} />
+          </BlurOverlay>
 
-        <div className="mt-1">
-          <Image alt="Welcome" src={OneMDownloads} />
+          <div className="mt-1">
+            <Image alt="Welcome" src={OneMDownloads} />
+          </div>
         </div>
-      </StepperBodyWrapper>
+      </div>
+
       <Footer onContinue={onConitnue} text="Get Started" />
     </>
   );

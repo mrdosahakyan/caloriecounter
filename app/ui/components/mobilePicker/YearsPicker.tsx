@@ -32,7 +32,7 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
   };
 
   return (
-    <div className="picker-wrapper flex justify-center items-center bg-[#FFF5E5]">
+    <div className="picker-wrapper flex justify-center items-center bg-[#FFF5E5] w-full">
       <Picker
         value={pickerValue}
         onChange={handleChange}

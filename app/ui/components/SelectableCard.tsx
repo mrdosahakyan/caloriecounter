@@ -35,7 +35,7 @@ const SelectableCards: React.FC<SelectableCardsProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 w-full">
       {items.map((item) => (
         <Card
           key={item.id}

@@ -7,7 +7,7 @@ import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import AiTracker from "../../../public/AiTracker.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
-import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 const AiTrackerStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
@@ -16,9 +16,9 @@ const AiTrackerStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         <StepperTitle>
           Our high-tech AI tracker makes the weight loss process painless
         </StepperTitle>
-        <StepperContentEndWrapper justify="center">
+        <StepperContentCenterWrapper>
           <Image src={AiTracker} alt="" />
-        </StepperContentEndWrapper>
+        </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 
       <Footer onContinue={onConitnue} />

@@ -11,7 +11,6 @@ import GetHealtier from "../../../public/icons/getHealtier.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
 
 const primaryGoalOptions: TCardItem[] = [
   {
@@ -46,18 +45,15 @@ const PrimaryGoalStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
       <StepperBodyWrapper>
-        <div>
-          <StepperTitle>What is your primary goal?</StepperTitle>
-        </div>
-        <StepperContentEndWrapper className="w-full">
-          <SelectableCards
-            defaultValue={onboardingData.goal}
-            items={primaryGoalOptions}
-            onSelect={(id) => {
-              setSelectedGoalId(id);
-            }}
-          />
-        </StepperContentEndWrapper>
+        <StepperTitle>What is your primary goal?</StepperTitle>
+
+        <SelectableCards
+          defaultValue={onboardingData.goal}
+          items={primaryGoalOptions}
+          onSelect={(id) => {
+            setSelectedGoalId(id);
+          }}
+        />
       </StepperBodyWrapper>
 
       <Footer isDisabled={!selectedGoalId} onContinue={handleChoosePlan} />

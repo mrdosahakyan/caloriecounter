@@ -25,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-[#FFF5E5]">
+      <body className="bg-[#FFF5E5] full-height overflow-hidden">
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>

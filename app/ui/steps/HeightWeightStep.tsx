@@ -8,6 +8,7 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import HeightWeightPicker from "../components/mobilePicker/HeightWeightPicker";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 type THeightWeightStepProps = TStepMainTypes;
 
@@ -24,21 +25,21 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
 
   return (
     <>
-      <StepperBodyWrapper>
+      <StepperBodyWrapper justify="start">
         <div>
           <StepperTitle>Height & weight</StepperTitle>
           <StepperSubtitle className="mt-2">
             This will be used to calibrate your <br /> custom plan.
           </StepperSubtitle>
         </div>
-        <div className="mb-10 w-full">
+        <StepperContentCenterWrapper>
           <HeightWeightPicker
             defaultValue={onboardingData.heightWeight}
             onChange={(value) => {
               setSelectedHeightWeight(value);
             }}
           />
-        </div>
+        </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 
       <Footer

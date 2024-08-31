@@ -82,7 +82,7 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
   const options = isMetric ? metricOptions : imperialOptions;
 
   return (
-    <div className="flex flex-col items-center bg-[#FFF5E5] py-4">
+    <div className="flex flex-col items-center bg-[#FFF5E5] py-4 w-full">
       <div className="flex items-center justify-center mb-10">
         <span
           className={`text-[20px] font-semibold mr-4 ${

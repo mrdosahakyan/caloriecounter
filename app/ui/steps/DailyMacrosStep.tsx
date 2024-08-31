@@ -7,16 +7,16 @@ import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import DailyMacros from "../../../public/DailyMacros.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
-import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 const DailyMacrosStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
       <StepperBodyWrapper>
         <StepperTitle>Track & learn about your daily macros</StepperTitle>
-        <StepperContentEndWrapper justify="center">
+        <StepperContentCenterWrapper>
           <Image src={DailyMacros} alt="" />
-        </StepperContentEndWrapper>
+        </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 
       <Footer onContinue={onConitnue} />

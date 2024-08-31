@@ -7,16 +7,16 @@ import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import FoodChoise from "../../../public/FoodChoise.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
-import StepperContentEndWrapper from "../components/stepperLayout/StepperContentEndWrapper";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 const FoodChoiseStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
       <StepperBodyWrapper>
         <StepperTitle>Learn to make better food choices</StepperTitle>
-        <StepperContentEndWrapper justify="center">
+        <StepperContentCenterWrapper>
           <Image src={FoodChoise} alt="" />
-        </StepperContentEndWrapper>
+        </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 
       <Footer onContinue={onConitnue} />

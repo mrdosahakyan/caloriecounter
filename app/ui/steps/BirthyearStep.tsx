@@ -8,6 +8,7 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import YearsPicker from "../components/mobilePicker/YearsPicker";
+import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
 type TBirthyearStepProps = TStepMainTypes;
 
@@ -32,12 +33,12 @@ const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
             Please enter your birth year to improve your experience!
           </StepperSubtitle>
         </div>
-        <div className="pb-10 w-full">
+        <StepperContentCenterWrapper>
           <YearsPicker
             defaultValue={onboardingData.birthYear}
             onYearChange={(year) => setSelectedBirthyear(year)}
           />
-        </div>
+        </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 
       <Footer isDisabled={!selectedBirthyear} onContinue={handleChooseYear} />
