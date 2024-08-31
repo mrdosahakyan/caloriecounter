@@ -9,22 +9,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  useEffect(() => {
-    // Dynamically load the script
-    const script = document.createElement("script");
-    script.src = "/setVH.js";
-    script.async = true;
-    document.body.appendChild(script);
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src = "/setVH.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
 
-    // Cleanup function to remove the script when the component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  //   // Cleanup function to remove the script when the component unmounts
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   return (
     <html lang="en">
-      <body className="bg-[#FFF5E5] full-height">
+      <body className="bg-[#FFF5E5] h-svh">
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>

@@ -86,29 +86,29 @@ export default function Home() {
   const stepsNotInSteper = [0, 11];
   const hideHeader = stepsNotInSteper.includes(step);
 
-  useEffect(() => {
-    function setDynamicHeight() {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // useEffect(() => {
+  //   function setDynamicHeight() {
+  //     const vh = window.innerHeight * 0.01;
+  //     document.documentElement.style.setProperty('--vh', `${vh}px`);
   
-      const element = document.querySelector('.dynamic-height') as HTMLElement;
-      if (element) {
-        const dynamicHeight = hideHeader
-          ? `calc(var(--vh, 1vh) * 100)`
-          : `calc(var(--vh, 1vh) * 100 - 64px)`;
-        element.style.height = dynamicHeight;
-      }
-    }
+  //     const element = document.querySelector('.dynamic-height') as HTMLElement;
+  //     if (element) {
+  //       const dynamicHeight = hideHeader
+  //         ? `calc(var(--vh, 1vh) * 100)`
+  //         : `calc(var(--vh, 1vh) * 100 - 64px)`;
+  //       element.style.height = dynamicHeight;
+  //     }
+  //   }
   
-    window.addEventListener('resize', setDynamicHeight);
-    setDynamicHeight(); // Set the initial height
+  //   window.addEventListener('resize', setDynamicHeight);
+  //   setDynamicHeight(); // Set the initial height
   
-    return () => window.removeEventListener('resize', setDynamicHeight);
-  }, [hideHeader]);
+  //   return () => window.removeEventListener('resize', setDynamicHeight);
+  // }, [hideHeader]);
 
 
   return (
-    <main className="bg-transparent flex flex-col full-height">
+    <main className="bg-transparent flex flex-col h-svh">
       <Header
         currentStep={step}
         onBack={handleBack}
@@ -118,8 +118,8 @@ export default function Home() {
       />
 
       <div
-         className={`dynamic-height ${
-          hideHeader ? "full-height" : ""
+         className={` ${
+          hideHeader ? "h-svh" : "h-[calc(100svh-64px)]"
         } bg-transparent flex flex-col`}
       >
         <div className="flex flex-col h-full">{getCurrentStep()}</div>

@@ -15,9 +15,9 @@
   --vh: 100%;
 }
 
-.full-height {
+/* .full-height {
   height: calc(var(--vh, 1vh) * 100);
-}
+} */
 
 body.no-scroll {
   overflow: hidden;
