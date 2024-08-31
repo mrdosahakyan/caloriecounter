@@ -8,7 +8,7 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import ProgressBar from "../components/ProgressBar";
 import TestimonialsCarousel from "../components/carousel/TestimonialsCarousel";
 
-const TailorProgramStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+const TailorProgramStep = () => {
   const [completed1, setCompleted1] = useState(false);
   const [completed2, setCompleted2] = useState(false);
   const [completed3, setCompleted3] = useState(false);
@@ -52,7 +52,9 @@ const TailorProgramStep: FC<TStepMainTypes> = ({ onConitnue }) => {
       {/* </StepperBodyWrapper> */}
 
       <Footer
-        onContinue={onConitnue}
+        onContinue={() => {
+          window.location.href = "/payment";
+        }}
         isDisabled={!completed1 || !completed2 || !completed3 || !completed4}
       />
     </>

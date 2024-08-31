@@ -52,10 +52,11 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           <InputBase
             style={{
               backgroundColor: "#FFF5E5",
-              padding: "8px 8px", // Add padding to the select box
+              padding: "4px 12px", // Add padding to the select box
               border: "none", // Remove border
               outline: "none", // Remove outline on focus
               boxShadow: "none", // Remove box-shadow
+              height: '60px'
             }}
           />
         }
@@ -70,10 +71,16 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           },
           PaperProps: {
             style: {
-              maxHeight: 350, // Increase the dropdown size
-              width: "300px",
-              marginTop: "10px", // Add space between select and dropdown
+              width: "-webkit-fill-available",
+              minWidth: "-webkit-fill-available",
+              marginTop: "8px", // Add space between select and dropdown
               borderRadius: "8px", // Add border radius to dropdown container
+              marginRight: "14px", 
+            },
+          },
+          MenuListProps: {
+            style: {
+              paddingTop: 0, // Remove padding from the dropdown
             },
           },
         }}
@@ -99,7 +106,7 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
             value={option.value}
             style={{
               backgroundColor: "transparent", // Remove background color of selected option
-              padding: "12px 10px", // Add padding to the options
+              padding: "6px 14px", // Add padding to the options
             }}
           >
             <Box
@@ -111,9 +118,12 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
               <Box display="flex" alignItems="center">
                 {option.icon}
                 <Typography
-                  variant="h5"
                   fontWeight="bold"
-                  style={{ marginLeft: "18px" }}
+                  style={{
+                    paddingLeft: "18px",
+                    fontSize: "20px",
+                    color: "#021533",
+                  }}
                 >
                   {option.label}
                 </Typography>

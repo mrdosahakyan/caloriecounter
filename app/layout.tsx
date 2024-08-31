@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
@@ -9,27 +9,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   useEffect(() => {
     // Dynamically load the script
-    const script = document.createElement('script');
-    script.src = '/setVH.js';
+    const script = document.createElement("script");
+    script.src = "/setVH.js";
     script.async = true;
     document.body.appendChild(script);
 
     // Cleanup function to remove the script when the component unmounts
     return () => {
       document.body.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Disable scroll when the component mounts (picker is active)
-    document.body.classList.add('no-scroll');
-  
-    // Re-enable scroll when the component unmounts (picker is closed)
-    return () => {
-      document.body.classList.remove('no-scroll');
     };
   }, []);
 

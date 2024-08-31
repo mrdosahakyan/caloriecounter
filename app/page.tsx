@@ -28,11 +28,21 @@ const stripePublicKey =
 const stripePromise = loadStripe(stripePublicKey);
 
 export default function Home() {
+
+  // useEffect(() => {
+  //   // Disable scroll when the component mounts (picker is active)
+  //   document.body.classList.add('no-scroll');
+  
+  //   // Re-enable scroll when the component unmounts (picker is closed)
+  //   return () => {
+  //     document.body.classList.remove('no-scroll');
+  //   };
+  // }, []);
  
   const { onboardingData } = useOnboardingStore();
 
   const [step, setStep] = useState(0);
-  const totalSteps = 12;
+  const totalSteps = 11;
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
@@ -54,9 +64,9 @@ export default function Home() {
     if (step === 8) return <AiTrackerStep onConitnue={handleContinue} />;
     if (step === 9) return <FoodChoiseStep onConitnue={handleContinue} />;
     if (step === 10) return <DailyMacrosStep onConitnue={handleContinue} />;
-    if (step === 11) return <TailorProgramStep onConitnue={handleContinue} />;
+    if (step === 11) return <TailorProgramStep />;
 
-    if (step === 12) return <PaymentStep onConitnue={handleContinue} />;
+    // if (step === 12) return <PaymentStep onConitnue={handleContinue} />;
     // if (step === 10) return <ChoosePlanStep onConitnue={handleContinue} />;
     // if (
     //   step === 11 &&
@@ -73,7 +83,7 @@ export default function Home() {
     //   );
   };
   
-  const stepsNotInSteper = [0, 11, 12];
+  const stepsNotInSteper = [0, 11];
   const hideHeader = stepsNotInSteper.includes(step);
 
   useEffect(() => {

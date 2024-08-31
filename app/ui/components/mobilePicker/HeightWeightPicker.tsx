@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Picker from "react-mobile-picker";
 
 import "./styles/pickerStyle.css";
@@ -46,6 +46,7 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
     weight: defaultValue.weight,
   });
   const [isMetric, setIsMetric] = useState(defaultValue.isMetric);
+  const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!defaultValue) return;
@@ -61,12 +62,18 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
   }, [pickerValue, isMetric]);
 
   useEffect(() => {
-    // Disable scroll when the component mounts (picker is active)
-    document.body.classList.add('no-scroll');
-  
-    // Re-enable scroll when the component unmounts (picker is closed)
+    const handleTouchMove = (e: TouchEvent) => {
+      if (pickerRef.current && pickerRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    // Cleanup the event listener
     return () => {
-      document.body.classList.remove('no-scroll');
+      document.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
@@ -92,7 +99,10 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
   const options = isMetric ? metricOptions : imperialOptions;
 
   return (
-    <div className="flex flex-col items-center bg-[#FFF5E5] py-4 w-full">
+    <div
+      className="flex flex-col items-center bg-[#FFF5E5] py-4 w-full"
+      ref={pickerRef}
+    >
       <div className="flex items-center justify-center mb-10">
         <span
           className={`text-[20px] font-semibold mr-4 ${
