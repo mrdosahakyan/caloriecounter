@@ -71,8 +71,8 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           },
           PaperProps: {
             style: {
-              width: "-webkit-fill-available",
-              minWidth: "-webkit-fill-available",
+              width: '100%',
+              minWidth: "80%",
               marginTop: "8px", // Add space between select and dropdown
               borderRadius: "8px", // Add border radius to dropdown container
               marginRight: "14px", 
