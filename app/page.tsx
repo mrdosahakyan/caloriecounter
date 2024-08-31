@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import {  useState } from "react";
 import ChoosePlanStep from "./ui/steps/ChoosePlanStep";
 import ChoosePaymentMethodStep from "./ui/steps/ChoosePaymentMethodStep";
 import { Elements } from "@stripe/react-stripe-js";
@@ -28,6 +28,7 @@ const stripePublicKey =
 const stripePromise = loadStripe(stripePublicKey);
 
 export default function Home() {
+ 
   const { onboardingData } = useOnboardingStore();
 
   const [step, setStep] = useState(0);
