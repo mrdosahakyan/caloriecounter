@@ -9,15 +9,16 @@ import ChoosePaymentMethod, {
 } from "../components/payment/ChoosePaymentMethod";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import Footer from "../components/stepperLayout/Footer";
+import { usePaymentStore } from "@/app/store/paymentStore";
 
 const stripeCountryCode = process.env.STRIPE_COUNTRY_CODE || "PL";
 const stripeCurrency = process.env.STRIPE_CURRENCY || "pln";
 
 const ChoosePaymentMethodStep = () => {
   const stripe = useStripe();
-  const { onboardingData } = useOnboardingStore();
+  const { paymentData } = usePaymentStore();
 
-  const { stripeCustomerId, clientSecret } = onboardingData;
+  const { stripeCustomerId, clientSecret } = paymentData;
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<EPaymentMethod>(EPaymentMethod.CARD);

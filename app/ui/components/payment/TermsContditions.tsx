@@ -1,6 +1,6 @@
 const TermsConditions = () => {
-    const termsOfServiceLink = process.env.TERMS_OF_SERVICE_LINK || "#";
-    const privacyPolicyLink = process.env.PRIVACY_POLICY_LINK || "#";
+    const termsOfServiceLink = process.env.NEXT_PUBLIC_TERMS_OF_SERVICE_LINK || "#";
+    const privacyPolicyLink = process.env.NEXT_PUBLIC_PRIVACY_POLICY_LINK || "#";
   
     return (
       <>

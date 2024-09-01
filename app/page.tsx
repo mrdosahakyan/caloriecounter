@@ -41,7 +41,7 @@ export default function Home() {
  
   const { onboardingData } = useOnboardingStore();
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(11);
   const totalSteps = 11;
 
   const handleBack = () => {

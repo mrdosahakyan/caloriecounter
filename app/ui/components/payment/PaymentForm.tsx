@@ -5,19 +5,20 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useOnboardingStore } from "@/app/store/onboardingStore";
-import Footer from "../stepperLayout/Footer";
+import { usePaymentStore } from "@/app/store/paymentStore";
+import { Button } from "@nextui-org/react";
 
 const PaymentForm = () => {
-  const { onboardingData } = useOnboardingStore();
+  const { paymentData } = usePaymentStore();
 
-  const { clientSecret, stripeCustomerId: customerId } = onboardingData;
+  const { clientSecret, stripeCustomerId: customerId } = paymentData;
 
   const stripe = useStripe();
 
   const elements = useElements();
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const isDisabled = isProcessing || !stripe;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,16 +28,14 @@ const PaymentForm = () => {
 
     setIsProcessing(true);
 
-    const { error } = await stripe.confirmSetup({
+    const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       redirect: "if_required",
     });
 
-    const { setupIntent } = await stripe.retrieveSetupIntent(clientSecret);
-
     await axios.post("/api/set-default-payment-method", {
       customerId: customerId,
-      paymentMethodId: setupIntent?.payment_method,
+      paymentMethodId: paymentIntent?.payment_method,
     });
 
     if (error) {
@@ -50,22 +49,35 @@ const PaymentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="px-6">
-        <PaymentElement
-          options={{
-            paymentMethodOrder: ["card"],
-          }}
-        />
-        {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+    <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
+      <div className="flex-1 flex flex-col w-full justify-around">
+        <form onSubmit={handleSubmit} className=" ">
+          <div className="p-4">
+            <PaymentElement
+              options={{
+                paymentMethodOrder: ["card"],
+              }}
+            />
+            {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+          </div>
+        </form>
       </div>
-
-      <Footer
-        // @ts-ignore
-        onContinue={handleSubmit}
-        isDisabled={!stripe || isProcessing}
-      />
-    </form>
+      <div className="h-fit mt-2">
+        <Button
+          // isLoading={isLoading}
+          radius="full"
+          size="lg"
+          onClick={handleSubmit}
+          fullWidth
+          className={`bg-[#021533] text-white ${
+            isDisabled ? "opacity-50 cursor-not-allowed" : ""
+          } mt-2`}
+          disabled={isDisabled}
+        >
+          Continue
+        </Button>
+      </div>
+    </div>
   );
 };
 

@@ -1,58 +1,73 @@
 "use client";
 
-import { useState } from "react";
-import ChoosePaymentMethod, {
-  EPaymentMethod,
-} from "../ui/components/payment/ChoosePaymentMethod";
-import PaymentCarousel from "../ui/components/carousel/PaymentCarousel";
-import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
-import { Button } from "@nextui-org/react";
-import UnvisiblePaymentInfo from "../ui/components/payment/UnvisiblePaymentInfo";
-import TermsConditions from "../ui/components/payment/TermsContditions";
+import { useEffect, useState, useRef } from "react";
+import PaymentStep from "./components/PaymentStep";
+import { Elements } from "@stripe/react-stripe-js";
+import { usePaymentStore } from "../store/paymentStore";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import PageSpinner from "../ui/components/PageSpinner";
+
+const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "";
+
+const stripePromise = loadStripe(stripePublicKey);
 
 const PaymentPage = () => {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<EPaymentMethod>(EPaymentMethod.APPLE_PAY);
-  const isDisabled = true;
+  const { paymentData, setPaymentData } = usePaymentStore();
+  const [loading, setLoading] = useState(true);
+  const hasFetched = useRef(false);
+
+  const createCustomerAndSetupIntent = async () => {
+    if (paymentData.clientSecret && paymentData.stripeCustomerId) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const customerResponse = await axios.post("/api/create-stripe-customer", {
+        // Pass customer name, email
+      });
+      const { customerId } = customerResponse.data;
+
+      setPaymentData({ stripeCustomerId: customerId });
+
+      const setupIntentResponse = await axios.post("/api/create-setup-intent", {
+        customerId,
+      });
+
+      const { clientSecret } = setupIntentResponse.data;
+
+      setPaymentData({ clientSecret });
+    } catch (error) {
+      console.error("Error creating customer or Setup Intent:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+      createCustomerAndSetupIntent();
+    }
+  }, []);
+
+  if (loading) {
+    return <PageSpinner />;
+  }
+
+  if (!paymentData.clientSecret) {
+    return (window.location.href = "/error");
+  }
+
   return (
-    <>
-      <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
-        <div className="flex-1 flex flex-col w-full justify-around">
-          <PaymentCarousel />
-          <div className="mt-5">
-            <StepperTitle className="mb-2">
-              Get unlimited access to your plan!
-            </StepperTitle>
-            <p className="font-roboto text-[14px] font-normal text-center text-[#000000]">
-              Unlimited access for just $6.99 Try for one week. Cancel anytime
-            </p>
-          </div>
-        </div>
-        <div className="h-fit mt-2">
-          <ChoosePaymentMethod
-            selectedPaymentMethod={selectedPaymentMethod}
-            setSelectedPaymentMethod={setSelectedPaymentMethod}
-          />
-          <Button
-            // isLoading={isLoading}
-            radius="full"
-            size="lg"
-            // onClick={onContinue}
-            fullWidth
-            className={`bg-[#021533] text-white ${
-              isDisabled ? "opacity-50 cursor-not-allowed" : ""
-            } mt-2`}
-            disabled={isDisabled}
-          >
-            Continue
-          </Button>
-          <TermsConditions />
-        </div>
-      </div>
-      <div className="bg-[#FFF5E5] px-3">
-        <UnvisiblePaymentInfo />
-      </div>
-    </>
+    <Elements
+      stripe={stripePromise}
+      options={{ clientSecret: paymentData.clientSecret }}
+    >
+      <PaymentStep />
+    </Elements>
   );
 };
 

@@ -1,9 +1,7 @@
 "use client";
 
-import { FC, useState } from "react";
-import { TStepMainTypes } from "./StepTypes";
+import { useState } from "react";
 import Footer from "../components/stepperLayout/Footer";
-import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import ProgressBar from "../components/ProgressBar";
 import TestimonialsCarousel from "../components/carousel/TestimonialsCarousel";
@@ -16,7 +14,6 @@ const TailorProgramStep = () => {
 
   return (
     <>
-      {/* <StepperBodyWrapper justify="start" className="mt-6" scroll={false}> */}
       <StepperTitle className="mt-4">Tailoring your program</StepperTitle>
       <div className="flex flex-col justify-around overflow-y-auto h-full w-full px-2 mb-[64px]">
         <div className="flex flex-col gap-6 w-full px-4 mt-5">
@@ -49,7 +46,6 @@ const TailorProgramStep = () => {
           <TestimonialsCarousel />
         </div>
       </div>
-      {/* </StepperBodyWrapper> */}
 
       <Footer
         onContinue={() => {
