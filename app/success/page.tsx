@@ -23,7 +23,7 @@ const Success = () => {
           onClick={() => {
             window.location.href = "/";
           }}
-          className={`bg-[#021533] text-white`}
+          className={`bg-buttonPrimaryBgColor text-white`}
         >
           Go to Home Page
         </Button>

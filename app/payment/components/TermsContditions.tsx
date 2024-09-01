@@ -4,7 +4,7 @@ const TermsConditions = () => {
   
     return (
       <>
-        <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-center bg-[#FFF5E5] mt-1 mb-2">
+        <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-center bg-primaryBgColor mt-1 mb-2">
           By proceeding, you acknowledge and agree to our{" "}
           <a href={termsOfServiceLink} className="underline">
             Terms of Service

@@ -23,7 +23,7 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
       radius="full"
       size="lg"
       onClick={onClick}
-      className={`bg-[#021533] text-white ${
+      className={`bg-buttonPrimaryBgColor text-white ${
         isDisabled ? "opacity-50 cursor-not-allowed" : ""
       } mt-2`}
     >

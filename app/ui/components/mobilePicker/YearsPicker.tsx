@@ -50,7 +50,7 @@ const YearsPicker: React.FC<YearsPickerProps> = ({
 
   return (
     <div
-      className="picker-wrapper flex justify-center items-center bg-[#FFF5E5] w-full"
+      className="picker-wrapper flex justify-center items-center bg-primaryBgColor w-full"
       ref={pickerRef}
     >
       <Picker

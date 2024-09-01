@@ -145,7 +145,7 @@ const PaymentStep = () => {
           <TermsConditions />
         </div>
       </div>
-      <div className="bg-[#FFF5E5] px-3">
+      <div className="bg-primaryBgColor px-3">
         <UnvisiblePaymentInfo />
       </div>
     </>

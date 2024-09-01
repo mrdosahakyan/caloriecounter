@@ -7,6 +7,7 @@ import {
 import axios from "axios";
 import { usePaymentStore } from "@/app/store/paymentStore";
 import { Button } from "@nextui-org/react";
+import ContinueButton from "@/app/ui/components/ContinueButton";
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
@@ -62,20 +63,12 @@ const PaymentForm = () => {
           </div>
         </form>
       </div>
-      <div className="h-fit mt-2">
-        <Button
-          // isLoading={isLoading}
-          radius="full"
-          size="lg"
+      <div className="h-fit mt-2 pb-9">
+        <ContinueButton
+          // @ts-ignore
           onClick={handleSubmit}
-          fullWidth
-          className={`bg-[#021533] text-white ${
-            isDisabled ? "opacity-50 cursor-not-allowed" : ""
-          } mt-2`}
-          disabled={isDisabled}
-        >
-          Continue
-        </Button>
+          isDisabled={isDisabled}
+        />
       </div>
     </div>
   );

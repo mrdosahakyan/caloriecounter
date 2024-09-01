@@ -6,7 +6,7 @@ const UnvisiblePaymentInfo = () => {
   const trialAmountInDollars = (Number(trialAmountInCents) / 100).toFixed(2);
   return (
     <>
-      <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-justify bg-[#FFF5E5] py-2">
+      <div className="font-roboto text-[11px] font-normal leading-[16.5px] tracking-[0.0044em] text-justify bg-primaryBgColor py-2">
         Your plan will be available immediately after registration. Today you
         will be charged {trialAmountInDollars}$ for {trialPeriod}-days trial, then 29,99$ after trial for your
         1-month plan. You can cancel anytime before then and will not be charged

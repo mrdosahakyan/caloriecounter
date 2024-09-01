@@ -38,7 +38,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       <div className="flex w-full justify-between">
         <div
           className={`text-[16px] font-semibold mb-2 ${
-            completed ? "text-[#021533]" : "text-[#434F62] opacity-50"
+            completed ? "text-primaryTextColor" : "text-[#434F62] opacity-50"
           }`}
         >
           {label}
