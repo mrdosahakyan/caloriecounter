@@ -8,7 +8,7 @@ interface StepperTitleProps {
 const StepperTitle: React.FC<StepperTitleProps> = ({ children, className }) => {
   return (
     <h1
-      className={`font-inter text-[25px] font-bold text-center leading-[33px] text-[#021533] ${className}`}
+      className={`font-inter text-[25px] font-bold text-center leading-[33px] text-primaryTextColor ${className}`}
     >
       {children}
     </h1>

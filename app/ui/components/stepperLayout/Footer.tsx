@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import ContinueButton from "../ContinueButton";
 
 interface FooterProps {
   onContinue?: () => void;
@@ -14,20 +14,13 @@ export default function Footer({
   text = "Continue",
 }: FooterProps) {
   return (
-    <footer className="bg-[#FFF5E5] w-full px-3 py-2 flex justify-center absolute bottom-0">
-      <Button
+    <footer className="bg-primaryBgColor w-full px-3 py-2 flex justify-center absolute bottom-0">
+      <ContinueButton
         isLoading={isLoading}
-        radius="full"
-        size="lg"
         onClick={onContinue}
-        fullWidth
-        className={`bg-[#021533] text-white ${
-          isDisabled ? "opacity-50 cursor-not-allowed" : ""
-        }`}
-        disabled={isDisabled}
-      >
-        {text}
-      </Button>
+        isDisabled={isDisabled}
+        text={text}
+      />
     </footer>
   );
 }

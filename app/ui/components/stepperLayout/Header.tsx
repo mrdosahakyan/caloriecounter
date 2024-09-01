@@ -19,7 +19,7 @@ export default function Header({
   if (stepsNotInSteper.includes(currentStep)) return null;
 
   return (
-    <header className="bg-[#FFF5E5] absolute top-0 flex justify-start items-center px-3 w-full h-[64px]">
+    <header className="bg-primaryBgColor absolute top-0 flex justify-start items-center px-3 w-full h-[64px]">
       <div
         className={`flex items-center ${
           hideBackButton ? "visibility-hidden" : ""
@@ -27,7 +27,7 @@ export default function Header({
       >
         <IoIosArrowBack
           size={30}
-          className="text-[#021533]"
+          className="text-primaryTextColor"
           style={{ visibility: hideBackButton ? "hidden" : "visible" }}
           onClick={onBack}
         />

@@ -24,7 +24,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="bg-[#FFF5E5] h-svh">
+      <body className="bg-primaryBgColor h-svh">
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>

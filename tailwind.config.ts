@@ -19,6 +19,11 @@ const config: Config = {
         inter: ["Inter", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },
+      colors: {
+        primaryBgColor: "#FFF5E5", // Define your custom color here
+        buttonPrimaryBgColor: "#021533", // Define your custom color here
+        primaryTextColor: "#021533", // Define your custom color here
+      },
     },
   },
   plugins: [nextui()],

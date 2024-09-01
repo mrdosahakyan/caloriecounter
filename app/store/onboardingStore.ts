@@ -8,16 +8,12 @@ export interface IHeightWeight {
 }
 
 export type TOnboardingData = {
-  stripeCustomerId: string | null;
-  subscriptionId: string | null;
-  clientSecret: string;
   goal: string;
   gender: string;
   birthYear: string;
   heightWeight: IHeightWeight;
   activityLevel: string;
   experienceLevel: string;
-  // Add other fields as needed
 };
 
 interface OnboardingStore {
@@ -27,9 +23,6 @@ interface OnboardingStore {
 }
 
 const initialState: TOnboardingData = {
-  stripeCustomerId: null,
-  subscriptionId: null,
-  clientSecret: "",
   goal: "",
   gender: "",
   birthYear: "2002",
