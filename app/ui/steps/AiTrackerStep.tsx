@@ -17,7 +17,7 @@ const AiTrackerStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           Our high-tech AI tracker makes the weight loss process painless
         </StepperTitle>
         <StepperContentCenterWrapper>
-          <Image src={AiTracker} alt="" />
+          <Image src={AiTracker} alt="" priority/>
         </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 

@@ -4,8 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BlurOverlay from "../BlurOverlay";
 import Image from "next/image";
-import FoodChoise from "../../../../public/FoodChoise.svg";
-import ScanAi from "../../../../public/ScanAi.svg";
+import FoodChoise from "../../../../public/FoodChoise.png";
+import ScanAi from "../../../../public/ScanAi.png";
 import AiTracker from "../../../../public/AiTracker.svg";
 import DailyMacros from "../../../../public/DailyMacros.png";
 
@@ -34,6 +34,28 @@ const PaymentCarousel = () => {
       >
         <BlurOverlay>
           <Image
+            src={ScanAi}
+            alt=""
+            style={{
+              objectFit: "cover",
+            }}
+            height={imageHeight}
+          />
+        </BlurOverlay>
+
+        <BlurOverlay>
+          <Image
+            src={DailyMacros}
+            alt=""
+            style={{
+              objectFit: "cover",
+            }}
+            height={imageHeight}
+          />
+        </BlurOverlay>
+
+        <BlurOverlay>
+          <Image
             src={FoodChoise}
             alt=""
             style={{
@@ -45,27 +67,7 @@ const PaymentCarousel = () => {
 
         <BlurOverlay>
           <Image
-            src={ScanAi}
-            alt=""
-            style={{
-              objectFit: "cover",
-            }}
-            height={imageHeight}
-          />
-        </BlurOverlay>
-        <BlurOverlay>
-          <Image
             src={AiTracker}
-            alt=""
-            style={{
-              objectFit: "cover",
-            }}
-            height={imageHeight}
-          />
-        </BlurOverlay>
-        <BlurOverlay>
-          <Image
-            src={DailyMacros}
             alt=""
             style={{
               objectFit: "cover",

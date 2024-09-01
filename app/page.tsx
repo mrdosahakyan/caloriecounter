@@ -42,26 +42,28 @@ export default function Home() {
     if (step === 11) return <TailorProgramStep />;
   };
 
-  const stepsNotInSteper = [0, 11];
+  const stepsNotInSteper = [0];
   const hideHeader = stepsNotInSteper.includes(step);
 
   return (
-    <main className="bg-transparent flex flex-col h-svh">
-      <Header
-        currentStep={step}
-        onBack={handleBack}
-        totalSteps={totalSteps}
-        stepsNotInSteper={stepsNotInSteper}
-        hideBackButton={step === 1}
-      />
+    <>
+      <main className="bg-transparent flex flex-col h-svh">
+        <Header
+          currentStep={step}
+          onBack={handleBack}
+          totalSteps={totalSteps}
+          stepsNotInSteper={stepsNotInSteper}
+          hideBackButton={step === 1}
+        />
 
-      <div
-        className={` ${
-          hideHeader ? "h-svh" : "h-[calc(100svh-64px)]"
-        } bg-transparent flex flex-col`}
-      >
-        <div className="flex flex-col h-full">{getCurrentStep()}</div>
-      </div>
-    </main>
+        <div
+          className={` ${
+            hideHeader ? "h-svh" : "h-[calc(100svh-64px)]"
+          } bg-transparent flex flex-col`}
+        >
+          <div className="flex flex-col h-full">{getCurrentStep()}</div>
+        </div>
+      </main>
+    </>
   );
 }

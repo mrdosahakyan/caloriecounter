@@ -42,6 +42,7 @@ export default function Header({
           style={{
             height: "5px",
             backgroundColor: "#F4EDE3",
+            marginRight: "18px",
           }}
           classNames={{
             indicator: "bg-[#FEB816]",

@@ -4,7 +4,7 @@ import { FC } from "react";
 import { TStepMainTypes } from "./StepTypes";
 import Image from "next/image";
 import Footer from "../components/stepperLayout/Footer";
-import ScanAi from "../../../public/ScanAi.svg";
+import ScanAi from "../../../public/ScanAi.png";
 import OneMDownloads from "../../../public/1MDownloads.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
@@ -32,11 +32,11 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           </StepperSubtitle>
 
           <BlurOverlay>
-            <Image alt="Welcome" src={ScanAi} height={350} />
+            <Image alt="Welcome" src={ScanAi} height={350} priority />
           </BlurOverlay>
 
           <div className="mt-1">
-            <Image alt="Welcome" src={OneMDownloads} />
+            <Image alt="Welcome" src={OneMDownloads} priority/>
           </div>
         </div>
       </div>
