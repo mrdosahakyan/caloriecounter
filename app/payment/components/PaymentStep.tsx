@@ -66,13 +66,13 @@ const PaymentStep = () => {
 
       if (confirmError) {
         ev.complete("fail");
-
         alert("Payment failed: " + confirmError.message);
       } else {
         ev.complete("success");
         await axios.post("/api/set-default-payment-method", {
           customerId: stripeCustomerId,
           paymentMethodId: ev.paymentMethod.id,
+          email: ev.payerEmail,
         });
         window.location.href = "/success";
 
