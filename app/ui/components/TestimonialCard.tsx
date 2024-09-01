@@ -17,7 +17,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ stars, text, author }
           <span key={i} className="text-yellow-500 text-[18px]">★</span>
         ))}
       </div>
-      <p className="text-[16px] font-semibold text-[#021533] mb-4">{text}</p>
+      <p className="text-[16px] font-semibold text-primaryTextColor mb-4">{text}</p>
       <p className="text-[15px] font-medium text-[#434F62]">{author}</p>
     </div>
   );

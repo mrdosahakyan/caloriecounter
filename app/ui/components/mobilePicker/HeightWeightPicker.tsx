@@ -100,13 +100,13 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
 
   return (
     <div
-      className="flex flex-col items-center bg-[#FFF5E5] py-4 w-full"
+      className="flex flex-col items-center bg-primaryBgColor py-4 w-full"
       ref={pickerRef}
     >
       <div className="flex items-center justify-center mb-10">
         <span
           className={`text-[20px] font-semibold mr-4 ${
-            isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
+            isMetric ? "text-[#D7D0CA]" : "text-primaryTextColor"
           }`}
         >
           Imperial
@@ -115,7 +115,7 @@ const HeightWeightPicker: React.FC<HeightWeightPickerProps> = ({
 
         <span
           className={`text-[20px] font-semibold ml-4 ${
-            !isMetric ? "text-[#D7D0CA]" : "text-[#021533]"
+            !isMetric ? "text-[#D7D0CA]" : "text-primaryTextColor"
           }`}
         >
           Metric

@@ -19,15 +19,6 @@ const BlurOverlay: FC<TBlurOverlayProps> = ({ children, height, width }) => {
         alignItems: "center",
       }}
     >
-      {/* <img
-      src={imageSrc}
-      alt="Blurred"
-      style={{
-        height: '100%',
-        width: '100%',
-        objectFit: 'cover',
-      }}
-    /> */}
       {children}
       <div
         style={{
