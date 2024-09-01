@@ -1,18 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ChoosePaymentMethod, {
-  EPaymentMethod,
-} from "../../ui/components/payment/ChoosePaymentMethod";
+import ChoosePaymentMethod, { EPaymentMethod } from "./ChoosePaymentMethod";
 import PaymentCarousel from "../../ui/components/carousel/PaymentCarousel";
-import StepperTitle from "../../ui/components/stepperLayout/StepperTitle";
-import { Button } from "@nextui-org/react";
-import UnvisiblePaymentInfo from "../../ui/components/payment/UnvisiblePaymentInfo";
-import TermsConditions from "../../ui/components/payment/TermsContditions";
-import { usePaymentStore } from "@/app/store/paymentStore";
-import PaymentForm from "@/app/ui/components/payment/PaymentForm";
+import StepperTitle from "../../ui/components/stepperLayout/StepperTitle"; 
+import UnvisiblePaymentInfo from "./UnvisiblePaymentInfo";
+import TermsConditions from "./TermsContditions";
+import { usePaymentStore } from "@/app/store/paymentStore"; 
 import { useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import ContinueButton from "@/app/ui/components/ContinueButton";
+import PaymentForm from "./PaymentForm";
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -139,19 +137,11 @@ const PaymentStep = () => {
             selectedPaymentMethod={selectedPaymentMethod}
             setSelectedPaymentMethod={setSelectedPaymentMethod}
           />
-          <Button
-            // isLoading={isLoading}
-            radius="full"
-            size="lg"
+          <ContinueButton
             onClick={handlePaymetMethod}
-            fullWidth
-            className={`bg-[#021533] text-white ${
-              isDisabled ? "opacity-50 cursor-not-allowed" : ""
-            } mt-2`}
-            disabled={isDisabled}
-          >
-            Continue
-          </Button>
+            isDisabled={isDisabled}
+          />
+
           <TermsConditions />
         </div>
       </div>

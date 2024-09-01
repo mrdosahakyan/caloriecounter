@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/react";
 type ContinueButtonProps = {
   isDisabled?: boolean;
   isLoading?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   text?: string;
 };
 
@@ -23,6 +23,9 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
       radius="full"
       size="lg"
       onClick={onClick}
+      className={`bg-[#021533] text-white ${
+        isDisabled ? "opacity-50 cursor-not-allowed" : ""
+      } mt-2`}
     >
       {text}
     </Button>
