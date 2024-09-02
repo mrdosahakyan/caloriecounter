@@ -32,7 +32,7 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           </StepperSubtitle>
 
           <BlurOverlay>
-            <Image alt="Welcome" src={ScanAi} height={350} priority />
+            <Image alt="Welcome" src={ScanAi} priority />
           </BlurOverlay>
 
           <div className="mt-1">
