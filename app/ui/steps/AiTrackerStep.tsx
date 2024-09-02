@@ -5,7 +5,7 @@ import { TStepMainTypes } from "./StepTypes";
 import Footer from "../components/stepperLayout/Footer";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import AiTracker from "../../../public/AiTracker.svg";
+import AiTracker from "../../../public/AiTracker.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 

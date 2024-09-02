@@ -12,6 +12,7 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
+import FoodChoise from "../../../public/FoodChoise.png";
 
 const genderGoalOptions: TCardItem[] = [
   {
@@ -45,6 +46,13 @@ const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
 
   return (
     <>
+      <div
+        style={{
+          display: "none",
+        }}
+      >
+        <Image src={FoodChoise} alt="" priority />
+      </div>
       <StepperBodyWrapper>
         <div>
           <StepperTitle>What’s Your gender?</StepperTitle>

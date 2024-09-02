@@ -9,6 +9,8 @@ import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import YearsPicker from "../components/mobilePicker/YearsPicker";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
+import AiTracker from "../../../public/AiTracker.png";
+import Image from "next/image";
 
 type TBirthyearStepProps = TStepMainTypes;
 
@@ -26,6 +28,11 @@ const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
 
   return (
     <>
+    <div style={{
+      display: 'none'
+    }}>
+      <Image src={AiTracker} alt="" priority/>
+    </div>
       <StepperBodyWrapper>
         <div>
           <StepperTitle>When is your birthyear?</StepperTitle>

@@ -6,8 +6,10 @@ import BlurOverlay from "../BlurOverlay";
 import Image from "next/image";
 import FoodChoise from "../../../../public/FoodChoise.png";
 import ScanAi from "../../../../public/ScanAi.png";
-import AiTracker from "../../../../public/AiTracker.svg";
+import AiTracker from "../../../../public/AiTracker.png";
 import DailyMacros from "../../../../public/DailyMacros.png";
+
+export const imageHeight = 250;
 
 const PaymentCarousel = () => {
   const settings = {
@@ -21,8 +23,6 @@ const PaymentCarousel = () => {
     arrows: false,
     dotsClass: "slick-dots slick-thumb",
   };
-
-  const imageHeight = 250;
 
   return (
     <div className="w-100">
@@ -40,6 +40,7 @@ const PaymentCarousel = () => {
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
           />
         </BlurOverlay>
 
@@ -51,6 +52,7 @@ const PaymentCarousel = () => {
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
           />
         </BlurOverlay>
 
@@ -62,6 +64,7 @@ const PaymentCarousel = () => {
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
           />
         </BlurOverlay>
 
@@ -73,6 +76,7 @@ const PaymentCarousel = () => {
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
           />
         </BlurOverlay>
       </Slider>
