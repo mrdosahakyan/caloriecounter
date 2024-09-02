@@ -17,7 +17,7 @@ const TailorProgramStep = () => {
     <>
       <StepperBodyWrapper>
         <StepperTitle>Tailoring your program</StepperTitle>
-        <div className="flex flex-col justify-around h-full w-full ">
+        <div className="flex flex-col justify-around h-full w-full relative ">
           <div className="flex flex-col gap-6 w-full px-4 mt-5">
             <ProgressBar
               label="Analysing profile"
