@@ -36,7 +36,7 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
           </BlurOverlay>
 
           <div className="mt-1">
-            <Image alt="Welcome" src={OneMDownloads} priority/>
+            <Image alt="Welcome" src={OneMDownloads} priority />
           </div>
         </div>
       </div>

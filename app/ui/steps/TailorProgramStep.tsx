@@ -21,25 +21,25 @@ const TailorProgramStep = () => {
           <div className="flex flex-col gap-6 w-full px-4 mt-5">
             <ProgressBar
               label="Analysing profile"
-              timeInSeconds={4}
+              timeInSeconds={2}
               completed={completed1}
               setCompleted={setCompleted1}
             />
             <ProgressBar
               label="Calculating metabolism"
-              timeInSeconds={2}
+              timeInSeconds={1}
               completed={completed2}
               setCompleted={setCompleted2}
             />
             <ProgressBar
               label="Generating meal plan"
-              timeInSeconds={2}
+              timeInSeconds={1}
               completed={completed3}
               setCompleted={setCompleted3}
             />
             <ProgressBar
               label="Checking healthy conditions"
-              timeInSeconds={3}
+              timeInSeconds={2}
               completed={completed4}
               setCompleted={setCompleted4}
             />

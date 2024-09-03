@@ -28,7 +28,7 @@ const BlurOverlay: FC<TBlurOverlayProps> = ({ children, height, width }) => {
           right: 0,
           bottom: "-3px",
           background:
-            "linear-gradient(180deg, rgba(255, 245, 229, 0) 56%, #FFF5E5 94%)",
+            "linear-gradient(180deg, rgba(255, 245, 229, 0) 81%, #FFF5E5 91%)",
         }}
       />
     </div>

@@ -28,7 +28,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         const increment = 100 / (timeInSeconds * 10);
         return Math.min(oldProgress + increment, 100);
       });
-    }, 200);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [timeInSeconds]);
@@ -38,7 +38,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       <div className="flex w-full justify-between">
         <div
           className={`text-[16px] font-semibold mb-2 ${
-            completed ? "text-primaryTextColor" : "text-[#434F62] opacity-50"
+            // completed ? "text-primaryTextColor" : "text-[#434F62] opacity-50"
+            "text-primaryTextColor"
           }`}
         >
           {label}
@@ -55,7 +56,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             backgroundColor: "#FFF5E5",
           }}
           classNames={{
-            indicator: completed ? "bg-[#FFAF02]" : "bg-[#FFE9B0]",
+            // indicator: completed ? "bg-[#FFAF02]" : "bg-[#FFE9B0]",
+            indicator: "bg-[#FFAF02]",
           }}
         />
       </div>
