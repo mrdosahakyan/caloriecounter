@@ -15,7 +15,7 @@ const DailyMacrosStep: FC<TStepMainTypes> = ({ onConitnue }) => {
       <StepperBodyWrapper>
         <StepperTitle>Track & learn about your daily macros</StepperTitle>
         <StepperContentCenterWrapper>
-          <Image src={DailyMacros} alt="" />
+          <Image src={DailyMacros} alt="" priority />
         </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 

@@ -8,7 +8,7 @@ const stripe = new Stripe(
   
 export async function POST(req: NextRequest) {
   try {
-    const { customerId, paymentMethodId } = await req.json();
+    const { customerId, paymentMethodId, email = '' } = await req.json();
     
     // // Attach the payment method to the customer
     // await stripe.paymentMethods.attach(paymentMethodId, { customer: customerId });
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     // Set it as the default payment method
     console.log(paymentMethodId, ':::paymentMethodId')
     await stripe.customers.update(customerId, {
-      // email: "",
+      email: email,
       invoice_settings: {
         default_payment_method: paymentMethodId,
       },

@@ -5,6 +5,7 @@ import Footer from "../components/stepperLayout/Footer";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import ProgressBar from "../components/ProgressBar";
 import TestimonialsCarousel from "../components/carousel/TestimonialsCarousel";
+import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 
 const TailorProgramStep = () => {
   const [completed1, setCompleted1] = useState(false);
@@ -14,39 +15,40 @@ const TailorProgramStep = () => {
 
   return (
     <>
-      <StepperTitle className="mt-4">Tailoring your program</StepperTitle>
-      <div className="flex flex-col justify-around overflow-y-auto h-full w-full px-2 mb-[64px]">
-        <div className="flex flex-col gap-6 w-full px-4 mt-5">
-          <ProgressBar
-            label="Analysing profile"
-            timeInSeconds={4}
-            completed={completed1}
-            setCompleted={setCompleted1}
-          />
-          <ProgressBar
-            label="Calculating metabolism"
-            timeInSeconds={2}
-            completed={completed2}
-            setCompleted={setCompleted2}
-          />
-          <ProgressBar
-            label="Generating meal plan"
-            timeInSeconds={2}
-            completed={completed3}
-            setCompleted={setCompleted3}
-          />
-          <ProgressBar
-            label="Checking healthy conditions"
-            timeInSeconds={3}
-            completed={completed4}
-            setCompleted={setCompleted4}
-          />
+      <StepperBodyWrapper>
+        <StepperTitle>Tailoring your program</StepperTitle>
+        <div className="flex flex-col justify-around h-full w-full relative ">
+          <div className="flex flex-col gap-6 w-full px-4 mt-5">
+            <ProgressBar
+              label="Analysing profile"
+              timeInSeconds={4}
+              completed={completed1}
+              setCompleted={setCompleted1}
+            />
+            <ProgressBar
+              label="Calculating metabolism"
+              timeInSeconds={2}
+              completed={completed2}
+              setCompleted={setCompleted2}
+            />
+            <ProgressBar
+              label="Generating meal plan"
+              timeInSeconds={2}
+              completed={completed3}
+              setCompleted={setCompleted3}
+            />
+            <ProgressBar
+              label="Checking healthy conditions"
+              timeInSeconds={3}
+              completed={completed4}
+              setCompleted={setCompleted4}
+            />
+          </div>
+          <div>
+            <TestimonialsCarousel />
+          </div>
         </div>
-        <div>
-          <TestimonialsCarousel />
-        </div>
-      </div>
-
+      </StepperBodyWrapper>
       <Footer
         onContinue={() => {
           window.location.href = "/payment";

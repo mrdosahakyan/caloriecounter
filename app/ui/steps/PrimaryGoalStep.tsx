@@ -11,6 +11,7 @@ import GetHealtier from "../../../public/icons/getHealtier.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import DailyMacros from "../../../public/DailyMacros.png";
 
 const primaryGoalOptions: TCardItem[] = [
   {

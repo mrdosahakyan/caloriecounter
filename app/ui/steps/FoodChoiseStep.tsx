@@ -5,7 +5,7 @@ import { TStepMainTypes } from "./StepTypes";
 import Footer from "../components/stepperLayout/Footer";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import FoodChoise from "../../../public/FoodChoise.svg";
+import FoodChoise from "../../../public/FoodChoise.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 
@@ -15,7 +15,7 @@ const FoodChoiseStep: FC<TStepMainTypes> = ({ onConitnue }) => {
       <StepperBodyWrapper>
         <StepperTitle>Learn to make better food choices</StepperTitle>
         <StepperContentCenterWrapper>
-          <Image src={FoodChoise} alt="" />
+          <Image src={FoodChoise} alt="" priority />
         </StepperContentCenterWrapper>
       </StepperBodyWrapper>
 

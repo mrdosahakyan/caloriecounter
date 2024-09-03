@@ -12,6 +12,7 @@ import PercentUSer from "../../../public/75PercentUser.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import DailyMacros from "../../../public/DailyMacros.png";
 
 type TExperienceStepProps = TStepMainTypes;
 
@@ -50,6 +51,13 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
 
   return (
     <>
+    <div
+        style={{
+          display: "none",
+        }}
+      >
+        <Image src={DailyMacros} alt="" priority />
+      </div>
       <StepperBodyWrapper>
         <div>
           <StepperTitle>

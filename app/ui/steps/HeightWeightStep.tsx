@@ -9,6 +9,8 @@ import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import HeightWeightPicker from "../components/mobilePicker/HeightWeightPicker";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
+import Image from "next/image";
+import AiScanImg from "../../../public/ScanAi.png";
 
 type THeightWeightStepProps = TStepMainTypes;
 
@@ -25,6 +27,13 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
 
   return (
     <>
+      <div
+        style={{
+          display: "none",
+        }}
+      >
+        <Image src={AiScanImg} alt="" priority />
+      </div>
       <StepperBodyWrapper justify="start">
         <div>
           <StepperTitle>Height & weight</StepperTitle>

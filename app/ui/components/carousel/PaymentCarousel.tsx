@@ -4,10 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BlurOverlay from "../BlurOverlay";
 import Image from "next/image";
-import FoodChoise from "../../../../public/FoodChoise.svg";
-import ScanAi from "../../../../public/ScanAi.svg";
-import AiTracker from "../../../../public/AiTracker.svg";
+import FoodChoise from "../../../../public/FoodChoise.png";
+import ScanAi from "../../../../public/ScanAi.png";
+import AiTracker from "../../../../public/AiTracker.png";
 import DailyMacros from "../../../../public/DailyMacros.png";
+
+export const imageHeight = 250;
 
 const PaymentCarousel = () => {
   const settings = {
@@ -22,8 +24,6 @@ const PaymentCarousel = () => {
     dotsClass: "slick-dots slick-thumb",
   };
 
-  const imageHeight = 250;
-
   return (
     <div className="w-100">
       <Slider
@@ -34,35 +34,16 @@ const PaymentCarousel = () => {
       >
         <BlurOverlay>
           <Image
-            src={FoodChoise}
-            alt=""
-            style={{
-              objectFit: "cover",
-            }}
-            height={imageHeight}
-          />
-        </BlurOverlay>
-
-        <BlurOverlay>
-          <Image
             src={ScanAi}
             alt=""
             style={{
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
           />
         </BlurOverlay>
-        <BlurOverlay>
-          <Image
-            src={AiTracker}
-            alt=""
-            style={{
-              objectFit: "cover",
-            }}
-            height={imageHeight}
-          />
-        </BlurOverlay>
+
         <BlurOverlay>
           <Image
             src={DailyMacros}
@@ -71,6 +52,31 @@ const PaymentCarousel = () => {
               objectFit: "cover",
             }}
             height={imageHeight}
+            priority
+          />
+        </BlurOverlay>
+
+        <BlurOverlay>
+          <Image
+            src={FoodChoise}
+            alt=""
+            style={{
+              objectFit: "cover",
+            }}
+            height={imageHeight}
+            priority
+          />
+        </BlurOverlay>
+
+        <BlurOverlay>
+          <Image
+            src={AiTracker}
+            alt=""
+            style={{
+              objectFit: "cover",
+            }}
+            height={imageHeight}
+            priority
           />
         </BlurOverlay>
       </Slider>

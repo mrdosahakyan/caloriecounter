@@ -6,25 +6,44 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { usePaymentStore } from "@/app/store/paymentStore";
-import { Button } from "@nextui-org/react";
 import ContinueButton from "@/app/ui/components/ContinueButton";
+import { TextField } from "@mui/material";
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
-
+  const [email, setEmail] = useState<string>("");
+  const [emailError, setEmailError] = useState<string | null>(null);
   const { clientSecret, stripeCustomerId: customerId } = paymentData;
 
   const stripe = useStripe();
-
   const elements = useElements();
+
   const [isProcessing, setIsProcessing] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [stripeErrorMessage, setStripeErrorMessage] = useState<string | null>(
+    null
+  );
   const isDisabled = isProcessing || !stripe;
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     if (!stripe || !elements || !clientSecret) {
       return;
+    }
+
+    if (!email) {
+      setEmailError("Please enter your email.");
+      return;
+    } else if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    } else {
+      setEmailError(null);
     }
 
     setIsProcessing(true);
@@ -34,17 +53,25 @@ const PaymentForm = () => {
       redirect: "if_required",
     });
 
-    await axios.post("/api/set-default-payment-method", {
-      customerId: customerId,
-      paymentMethodId: paymentIntent?.payment_method,
-    });
+    if (paymentIntent?.payment_method) {
+      try {
+        await axios.post("/api/set-default-payment-method", {
+          customerId: customerId,
+          paymentMethodId: paymentIntent.payment_method,
+          email: email,
+        });
+
+        window.location.href = "/success";
+      } catch (error: any) {
+        setStripeErrorMessage(error.message || "An unexpected error occurred.");
+      }
+    }
 
     if (error) {
       console.log(error);
-      setErrorMessage(error.message ?? "An unexpected error occurred.");
+      setStripeErrorMessage(error.message ?? "An unexpected error occurred.");
     } else {
-      window.location.href = "/success";
-      setErrorMessage(null);
+      setStripeErrorMessage(null);
     }
     setIsProcessing(false);
   };
@@ -52,20 +79,43 @@ const PaymentForm = () => {
   return (
     <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
       <div className="flex-1 flex flex-col w-full justify-around">
-        <form onSubmit={handleSubmit} className=" ">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="p-4">
+            <label>Email*</label>
+            <TextField
+              fullWidth
+              required
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              variant="outlined"
+              size="small"
+              onChange={(e) => setEmail(e.target.value)}
+              error={Boolean(emailError)}
+              helperText={emailError}
+              inputProps={{
+                style: {
+                  backgroundColor: "white",
+                },
+              }}
+              style={{
+                marginBottom: "1rem",
+              }}
+            />
             <PaymentElement
               options={{
                 paymentMethodOrder: ["card"],
               }}
             />
-            {errorMessage && <div className="text-red-600">{errorMessage}</div>}
+            {stripeErrorMessage && (
+              <div className="text-red-600">{stripeErrorMessage}</div>
+            )}
           </div>
         </form>
       </div>
       <div className="h-fit mt-2 pb-9">
         <ContinueButton
-          // @ts-ignore
+          //@ts-ignore
           onClick={handleSubmit}
           isDisabled={isDisabled}
         />
