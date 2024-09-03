@@ -39,7 +39,7 @@ const TailorProgramStep = () => {
             />
             <ProgressBar
               label="Checking healthy conditions"
-              timeInSeconds={2}
+              timeInSeconds={1.5}
               completed={completed4}
               setCompleted={setCompleted4}
             />
