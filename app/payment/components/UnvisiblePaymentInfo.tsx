@@ -14,7 +14,7 @@ const UnvisiblePaymentInfo = () => {
         charge your card every billing period so you don&apos;t lose access to
         your account. No refunds or credits except if you don&apos;t get any
         results and follow our{" "}
-        <a href={moneyBackPolicyLink} className=" underline">
+        <a href={moneyBackPolicyLink} target="_blank" className=" underline">
           money-back policy
         </a>
         . To cancel, simply let us know:{" "}
