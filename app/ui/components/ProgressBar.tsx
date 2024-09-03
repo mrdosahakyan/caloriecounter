@@ -18,6 +18,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    const intervalDuration = 20; // Update every 20ms for smoother progress
+    const increment = 100 / (timeInSeconds * (1000 / intervalDuration));
+
     const interval = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress >= 100) {
@@ -25,13 +28,12 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           setCompleted(true);
           return 100;
         }
-        const increment = 100 / (timeInSeconds * 10);
         return Math.min(oldProgress + increment, 100);
       });
-    }, 100);
+    }, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [timeInSeconds]);
+  }, [timeInSeconds, setCompleted]);
 
   return (
     <div className="flex flex-col w-full align-center">

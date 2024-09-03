@@ -5,9 +5,9 @@ import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
 import Footer from "../components/stepperLayout/Footer";
 import SelectableCards, { TCardItem } from "../components/SelectableCard";
-import Female from "../../../public/icons/female.svg";
-import Male from "../../../public/icons/male.svg";
-import NonBinary from "../../../public/icons/nonBinaryGender.svg";
+import Female from "../../../public/icons/female.png";
+import Male from "../../../public/icons/male.png";
+import NonBinary from "../../../public/icons/nonBinaryGender.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
@@ -18,17 +18,17 @@ const genderGoalOptions: TCardItem[] = [
   {
     id: "male",
     title: "Male",
-    icon: <Image src={Male} alt="male" />,
+    icon: <Image src={Male} alt="male" width={36} height={36} priority />,
   },
   {
     id: "female",
     title: "Female",
-    icon: <Image src={Female} alt="Female" />,
+    icon: <Image src={Female} alt="Female" width={36} height={36} priority/>,
   },
   {
     id: "nonBinary",
     title: "Non-binary",
-    icon: <Image src={NonBinary} alt="Non-binary" />,
+    icon: <Image src={NonBinary} alt="Non-binary" width={36} height={36} priority/>,
   },
 ];
 

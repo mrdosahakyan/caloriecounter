@@ -11,6 +11,10 @@ import HeightWeightPicker from "../components/mobilePicker/HeightWeightPicker";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 import Image from "next/image";
 import AiScanImg from "../../../public/ScanAi.png";
+import Level1 from "../../../public/icons/level1.png";
+import Level2 from "../../../public/icons/level2.png";
+import Level3 from "../../../public/icons/level3.png";
+import Level4 from "../../../public/icons/level4.png";
 
 type THeightWeightStepProps = TStepMainTypes;
 
@@ -27,11 +31,11 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "none",
-        }}
-      >
+      <div className="hidden">
+        <Image src={Level1} alt="Level1" width={28} priority />
+        <Image src={Level2} alt="Level2" width={28} priority />
+        <Image src={Level3} alt="Level3" width={28} priority />
+        <Image src={Level4} alt="Level4" width={28} priority />
         <Image src={AiScanImg} alt="" priority />
       </div>
       <StepperBodyWrapper justify="start">

@@ -5,9 +5,9 @@ import { useOnboardingStore } from "@/app/store/onboardingStore";
 import { TStepMainTypes } from "./StepTypes";
 import Footer from "../components/stepperLayout/Footer";
 import SelectableCards, { TCardItem } from "../components/SelectableCard";
-import Beginner from "../../../public/icons/beginner.svg";
-import Intermedite from "../../../public/icons/intermediate.svg";
-import Master from "../../../public/icons/master.svg";
+import Beginner from "../../../public/icons/beginner.png";
+import Intermedite from "../../../public/icons/intermediate.png";
+import Master from "../../../public/icons/master.png";
 import PercentUSer from "../../../public/75PercentUser.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
@@ -21,19 +21,19 @@ const experienceOptions: TCardItem[] = [
     id: "beginner",
     title: "Beginner",
     description: "I'm new to weight loss and need to learn a lot",
-    icon: <Image width={36} src={Beginner} alt="Level1" />,
+    icon: <Image width={36} src={Beginner} alt="Level1" priority />,
   },
   {
     id: "intermidiate",
     title: "Intermidiate",
     description: "I have some experience but Still need some guidance",
-    icon: <Image width={36} src={Intermedite} alt="Level2" />,
+    icon: <Image width={36} src={Intermedite} alt="Level2" priority />,
   },
   {
     id: "master",
     title: "Master",
     description: "I have rich experience",
-    icon: <Image width={36} src={Master} alt="Level3" />,
+    icon: <Image width={36} src={Master} alt="Level3" priority/>,
   },
 ];
 

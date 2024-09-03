@@ -58,7 +58,7 @@ export default function Home() {
 
         <div
           className={` ${
-            hideHeader ? "h-svh" : "h-[calc(100svh-64px)]"
+            hideHeader ? "h-svh" : "h-[calc(100svh-75px)]"
           } bg-transparent flex flex-col`}
         >
           <div className="flex flex-col h-full">{getCurrentStep()}</div>

@@ -51,7 +51,11 @@ const SelectableCards: React.FC<SelectableCardsProps> = ({
           <div className="flex w-full h-full items-center space-x-5">
             {item.icon && <div>{item.icon}</div>}
             <div>
-              <h4 className="font-inter text-[16px] font-semibold leading-[22px] text-left text-primaryTextColor">
+              <h4
+                className={`font-inter text-[16px] ${
+                  item.description ? "font-semibold" : "font-medium"
+                }  leading-[22px] text-left text-primaryTextColor`}
+              >
                 {item.title}
               </h4>
               {item.description && (
