@@ -25,7 +25,7 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
       onClick={onClick}
       className={`bg-buttonPrimaryBgColor text-white ${
         isDisabled ? "opacity-50 cursor-not-allowed" : ""
-      } mt-2`}
+      } mt-2 mb-4`}
     >
       {text}
     </Button>

@@ -9,7 +9,6 @@ import OneMDownloads from "../../../public/1MDownloads.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import BlurOverlay from "../components/BlurOverlay";
-import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (

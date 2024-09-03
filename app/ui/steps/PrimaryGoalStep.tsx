@@ -11,7 +11,7 @@ import GetHealtier from "../../../public/icons/getHealtier.svg";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
-import DailyMacros from "../../../public/DailyMacros.png";
+import PercentUSer from "../../../public/75PercentUser.png";
 
 const primaryGoalOptions: TCardItem[] = [
   {
@@ -45,6 +45,13 @@ const PrimaryGoalStep: FC<TStepMainTypes> = ({ onConitnue }) => {
 
   return (
     <>
+      <div
+        style={{
+          display: "none",
+        }}
+      >
+        <Image src={PercentUSer} alt="" priority />
+      </div>
       <StepperBodyWrapper>
         <StepperTitle>What is your primary goal?</StepperTitle>
 

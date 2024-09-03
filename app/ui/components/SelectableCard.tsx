@@ -38,10 +38,11 @@ const SelectableCards: React.FC<SelectableCardsProps> = ({
     <div className="flex flex-col space-y-4 w-full">
       {items.map((item) => (
         <Card
+          radius="lg"
           key={item.id}
           isPressable
           onClick={() => handleSelect(item.id)}
-          className={`flex items-center p-4 rounded-lg shadow-md w-full h-[90px] ${
+          className={`flex items-center p-4 shadow-md w-full h-[90px] ${
             selectedId === item.id
               ? "border-2 border-[#FEB816] bg-[#FFF2D5]"
               : "bg-white"

@@ -14,7 +14,7 @@ export default function Footer({
   text = "Continue",
 }: FooterProps) {
   return (
-    <footer className="bg-primaryBgColor w-full px-3 py-2 flex justify-center absolute bottom-0">
+    <footer className="bg-primaryBgColor w-full px-3 flex justify-center absolute bottom-0">
       <ContinueButton
         isLoading={isLoading}
         onClick={onContinue}
