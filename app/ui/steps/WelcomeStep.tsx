@@ -13,45 +13,49 @@ import LooseWeight from "../../../public/icons/looseWeight.png";
 import GetHealtier from "../../../public/icons/getHealtier.png";
 import StayInShape from "../../../public/icons/stayInShape.png";
 
-
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
     <>
       <div className="hidden">
-      <Image src={LooseWeight} alt="Loose weight" width={36} height={36} priority />,
-      <Image src={GetHealtier} width={36} height={36} priority alt="Get healthier" />,
-      <Image src={StayInShape} alt="Stay in shape" width={36} height={36} priority/>
+        <Image
+          src={LooseWeight}
+          alt="Loose weight"
+          width={36}
+          height={36}
+          priority
+        />
+        ,
+        <Image
+          src={GetHealtier}
+          width={36}
+          height={36}
+          priority
+          alt="Get healthier"
+        />
+        ,
+        <Image
+          src={StayInShape}
+          alt="Stay in shape"
+          width={36}
+          height={36}
+          priority
+        />
       </div>
       <div
-        className={`overflow-y-auto py-2 w-full`}
+        className={`overflow-y-auto my-3 w-full`}
         style={{
-          height: "88%",
+          height: "85%",
         }}
       >
         <div
-          className={`flex flex-col gap-1 justify-between px-3 h-full items-center`}
+          className={`flex flex-col gap-1 justify-center px-3 h-full items-center`}
         >
-          <StepperTitle className="mt-2">
-            AI-powered calorie tracking
-          </StepperTitle>
-          <StepperSubtitle>
-            Lets begin with a few questions to <br /> create your customized
-            plan
-          </StepperSubtitle>
-
-          <BlurOverlay>
-            <Image alt="Welcome" src={ScanAi} priority />
-          </BlurOverlay>
-
-          <div>
-            <Image
-              alt="Welcome"
-              src={OneMDownloads}
-              priority
-              width={145}
-              height={80}
-            />
+          <div className="mb-[70px]">
+            <Image alt="Welcome" src={OneMDownloads} priority />
           </div>
+          <StepperTitle>
+            Let’s begin with a few questions to create your customized plan
+          </StepperTitle>
         </div>
       </div>
 
