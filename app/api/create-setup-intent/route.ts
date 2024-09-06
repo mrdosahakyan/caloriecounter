@@ -10,14 +10,16 @@ const trialPeriod = process.env.NEXT_PUBLIC_TRIAL_PERIOD || 7;
 export async function POST(req: NextRequest) {
   try {
     const { customerId } = await req.json();
-
+    const invoiceDescription = `calapp.site/${customerId
+      .toUpperCase()
+      .slice(0, 14)}`;
     // Create a PaymentIntent for a one-time payment and set up for future payments
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Number(trialPeriodAmount), // $6.99 in cents
       currency: stripeCurrency,
       customer: customerId,
       setup_future_usage: "off_session", // Save the payment method for future use
-
+      description: invoiceDescription,
       // payment_method_types: ["card", "apple_pay"], // Support both card and Apple Pay
     });
 
