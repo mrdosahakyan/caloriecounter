@@ -8,6 +8,9 @@ import axios from "axios";
 import { usePaymentStore } from "@/app/store/paymentStore";
 import ContinueButton from "@/app/ui/components/ContinueButton";
 import { TextField } from "@mui/material";
+import { addScriptDefault } from "meta-pixel";
+
+const fbq = addScriptDefault();
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
@@ -59,6 +62,10 @@ const PaymentForm = () => {
           customerId: customerId,
           paymentMethodId: paymentIntent.payment_method,
           email: email,
+        });
+        fbq("track", "Purchase", {
+          currency: "USD",
+          value: 10,
         });
 
         window.location.href = "/success";
