@@ -12,6 +12,7 @@ import BlurOverlay from "../components/BlurOverlay";
 import LooseWeight from "../../../public/icons/looseWeight.png";
 import GetHealtier from "../../../public/icons/getHealtier.png";
 import StayInShape from "../../../public/icons/stayInShape.png";
+import ReactPixel from 'react-facebook-pixel';
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   return (
@@ -59,7 +60,10 @@ const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
         </div>
       </div>
 
-      <Footer onContinue={onConitnue} text="Get Started" />
+      <Footer onContinue={ () => {
+       ReactPixel.track('initialCheckout', { value: 0, currency: 'USD' });
+       onConitnue(); 
+      } } text="Get Started" />
     </>
   );
 };
