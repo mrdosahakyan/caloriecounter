@@ -3,7 +3,6 @@
 import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
 import Script from "next/script";
-import Head from "next/head";
 
 export default function RootLayout({
   children,
@@ -12,7 +11,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <body className="bg-primaryBgColor h-svh">
         <Script
           id="facebook-pixel"
           strategy="afterInteractive"
@@ -38,8 +37,6 @@ src="https://www.facebook.com/tr?id=878655217470351&ev=PageView&noscript=1"
             `,
           }}
         />
-      </Head>
-      <body className="bg-primaryBgColor h-svh">
         <NextUIProvider>{children}</NextUIProvider>
       </body>
     </html>
