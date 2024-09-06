@@ -11,9 +11,6 @@ import { useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import ContinueButton from "@/app/ui/components/ContinueButton";
 import PaymentForm from "./PaymentForm";
-import { addScriptDefault } from "meta-pixel";
-
-const fbq = addScriptDefault();
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -103,12 +100,6 @@ const PaymentStep = () => {
   }, [stripe]);
 
   const handlePaymetMethod = () => {
-    fbq('track', 'InitiateCheckout', {
-      currency: 'USD',
-      value: 10,
-      num_items: 1,
-      content_ids: [stripeCustomerId],
-    })
     if (!selectedPaymentMethod) return;
 
     if (selectedPaymentMethod === EPaymentMethod.CARD) {
