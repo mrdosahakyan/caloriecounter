@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import ChoosePaymentMethod, { EPaymentMethod } from "./ChoosePaymentMethod";
 import PaymentCarousel from "../../ui/components/carousel/PaymentCarousel";
-import StepperTitle from "../../ui/components/stepperLayout/StepperTitle"; 
+import StepperTitle from "../../ui/components/stepperLayout/StepperTitle";
 import UnvisiblePaymentInfo from "./UnvisiblePaymentInfo";
 import TermsConditions from "./TermsContditions";
-import { usePaymentStore } from "@/app/store/paymentStore"; 
+import { usePaymentStore } from "@/app/store/paymentStore";
 import { useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import ContinueButton from "@/app/ui/components/ContinueButton";
@@ -79,6 +79,9 @@ const PaymentStep = () => {
         if (paymentIntent.status === "requires_action") {
           // Let Stripe.js handle the rest of the payment flow.
           const { error } = await stripe.confirmCardPayment(clientSecret);
+          await axios.post("/api/create-subscription", {
+            customerId: stripeCustomerId,
+          });
           if (error) {
             alert("Payment failed: " + error.message);
           } else {

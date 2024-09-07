@@ -60,6 +60,9 @@ const PaymentForm = () => {
           paymentMethodId: paymentIntent.payment_method,
           email: email,
         });
+        await axios.post("/api/create-subscription", {
+          customerId: customerId,
+        });
 
         window.location.href = "/success";
       } catch (error: any) {
