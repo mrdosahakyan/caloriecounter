@@ -31,7 +31,7 @@ const Success = () => {
           </p>
           <p className="font-inter text-[20px] font-normal text-center text-[#09162E] ">
             Refunds takes 5-10 days to <br />
-            appear on a customer's <br />
+            appear on a customer&apos;s <br />
             statement.
           </p>
         </div>
