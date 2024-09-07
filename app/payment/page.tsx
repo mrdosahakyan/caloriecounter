@@ -16,6 +16,9 @@ import PaymentCarousel from "../ui/components/carousel/PaymentCarousel";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
 import TermsConditions from "./components/TermsContditions";
 import UnvisiblePaymentInfo from "./components/UnvisiblePaymentInfo";
+import { initializeMixpanel } from "../ui/integrations/mixpanelInit";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../ui/integrations/mixpanelEvents";
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -25,6 +28,8 @@ const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "";
 const stripePromise = loadStripe(stripePublicKey);
 
 const PaymentStep = () => {
+  initializeMixpanel();
+
   const { paymentData, setPaymentData } = usePaymentStore();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<EPaymentMethod>(EPaymentMethod.APPLE_PAY);
@@ -145,7 +150,9 @@ const PaymentStep = () => {
           await axios.post("/api/create-subscription", {
             customerId: setupPaymentData.customerId,
           });
-
+          mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
+            paymentMethod: EPaymentMethod.APPLE_PAY,
+          });
           // Handle additional steps like subscription
           if (paymentIntent.status === "requires_action") {
             const { error } = await stripe.confirmCardPayment(
@@ -175,6 +182,7 @@ const PaymentStep = () => {
 
   const handlePaymetMethod = async () => {
     if (!selectedPaymentMethod) return;
+    mixpanel.track(EMixpanelEvents.CHECKOUT_STARTED);
 
     if (selectedPaymentMethod === EPaymentMethod.CARD) {
       const setupPaymentData = await createCustomerAndSetupIntent();

@@ -8,6 +8,9 @@ import axios from "axios";
 import { usePaymentStore } from "@/app/store/paymentStore";
 import ContinueButton from "@/app/ui/components/ContinueButton";
 import { TextField } from "@mui/material";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "@/app/ui/integrations/mixpanelEvents";
+import { EPaymentMethod } from "./ChoosePaymentMethod";
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
@@ -63,7 +66,9 @@ const PaymentForm = () => {
         await axios.post("/api/create-subscription", {
           customerId: customerId,
         });
-
+        mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
+          paymentMethod: EPaymentMethod.CARD,
+        });
         window.location.href = "/success";
       } catch (error: any) {
         setStripeErrorMessage(error.message || "An unexpected error occurred.");

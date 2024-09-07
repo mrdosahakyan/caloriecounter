@@ -5,8 +5,17 @@ import Image from "next/image";
 import Warning from "../../public/warning.png";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
 import ContinueButton from "../ui/components/ContinueButton";
+import mixpanel from "mixpanel-browser";
+import useDidMount from "../ui/hooks/useDidMount";
+import { EMixpanelEvents } from "../ui/integrations/mixpanelEvents";
+import { initializeMixpanel } from "../ui/integrations/mixpanelInit";
+
+initializeMixpanel();
 
 const Success = () => {
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_14_OPENED);
+  });
   return (
     <div className="flex flex-col items-center justify-between h-svh bg-primaryBgColor p-4 pb-0">
       <div className="h-full flex flex-col items-center justify-around">
