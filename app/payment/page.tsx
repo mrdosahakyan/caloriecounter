@@ -144,6 +144,7 @@ const PaymentStep = () => {
           });
           await axios.post("/api/create-subscription", {
             customerId: setupPaymentData.customerId,
+            customerEmail: ev.payerEmail,
           });
 
           // Handle additional steps like subscription

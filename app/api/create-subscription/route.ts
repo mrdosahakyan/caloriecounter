@@ -7,25 +7,69 @@ import {
   UserData,
   CustomData,
 } from "facebook-nodejs-business-sdk";
-import { v4 as uuidv4 } from "uuid"; // Import UUID for event_id generation
+import { v4 as uuidv4 } from "uuid";
+import nodemailer from "nodemailer";
+import fs from "fs/promises";
+import path from "path";
 
 // Initialize Stripe and Facebook SDK
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID || "";
 const trialPeriod = process.env.NEXT_PUBLIC_TRIAL_PERIOD || 7;
-const accessToken = process.env.FACEBOOK_ACCESS_TOKEN || ""; // Facebook Access Token
-const pixelId = process.env.FACEBOOK_PIXEL_ID || ""; // Facebook Pixel ID
+const accessToken = process.env.FACEBOOK_ACCESS_TOKEN || "";
+const pixelId = process.env.FACEBOOK_PIXEL_ID || "";
+
 FacebookAdsApi.init(accessToken);
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 export async function POST(req: NextRequest) {
   try {
-    const { customerId } = await req.json();
+    const { customerId, customerEmail } = await req.json();
 
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
       items: [{ price: priceId }],
       trial_period_days: Number(trialPeriod),
       payment_behavior: "default_incomplete",
+    });
+
+    const emailFilePath = path.join(process.cwd(), "docs", "refundEmail.html");
+
+    let emailBody;
+    try {
+      emailBody = await fs.readFile(emailFilePath, "utf8");
+    } catch (error) {
+      console.error("Error reading email template file:", error);
+      emailBody = null;
+    }
+
+    const plainTextBody = `We are updating the app and have temporarily suspended new purchases.
+We apologize for the inconvenience. Your payment will be refunded in 5-10 business days.`;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: customerEmail,
+      subject: process.env.EMAIL_SUBJECT || "Your payment will be refunded",
+      text: plainTextBody,
+      ...(emailBody && { html: emailBody }),
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("❌ Error:", error.message);
+      } else {
+        console.log("✅ Email sent:", info.response);
+      }
     });
 
     const eventId = uuidv4();
