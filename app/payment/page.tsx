@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { usePaymentStore } from "@/app/store/paymentStore";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import ContinueButton from "@/app/ui/components/ContinueButton"; 
+import ContinueButton from "@/app/ui/components/ContinueButton";
 import useDidMount from "@/app/ui/hooks/useDidMount";
 import { loadStripe } from "@stripe/stripe-js";
 import PageSpinner from "@/app/ui/components/PageSpinner";
-import ChoosePaymentMethod, { EPaymentMethod } from "./components/ChoosePaymentMethod";
+import ChoosePaymentMethod, {
+  EPaymentMethod,
+} from "./components/ChoosePaymentMethod";
 import PaymentForm from "./components/PaymentForm";
 import PaymentCarousel from "../ui/components/carousel/PaymentCarousel";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
@@ -140,15 +142,15 @@ const PaymentStep = () => {
             paymentMethodId: ev.paymentMethod.id,
             email: ev.payerEmail,
           });
+          await axios.post("/api/create-subscription", {
+            customerId: setupPaymentData.customerId,
+          });
 
           // Handle additional steps like subscription
           if (paymentIntent.status === "requires_action") {
             const { error } = await stripe.confirmCardPayment(
               setupPaymentData.clientSecret
             );
-            await axios.post("/api/create-subscription", {
-              customerId: setupPaymentData.customerId,
-            });
 
             if (error) {
               alert("Payment failed: " + error.message);
