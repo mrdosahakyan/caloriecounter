@@ -116,7 +116,7 @@ const PaymentForm = () => {
           </div>
         </form>
       </div>
-      <div className="h-fit mt-2 pb-9">
+      <div className="h-fit mt-2">
         <ContinueButton
           //@ts-ignore
           onClick={handleSubmit}
