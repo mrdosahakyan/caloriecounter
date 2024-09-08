@@ -1,158 +1,249 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
-import ChoosePaymentMethod, { EPaymentMethod } from "./ChoosePaymentMethod";
-import PaymentCarousel from "../../ui/components/carousel/PaymentCarousel";
-import StepperTitle from "../../ui/components/stepperLayout/StepperTitle";
-import UnvisiblePaymentInfo from "./UnvisiblePaymentInfo";
-import TermsConditions from "./TermsContditions";
-import { usePaymentStore } from "@/app/store/paymentStore";
-import { useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
-import ContinueButton from "@/app/ui/components/ContinueButton";
-import PaymentForm from "./PaymentForm";
+// import { useEffect, useState } from "react";
+// import ChoosePaymentMethod, { EPaymentMethod } from "./ChoosePaymentMethod";
+// import PaymentCarousel from "../../ui/components/carousel/PaymentCarousel";
+// import StepperTitle from "../../ui/components/stepperLayout/StepperTitle";
+// import UnvisiblePaymentInfo from "./UnvisiblePaymentInfo";
+// import TermsConditions from "./TermsContditions";
+// import { usePaymentStore } from "@/app/store/paymentStore";
+// import { Elements } from "@stripe/react-stripe-js";
+// import axios from "axios";
+// import ContinueButton from "@/app/ui/components/ContinueButton";
+// import PaymentForm from "./PaymentForm";
+// import useDidMount from "@/app/ui/hooks/useDidMount";
+// import { loadStripe } from "@stripe/stripe-js";
+// import PageSpinner from "@/app/ui/components/PageSpinner";
 
-const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
-const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
-const trialAmountInCents = process.env.NEXT_PUBLIC_TRIAL_AMOUNT || 699;
+// const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
+// const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
+// const trialAmountInCents = process.env.NEXT_PUBLIC_TRIAL_AMOUNT || 699;
 
-const PaymentStep = () => {
-  const stripe = useStripe();
-  const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<EPaymentMethod>(EPaymentMethod.APPLE_PAY);
-  const [showPaymentForm, setShowPaymentForm] = useState(false);
-  const isDisabled = false;
-  const {
-    paymentData: { clientSecret, stripeCustomerId },
-  } = usePaymentStore();
+// const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "";
+// const stripePromise = loadStripe(stripePublicKey);
 
-  const [paymentRequest, setPaymentRequest] = useState<any>(null);
-  const [isApplePayAvailable, setIsApplePayAvailable] =
-    useState<boolean>(false);
+// const PaymentStep = () => {
+//   const { paymentData, setPaymentData } = usePaymentStore();
+//   const [selectedPaymentMethod, setSelectedPaymentMethod] =
+//     useState<EPaymentMethod>(EPaymentMethod.APPLE_PAY);
+//   const [showPaymentForm, setShowPaymentForm] = useState(false);
+//   const [loading, setLoading] = useState(false);
+//   const [stripe, setStripe] = useState<any>(null);
+//   const [pageLoading, setPageLoading] = useState(true);
+//   const [pageError, setPageError] = useState(false);
 
-  const initializeApplePay = () => {
-    if (!stripe) return;
-    const pr = stripe.paymentRequest({
-      country: stripeCountryCode,
-      currency: stripeCurrency,
-      total: {
-        label: "Total",
-        amount: Number(trialAmountInCents),
-      },
-      requestPayerName: false,
-      requestPayerEmail: true,
-      requestShipping: false,
-    });
+//   const createCustomerAndSetupIntent = async () => {
+//     if (paymentData.clientSecret && paymentData.stripeCustomerId) {
+//       return;
+//     }
 
-    pr.canMakePayment().then((result) => {
-      console.log(result, "result");
-      if (result) {
-        setPaymentRequest(pr);
-        setIsApplePayAvailable(true);
-      }
-    });
-  };
+//     try {
+//       setLoading(true);
 
-  const handleApplePay = () => {
-    if (!paymentRequest || !stripe) return;
+//       const customerResponse = await axios.post("/api/create-stripe-customer", {
+//         // Pass customer name, email
+//       });
+//       const { customerId } = customerResponse.data;
 
-    paymentRequest.on("paymentmethod", async (ev: any) => {
-      const { paymentIntent, error: confirmError } =
-        await stripe.confirmCardPayment(
-          clientSecret,
-          { payment_method: ev.paymentMethod.id },
-          { handleActions: false }
-        );
+//       setPaymentData({ stripeCustomerId: customerId });
 
-      if (confirmError) {
-        ev.complete("fail");
-        alert("Payment failed: " + confirmError.message);
-      } else {
-        ev.complete("success");
-        await axios.post("/api/set-default-payment-method", {
-          customerId: stripeCustomerId,
-          paymentMethodId: ev.paymentMethod.id,
-          email: ev.payerEmail,
-        });
-        window.location.href = "/success";
+//       const setupIntentResponse = await axios.post("/api/create-setup-intent", {
+//         customerId,
+//       });
 
-        if (paymentIntent.status === "requires_action") {
-          // Let Stripe.js handle the rest of the payment flow.
-          const { error } = await stripe.confirmCardPayment(clientSecret);
-          await axios.post("/api/create-subscription", {
-            customerId: stripeCustomerId,
-          });
-          if (error) {
-            alert("Payment failed: " + error.message);
-          } else {
-            // The payment has succeeded -- show a success message to your customer.
-            window.location.href = "/success";
-          }
-        } else {
-          // The payment has succeeded -- show a success message to your customer.
-          window.location.href = "/success";
-        }
-      }
-    });
+//       const { clientSecret } = setupIntentResponse.data;
 
-    paymentRequest.show(); // This triggers the Apple Pay window
-  };
+//       setPaymentData({ clientSecret });
+//       return {
+//         clientSecret,
+//         customerId,
+//       };
+//     } catch (error) {
+//       console.error("Error creating customer or Setup Intent:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-  useEffect(() => {
-    initializeApplePay();
-  }, [stripe]);
+//   useDidMount(() => {
+//     stripePromise
+//       .then((stripe) => {
+//         setPageLoading(false);
+//         setStripe(stripe);
+//       })
+//       .catch(() => {
+//         setPageLoading(false);
+//         setPageError(true);
+//       });
+//   });
 
-  const handlePaymetMethod = () => {
-    if (!selectedPaymentMethod) return;
+//   const isDisabled = false;
 
-    if (selectedPaymentMethod === EPaymentMethod.CARD) {
-      setShowPaymentForm(true);
-    }
-    if (selectedPaymentMethod === EPaymentMethod.APPLE_PAY) {
-      if (!isApplePayAvailable) {
-        console.log("Apple Pay is not available");
-        return;
-      }
-      handleApplePay();
-    }
-  };
+//   const [paymentRequest, setPaymentRequest] = useState<any>(null);
+//   const [isApplePayAvailable, setIsApplePayAvailable] =
+//     useState<boolean>(false);
 
-  if (showPaymentForm && clientSecret) {
-    return <PaymentForm />;
-  }
+//   const initializeApplePay = () => {
+//     if (!stripe) return;
+//     const pr = stripe.paymentRequest({
+//       country: stripeCountryCode,
+//       currency: stripeCurrency,
+//       total: {
+//         label: "Total",
+//         amount: Number(trialAmountInCents),
+//       },
+//       requestPayerName: false,
+//       requestPayerEmail: true,
+//       requestShipping: false,
+//     });
 
-  return (
-    <>
-      <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
-        <div className="flex-1 flex flex-col w-full justify-around">
-          <PaymentCarousel />
-          <div className="mt-5">
-            <StepperTitle className="mb-2">
-              Get unlimited access to your plan!
-            </StepperTitle>
-            <p className="font-roboto text-[14px] font-normal text-center text-[#000000]">
-              Unlimited access for just $6.99 Try for one week. Cancel anytime
-            </p>
-          </div>
-        </div>
-        <div className="h-fit mt-2">
-          <ChoosePaymentMethod
-            selectedPaymentMethod={selectedPaymentMethod}
-            setSelectedPaymentMethod={setSelectedPaymentMethod}
-          />
-          <ContinueButton
-            onClick={handlePaymetMethod}
-            isDisabled={isDisabled}
-          />
+//     pr.canMakePayment()
+//       .then((result: any) => {
+//         setPageLoading(false);
+//         console.log(result, "result");
+//         if (result) {
+//           setPaymentRequest(pr);
+//           setIsApplePayAvailable(true);
+//         }
+//       })
+//       .catch(() => {
+//         setPageLoading(false);
+//         setIsApplePayAvailable(false);
+//       });
+//   };
 
-          <TermsConditions />
-        </div>
-      </div>
-      <div className="bg-primaryBgColor px-3">
-        <UnvisiblePaymentInfo />
-      </div>
-    </>
-  );
-};
+//   const handleApplePay = () => {
+//     if (!paymentRequest || !stripe) return;
 
-export default PaymentStep;
+//     paymentRequest.on("paymentmethod", async (ev: any) => {
+//       try {
+//         const setupPaymentData = await createCustomerAndSetupIntent();
+//         if (!setupPaymentData) return;
+
+//         setLoading(true);
+
+//         const { paymentIntent, error: confirmError } =
+//           await stripe.confirmCardPayment(
+//             setupPaymentData.clientSecret,
+//             { payment_method: ev.paymentMethod.id },
+//             { handleActions: false }
+//           );
+
+//         if (confirmError) {
+//           ev.complete("fail");
+//           alert("Payment failed: " + confirmError.message);
+//         } else {
+//           ev.complete("success");
+
+//           await axios.post("/api/set-default-payment-method", {
+//             customerId: setupPaymentData.customerId,
+//             paymentMethodId: ev.paymentMethod.id,
+//             email: ev.payerEmail,
+//           });
+
+//           // Handle additional steps like subscription
+//           if (paymentIntent.status === "requires_action") {
+//             const { error } = await stripe.confirmCardPayment(
+//               setupPaymentData.clientSecret
+//             );
+//             await axios.post("/api/create-subscription", {
+//               customerId: setupPaymentData.customerId,
+//             });
+
+//             if (error) {
+//               alert("Payment failed: " + error.message);
+//             } else {
+//               window.location.href = "/success";
+//             }
+//           } else {
+//             window.location.href = "/success";
+//           }
+//         }
+//       } catch (error) {
+//         console.error("Error handling Apple Pay:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     });
+//   };
+
+//   useEffect(() => {
+//     initializeApplePay();
+//   }, [stripe]);
+
+//   const handlePaymetMethod = async () => {
+//     if (!selectedPaymentMethod) return;
+
+//     if (selectedPaymentMethod === EPaymentMethod.CARD) {
+//       const setupPaymentData = await createCustomerAndSetupIntent();
+//       if (!setupPaymentData) return;
+//       setShowPaymentForm(true);
+//       return;
+//     }
+
+//     if (selectedPaymentMethod === EPaymentMethod.APPLE_PAY) {
+//       if (!isApplePayAvailable) {
+//         alert("Apple Pay is not available on this device.");
+//         return;
+//       }
+
+//       paymentRequest.show();
+//       handleApplePay();
+//     }
+//   };
+
+//   if (pageLoading) {
+//     return <PageSpinner />;
+//   }
+
+//   if (pageError) {
+//     return (window.location.href = "/error");
+//   }
+
+//   if (showPaymentForm && paymentData.clientSecret && stripePromise) {
+//     return (
+//       <Elements
+//         stripe={stripePromise}
+//         options={{ clientSecret: paymentData.clientSecret }}
+//       >
+//         <PaymentForm />;
+//       </Elements>
+//     );
+//   }
+
+//   return (
+//     <>
+//       <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
+//         <div className="flex-1 flex flex-col w-full justify-around">
+//           <PaymentCarousel />
+//           <div className="mt-5">
+//             <StepperTitle className="mb-2">
+//               Get unlimited access to your plan!
+//             </StepperTitle>
+//             <p className="font-roboto text-[14px] font-normal text-center text-[#000000]">
+//               Unlimited access for just $6.99 Try for one week. Cancel anytime
+//             </p>
+//           </div>
+//         </div>
+//         <div className="h-fit mt-2">
+//           <ChoosePaymentMethod
+//             selectedPaymentMethod={selectedPaymentMethod}
+//             setSelectedPaymentMethod={setSelectedPaymentMethod}
+//           />
+//           <ContinueButton
+//             onClick={handlePaymetMethod}
+//             isDisabled={isDisabled}
+//             isLoading={loading}
+//           />
+
+//           <TermsConditions />
+//         </div>
+//       </div>
+//       <div className="bg-primaryBgColor px-3">
+//         <UnvisiblePaymentInfo />
+//       </div>
+//     </>
+//   );
+// };
+
+// export default PaymentStep;

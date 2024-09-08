@@ -1,15 +1,14 @@
 "use client";
 
 import React from "react";
-import { FaCheckCircle } from "react-icons/fa";
-import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import Warning from "../../public/warning.png";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
+import ContinueButton from "../ui/components/ContinueButton";
 
 const Success = () => {
   return (
-    <div className="flex flex-col items-center justify-between h-svh bg-primaryBgColor p-4">
+    <div className="flex flex-col items-center justify-between h-svh bg-primaryBgColor p-4 pb-0">
       <div className="h-full flex flex-col items-center justify-around">
         <div>
           <Image
@@ -38,16 +37,12 @@ const Success = () => {
       </div>
 
       <div className="w-full">
-        <Button
-          radius="full"
-          size="lg"
+        <ContinueButton
           onClick={() => {
             window.location.href = "/";
           }}
-          className={`bg-buttonPrimaryBgColor text-white w-full`}
-        >
-          Go to Home Page
-        </Button>
+          text="Go to Home Page"
+        />
       </div>
     </div>
   );
