@@ -21,7 +21,7 @@ FacebookAdsApi.init(accessToken);
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    const { customerId } = await req.json(); // Remove email
+    let { customerId } = await req.json();
 
     // Check if customerId is provided
     if (!customerId) {
