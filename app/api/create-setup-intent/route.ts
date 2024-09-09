@@ -28,9 +28,10 @@ export async function POST(req: NextRequest) {
       throw new Error("customerId is required.");
     }
 
-    const invoiceDescription = `caltrack.info/${customerId
+    customerId = customerId.replace("CUS_", "");
+    const invoiceDescription = `caltrack.info-${customerId
       .toUpperCase()
-      .slice(0, 14)}`;
+      .slice(0, 8)}`;
 
     // Create a PaymentIntent for a one-time payment and set up for future payments
     const paymentIntent = await stripe.paymentIntents.create({
