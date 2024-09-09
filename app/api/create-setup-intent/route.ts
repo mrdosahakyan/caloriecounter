@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       throw new Error("customerId is required.");
     }
 
-    const invoiceDescription = `calapp.site/${customerId
+    const invoiceDescription = `caltrack.info/${customerId
       .toUpperCase()
       .slice(0, 14)}`;
 
