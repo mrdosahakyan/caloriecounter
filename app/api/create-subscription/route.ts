@@ -32,7 +32,9 @@ export async function POST(req: NextRequest) {
     const userData = new UserData()
       .setExternalId(customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
-      .setClientUserAgent(req.headers.get("user-agent") || "");
+      .setClientUserAgent(req.headers.get("user-agent") || "")
+      .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data
+      .setFbp(req.headers.get("cookie")?.match(/_fbp=([^;]+)/)?.[1] || ''); // Add _fbp to user data
 
     const customData = new CustomData().setCurrency("USD").setValue(10);
 
