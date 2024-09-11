@@ -64,6 +64,7 @@ const PaymentForm = () => {
         });
         await axios.post("/api/create-subscription", {
           customerId: customerId,
+          customerEmail: email,
           userId: userId
         });
 
@@ -124,6 +125,7 @@ const PaymentForm = () => {
           //@ts-ignore
           onClick={handleSubmit}
           isDisabled={isDisabled}
+          isLoading={isProcessing}
         />
       </div>
     </div>
