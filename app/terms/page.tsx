@@ -1,9 +1,14 @@
-const TermsPage = () => {
+import { FC } from "react";
+import { parseMarkdownFile } from "../lib/parseMarkdown";
+
+const TermsPage: FC = async () => {
+  const contentHtml = await parseMarkdownFile("terms");
+
   return (
-    <div>
-      <h1 className="text-center">Terms and Conditions</h1>
-      <p>  </p>
-    </div>
+    <div
+      className="static-page-container"
+      dangerouslySetInnerHTML={{ __html: contentHtml }}
+    />
   );
 };
 
