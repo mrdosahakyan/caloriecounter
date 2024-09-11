@@ -19,7 +19,7 @@ FacebookAdsApi.init(accessToken);
 
 export async function POST(req: NextRequest) {
   try {
-    const { customerId } = await req.json();
+    const { customerId, userId } = await req.json();
 
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     const eventId = uuidv4();
     const userData = new UserData()
-      .setExternalId(customerId)
+      .setExternalId(userId || customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
       .setClientUserAgent(req.headers.get("user-agent") || "")
       .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data

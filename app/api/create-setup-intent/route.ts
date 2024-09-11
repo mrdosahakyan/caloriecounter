@@ -21,7 +21,7 @@ FacebookAdsApi.init(accessToken);
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    let { customerId } = await req.json();
+    let { customerId, userId } = await req.json();
 
     // Check if customerId is provided
     if (!customerId) {
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
     // Collect user data (only IP and User-Agent) for the Facebook Conversions API
     const userData = new UserData()
-      .setExternalId(customerId)
+      .setExternalId(userId || customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
       .setClientUserAgent(req.headers.get("user-agent") || "")
       .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data

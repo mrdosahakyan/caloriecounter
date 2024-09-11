@@ -16,6 +16,7 @@ import PaymentCarousel from "../ui/components/carousel/PaymentCarousel";
 import StepperTitle from "../ui/components/stepperLayout/StepperTitle";
 import TermsConditions from "./components/TermsContditions";
 import UnvisiblePaymentInfo from "./components/UnvisiblePaymentInfo";
+import useUserId from "../ui/hooks/useUserId";
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -33,6 +34,7 @@ const PaymentStep = () => {
   const [stripe, setStripe] = useState<any>(null);
   const [pageLoading, setPageLoading] = useState(true);
   const [pageError, setPageError] = useState(false);
+  const userId = useUserId();
 
   const createCustomerAndSetupIntent = async () => {
     if (paymentData.clientSecret && paymentData.stripeCustomerId) {
@@ -51,6 +53,7 @@ const PaymentStep = () => {
 
       const setupIntentResponse = await axios.post("/api/create-setup-intent", {
         customerId,
+        userId,
       });
 
       const { clientSecret } = setupIntentResponse.data;
@@ -144,6 +147,7 @@ const PaymentStep = () => {
           });
           await axios.post("/api/create-subscription", {
             customerId: setupPaymentData.customerId,
+            userId: userId,
           });
 
           // Handle additional steps like subscription
