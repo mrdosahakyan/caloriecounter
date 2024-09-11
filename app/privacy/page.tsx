@@ -1,9 +1,14 @@
-const PrivacyPage = () => {
+import { FC } from "react";
+import { parseMarkdownFile } from "../lib/parseMarkdown";
+
+const PrivacyPage: FC = async () => {
+  const contentHtml = await parseMarkdownFile("policy");
+
   return (
-    <div>
-      <h1 className="text-center">Privacy Policy</h1>
-      <p> </p>
-    </div>
+    <div
+      className="static-page-container"
+      dangerouslySetInnerHTML={{ __html: contentHtml }}
+    />
   );
 };
 
