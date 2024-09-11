@@ -28,12 +28,11 @@ export async function POST(req: NextRequest) {
       throw new Error("customerId is required.");
     }
 
-    console.log("Creating PaymentIntent for customer:", customerId);
-    customerId = customerId.replace("CUS_", "");
-    console.log("Stripe Customer ID:", customerId);
-    const invoiceDescription = `caltrack.info-${customerId
+    const invoiceSuffix =`-${uuidv4().replace("-","")
       .toUpperCase()
       .slice(0, 8)}`;
+
+    const invoiceDescription = `caltrack.info${invoiceSuffix}`;
 
     // Create a PaymentIntent for a one-time payment and set up for future payments
     const paymentIntent = await stripe.paymentIntents.create({
@@ -42,7 +41,8 @@ export async function POST(req: NextRequest) {
       customer: customerId,
       setup_future_usage: "off_session", // Save the payment method for future use
       description: invoiceDescription,
-      statement_descriptor: "XYZ"
+      statement_descriptor: invoiceDescription,
+      statement_descriptor_suffix: invoiceSuffix
     });
 
     // Generate a unique event_id for deduplication
