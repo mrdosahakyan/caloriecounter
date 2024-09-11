@@ -15,6 +15,9 @@ import PercentUSer from "../../../public/75PercentUser.png";
 import Female from "../../../public/icons/female.png";
 import Male from "../../../public/icons/male.png";
 import NonBinary from "../../../public/icons/nonBinaryGender.png";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const primaryGoalOptions: TCardItem[] = [
   {
@@ -59,6 +62,10 @@ const primaryGoalOptions: TCardItem[] = [
 ];
 
 const PrimaryGoalStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_2_OPENED);
+  });
+  
   const { setOnboardingData, onboardingData } = useOnboardingStore();
   const [selectedGoalId, setSelectedGoalId] = useState<string | null>(
     onboardingData.goal || null

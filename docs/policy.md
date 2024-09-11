@@ -1,5 +1,4 @@
-**Privacy Policy  
-of Website and Web Apps**
+**Privacy Policy of Website and Web Apps**
 
 Updated and Effective as of August 2024
 

@@ -14,8 +14,11 @@ import FoodChoiseStep from "./ui/steps/FoodChoiseStep";
 import TailorProgramStep from "./ui/steps/TailorProgramStep";
 import AiTrackerStep from "./ui/steps/AiTrackerStep";
 import DailyMacrosStep from "./ui/steps/DailyMacrosStep";
+import { initializeMixpanel } from "./ui/integrations/mixpanelInit";
 
 export default function Home() {
+  initializeMixpanel();
+
   const [step, setStep] = useState(0);
   const totalSteps = 11;
 

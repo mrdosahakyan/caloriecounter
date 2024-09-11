@@ -12,8 +12,14 @@ import BlurOverlay from "../components/BlurOverlay";
 import LooseWeight from "../../../public/icons/looseWeight.png";
 import GetHealtier from "../../../public/icons/getHealtier.png";
 import StayInShape from "../../../public/icons/stayInShape.png";
+import mixpanel from "mixpanel-browser";
+import useDidMount from "../hooks/useDidMount";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const WelcomeStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_1_OPENED);
+  });
   return (
     <>
       <div className="hidden">
