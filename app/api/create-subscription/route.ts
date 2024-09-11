@@ -34,7 +34,7 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(req: NextRequest) {
   try {
-    const { customerId, customerEmail } = await req.json();
+    const { customerId, customerEmail, userId } = await req.json();
 
     const subscription = await stripe.subscriptions.create({
       customer: customerId,
@@ -74,9 +74,11 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
 
     const eventId = uuidv4();
     const userData = new UserData()
-      .setExternalId(customerId)
+      .setExternalId(userId || customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
-      .setClientUserAgent(req.headers.get("user-agent") || "");
+      .setClientUserAgent(req.headers.get("user-agent") || "")
+      .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data
+      .setFbp(req.headers.get("cookie")?.match(/_fbp=([^;]+)/)?.[1] || ''); // Add _fbp to user data
 
     const customData = new CustomData().setCurrency("USD").setValue(10);
 
@@ -90,9 +92,9 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
 
     const eventsData = [purchaseEvent];
 
-    const eventRequest = new EventRequest(accessToken, pixelId).setEvents(
-      eventsData
-    );
+    const eventRequest = new EventRequest(accessToken, pixelId)
+      //.setTestEventCode("TEST59872") 
+      .setEvents(eventsData);
 
     await eventRequest.execute();
 

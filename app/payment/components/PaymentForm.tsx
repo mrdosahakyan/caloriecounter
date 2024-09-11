@@ -8,6 +8,7 @@ import axios from "axios";
 import { usePaymentStore } from "@/app/store/paymentStore";
 import ContinueButton from "@/app/ui/components/ContinueButton";
 import { TextField } from "@mui/material";
+import useUserId from "@/app/ui/hooks/useUserId";
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
@@ -17,6 +18,7 @@ const PaymentForm = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+  const userId = useUserId();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [stripeErrorMessage, setStripeErrorMessage] = useState<string | null>(
@@ -63,6 +65,7 @@ const PaymentForm = () => {
         await axios.post("/api/create-subscription", {
           customerId: customerId,
           customerEmail: email,
+          userId: userId
         });
 
         window.location.href = "/success";

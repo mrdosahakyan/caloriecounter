@@ -21,16 +21,18 @@ FacebookAdsApi.init(accessToken);
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    const { customerId } = await req.json(); // Remove email
+    let { customerId, userId } = await req.json();
 
     // Check if customerId is provided
     if (!customerId) {
       throw new Error("customerId is required.");
     }
 
-    const invoiceDescription = `calapp.site/${customerId
+    const invoiceSuffix =`${customerId.toUpperCase().replace("CUS_","")
       .toUpperCase()
-      .slice(0, 14)}`;
+      .slice(0, 10)}`;
+
+    //const invoiceDescription = `caltrack.info${invoiceSuffix}`;
 
     // Create a PaymentIntent for a one-time payment and set up for future payments
     const paymentIntent = await stripe.paymentIntents.create({
@@ -38,7 +40,9 @@ export async function POST(req: NextRequest) {
       currency: stripeCurrency,
       customer: customerId,
       setup_future_usage: "off_session", // Save the payment method for future use
-      description: invoiceDescription,
+      //description: invoiceDescription,
+      //statement_descriptor: invoiceDescription,
+      statement_descriptor_suffix: invoiceSuffix
     });
 
     // Generate a unique event_id for deduplication
@@ -46,9 +50,11 @@ export async function POST(req: NextRequest) {
 
     // Collect user data (only IP and User-Agent) for the Facebook Conversions API
     const userData = new UserData()
-      .setExternalId(customerId)
+      .setExternalId(userId || customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
-      .setClientUserAgent(req.headers.get("user-agent") || "");
+      .setClientUserAgent(req.headers.get("user-agent") || "")
+      .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data
+      .setFbp(req.headers.get("cookie")?.match(/_fbp=([^;]+)/)?.[1] || ''); // Add _fbp to user data
 
     // Construct CustomData with the appropriate methods
     const customData = new CustomData()
@@ -65,9 +71,9 @@ export async function POST(req: NextRequest) {
 
     const eventsData = [event];
 
-    const eventRequest = new EventRequest(accessToken, pixelId).setEvents(
-      eventsData
-    );
+    const eventRequest = new EventRequest(accessToken, pixelId)
+      //.setTestEventCode("TEST59872") 
+      .setEvents(eventsData);
 
     const fbResponse = await eventRequest.execute();
     console.log("InitiateCheckout API response:", fbResponse);
