@@ -12,7 +12,6 @@ import nodemailer from "nodemailer";
 import fs from "fs/promises";
 import path from "path";
 
-// Initialize Stripe and Facebook SDK
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 const priceId = process.env.STRIPE_SUBSCRIPTION_PRICE_ID || "";
 const trialPeriod = process.env.NEXT_PUBLIC_TRIAL_PERIOD || 7;
@@ -77,8 +76,8 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
       .setExternalId(userId || customerId)
       .setClientIpAddress(req.headers.get("x-forwarded-for") || req.ip || "")
       .setClientUserAgent(req.headers.get("user-agent") || "")
-      .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || '') // Add _fbc to user data
-      .setFbp(req.headers.get("cookie")?.match(/_fbp=([^;]+)/)?.[1] || ''); // Add _fbp to user data
+      .setFbc(req.headers.get("cookie")?.match(/_fbc=([^;]+)/)?.[1] || "")
+      .setFbp(req.headers.get("cookie")?.match(/_fbp=([^;]+)/)?.[1] || "");
 
     const customData = new CustomData().setCurrency("USD").setValue(10);
 
@@ -92,9 +91,9 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
 
     const eventsData = [purchaseEvent];
 
-    const eventRequest = new EventRequest(accessToken, pixelId)
-      //.setTestEventCode("TEST59872") 
-      .setEvents(eventsData);
+    const eventRequest = new EventRequest(accessToken, pixelId).setEvents(
+      eventsData
+    );
 
     await eventRequest.execute();
 
