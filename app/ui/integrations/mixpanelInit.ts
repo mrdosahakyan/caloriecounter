@@ -1,33 +1,23 @@
 import mixpanel from "mixpanel-browser";
+import { v4 as uuidv4 } from "uuid";
 
 const mixpanelToken = process.env.NEXT_PUBLIC_MIXPANEL_PROJECT_TOKEN || "";
 
-export const generateFakeUserId = (): string => {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  for (let i = 0; i < 5; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
-};
-
 const getUserId = (): string | null => {
   if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
-    // Only run if window and localStorage are available
     try {
-      let userId = localStorage.getItem("mixpanelUserId");
+      let userId = localStorage.getItem("userId");
       if (!userId) {
-        userId = generateFakeUserId();
-        localStorage.setItem("mixpanelUserId", userId); // Store in localStorage
+        const newUserId = uuidv4();
+        localStorage.setItem("userId", newUserId);
       }
-      return userId; // Return the user ID
+      return userId;
     } catch (err) {
       console.error("Error accessing localStorage:", err);
-      return null; // Return null if any error occurs
+      return null;
     }
   }
-  return null; // Return null if localStorage is not available (e.g., server-side)
+  return null;
 };
 
 export const initializeMixpanel = (): void => {
@@ -43,12 +33,11 @@ export const initializeMixpanel = (): void => {
   });
 
   if (typeof window !== "undefined") {
-    const userId = getUserId(); // Get the user ID safely
+    const userId = getUserId();
     if (userId) {
       mixpanel.identify(userId);
-      console.log(`Mixpanel initialized with user ID: ${userId}`);
     } else {
-      console.warn("User ID not available (possibly server-side render)");
+      console.warn("User ID not available to initialize Mixpanel");
     }
   }
 };

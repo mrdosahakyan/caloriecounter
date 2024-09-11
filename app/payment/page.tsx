@@ -85,6 +85,7 @@ const PaymentStep = () => {
         setPageLoading(false);
         setPageError(true);
       });
+      mixpanel.track(EMixpanelEvents.PAGE_13_OPENED)
   });
 
   const isDisabled = false;
@@ -110,7 +111,6 @@ const PaymentStep = () => {
     pr.canMakePayment()
       .then((result: any) => {
         setPageLoading(false);
-        console.log(result, "result");
         if (result) {
           setPaymentRequest(pr);
           setIsApplePayAvailable(true);
@@ -158,7 +158,7 @@ const PaymentStep = () => {
           mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
             paymentMethod: EPaymentMethod.APPLE_PAY,
           });
-          // Handle additional steps like subscription
+          
           if (paymentIntent.status === "requires_action") {
             const { error } = await stripe.confirmCardPayment(
               setupPaymentData.clientSecret

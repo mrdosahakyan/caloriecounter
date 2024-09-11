@@ -68,7 +68,7 @@ const PaymentForm = () => {
         await axios.post("/api/create-subscription", {
           customerId: customerId,
           customerEmail: email,
-          userId: userId
+          userId: userId,
         });
         mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
           paymentMethod: EPaymentMethod.CARD,
