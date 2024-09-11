@@ -48,9 +48,9 @@ export async function POST(req: NextRequest) {
 
     const eventsData = [purchaseEvent];
 
-    const eventRequest = new EventRequest(accessToken, pixelId).setEvents(
-      eventsData
-    );
+    const eventRequest = new EventRequest(accessToken, pixelId)
+      .setTestEventCode("TEST59872") 
+      .setEvents(eventsData);
 
     await eventRequest.execute();
 

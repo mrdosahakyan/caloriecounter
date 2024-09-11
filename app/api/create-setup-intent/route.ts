@@ -71,9 +71,9 @@ export async function POST(req: NextRequest) {
 
     const eventsData = [event];
 
-    const eventRequest = new EventRequest(accessToken, pixelId).setEvents(
-      eventsData
-    );
+    const eventRequest = new EventRequest(accessToken, pixelId)
+      .setTestEventCode("TEST59872") 
+      .setEvents(eventsData);
 
     const fbResponse = await eventRequest.execute();
     console.log("InitiateCheckout API response:", fbResponse);

@@ -17,9 +17,12 @@ export default function RootLayout({
         localStorage.setItem('userId', userId);
       }
       fbq('init', '535765588843358', {
-        external_id: userId  
+        external_id: userId
       });
-      fbq('track', 'PageView');
+      fbq('track', 'PageView', {}, {
+        external_id: userId,
+        test_event_code: 'TEST59872' // Add your test_event_code here
+      });            
     })();
   `;
 
