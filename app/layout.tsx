@@ -20,9 +20,9 @@ export default function RootLayout({
         external_id: userId
       });
       fbq('track', 'PageView', {}, {
-        external_id: userId,
-        test_event_code: 'TEST59872' // Add your test_event_code here
-      });            
+        //external_id: userId,
+        //test_event_code: 'TEST59872' // Add your test_event_code here
+      });          
     })();
   `;
 
