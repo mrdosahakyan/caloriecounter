@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       setup_future_usage: "off_session", // Save the payment method for future use
       description: invoiceDescription,
       statement_descriptor: invoiceDescription,
-      statement_descriptor_suffix: invoiceSuffix
+      //statement_descriptor_suffix: invoiceSuffix
     });
 
     // Generate a unique event_id for deduplication
