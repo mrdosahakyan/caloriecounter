@@ -11,6 +11,7 @@ import { TextField } from "@mui/material";
 import mixpanel from "mixpanel-browser";
 import { EMixpanelEvents } from "@/app/ui/integrations/mixpanelEvents";
 import { EPaymentMethod } from "./ChoosePaymentMethod";
+import useUserId from "@/app/ui/hooks/useUserId";
 
 const PaymentForm = () => {
   const { paymentData } = usePaymentStore();
@@ -20,6 +21,7 @@ const PaymentForm = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+  const userId = useUserId();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [stripeErrorMessage, setStripeErrorMessage] = useState<string | null>(
@@ -65,6 +67,8 @@ const PaymentForm = () => {
         });
         await axios.post("/api/create-subscription", {
           customerId: customerId,
+          customerEmail: email,
+          userId: userId
         });
         mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
           paymentMethod: EPaymentMethod.CARD,
@@ -126,6 +130,7 @@ const PaymentForm = () => {
           //@ts-ignore
           onClick={handleSubmit}
           isDisabled={isDisabled}
+          isLoading={isProcessing}
         />
       </div>
     </div>

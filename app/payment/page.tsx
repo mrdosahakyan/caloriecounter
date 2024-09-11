@@ -19,6 +19,7 @@ import UnvisiblePaymentInfo from "./components/UnvisiblePaymentInfo";
 import { initializeMixpanel } from "../ui/integrations/mixpanelInit";
 import mixpanel from "mixpanel-browser";
 import { EMixpanelEvents } from "../ui/integrations/mixpanelEvents";
+import useUserId from "../ui/hooks/useUserId";
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -38,6 +39,7 @@ const PaymentStep = () => {
   const [stripe, setStripe] = useState<any>(null);
   const [pageLoading, setPageLoading] = useState(true);
   const [pageError, setPageError] = useState(false);
+  const userId = useUserId();
 
   const createCustomerAndSetupIntent = async () => {
     if (paymentData.clientSecret && paymentData.stripeCustomerId) {
@@ -56,6 +58,7 @@ const PaymentStep = () => {
 
       const setupIntentResponse = await axios.post("/api/create-setup-intent", {
         customerId,
+        userId,
       });
 
       const { clientSecret } = setupIntentResponse.data;
@@ -149,6 +152,8 @@ const PaymentStep = () => {
           });
           await axios.post("/api/create-subscription", {
             customerId: setupPaymentData.customerId,
+            customerEmail: ev.payerEmail,
+            userId: userId,
           });
           mixpanel.track(EMixpanelEvents.CHECKOUT_COMPLETED, {
             paymentMethod: EPaymentMethod.APPLE_PAY,
