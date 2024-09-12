@@ -19,7 +19,7 @@ export default function Header({
   if (stepsNotInSteper.includes(currentStep)) return null;
 
   return (
-    <header className="bg-primaryBgColor absolute top-0 flex justify-start items-center px-3 w-full h-[64px]">
+    <header className="bg-primaryBgColor absolute top-0 flex justify-start items-center px-3 w-full h-[64px] max-w-md mx-auto">
       <div
         className={`flex items-center ${
           hideBackButton ? "visibility-hidden" : ""

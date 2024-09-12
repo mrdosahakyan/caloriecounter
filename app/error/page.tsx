@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import { Button } from "@nextui-org/react";
 import { FiAlertCircle } from "react-icons/fi";
 
 const SomethingWentWrong = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#fff9f1] p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-primaryBgColor p-4 max-w-md mx-auto">
       <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg">
         <FiAlertCircle className="text-red-500 text-6xl mb-4" />
         <h1 className="text-2xl text-center font-bold text-gray-800 mb-2">
