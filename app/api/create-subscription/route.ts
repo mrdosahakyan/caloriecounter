@@ -63,13 +63,22 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
       ...(emailBody && { html: emailBody }),
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("❌ Error:", error.message);
-      } else {
-        console.log("✅ Email sent:", info.response);
-      }
-    });
+    console.log("Sending email to:", customerEmail);
+
+    try {
+      transporter.sendMail(mailOptions, (error, info) => {
+        console.log("transporter.sendMail result", error, info);
+        
+        if (error) {
+          console.error("❌ Error:", error.message);
+        } else {
+          console.log("✅ Email sent:", info.response);
+        }
+      });
+      
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
 
     const eventId = uuidv4();
     const userData = new UserData()
