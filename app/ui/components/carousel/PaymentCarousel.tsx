@@ -25,11 +25,12 @@ const PaymentCarousel = () => {
   };
 
   return (
-    <div className="w-100">
+    <div className="w-100 h-full flex-grow">
       <Slider
         centerPadding="10px"
         adaptiveHeight={false}
         swipeToSlide
+        className="payment-carousel"
         {...settings}
       >
         <BlurOverlay>
@@ -38,6 +39,8 @@ const PaymentCarousel = () => {
             alt=""
             style={{
               objectFit: "cover",
+              height: "100%",
+              width: "unset",
             }}
             height={imageHeight}
             priority
@@ -50,6 +53,8 @@ const PaymentCarousel = () => {
             alt=""
             style={{
               objectFit: "cover",
+              height: "100%",
+              width: "unset",
             }}
             height={imageHeight}
             priority
@@ -62,6 +67,8 @@ const PaymentCarousel = () => {
             alt=""
             style={{
               objectFit: "cover",
+              height: "100%",
+              width: "unset",
             }}
             height={imageHeight}
             priority
@@ -74,6 +81,8 @@ const PaymentCarousel = () => {
             alt=""
             style={{
               objectFit: "cover",
+              height: "100%",
+              width: "unset",
             }}
             height={imageHeight}
             priority

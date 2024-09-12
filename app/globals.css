@@ -45,3 +45,16 @@
 body.no-scroll {
   overflow: hidden;
 }
+
+.payment-carousel {
+  height: 95%;
+}
+.payment-carousel .slick-list {
+  height: 100%;
+}
+.payment-carousel .slick-list .slick-track {
+  height: 100%;
+}
+.payment-carousel .slick-list .slick-track .slick-slide div {
+  height: 100%;
+}

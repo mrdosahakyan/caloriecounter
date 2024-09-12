@@ -7,13 +7,15 @@ type ContinueButtonProps = {
   isLoading?: boolean;
   onClick?: () => void;
   text?: string;
-};
+  className?: string;
+}
 
 const ContinueButton: React.FC<ContinueButtonProps> = ({
   isDisabled,
   onClick,
   text = "Continue",
   isLoading,
+  className
 }) => {
   return (
     <Button
@@ -25,7 +27,7 @@ const ContinueButton: React.FC<ContinueButtonProps> = ({
       onClick={onClick}
       className={`bg-buttonPrimaryBgColor text-white ${
         isDisabled ? "opacity-50 cursor-not-allowed" : ""
-      } mt-2 mb-4 font-inter h-[60px]`}
+      } mt-2 mb-4 font-inter h-[60px] ${className}`}
     >
       {text}
     </Button>

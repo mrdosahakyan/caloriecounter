@@ -11,7 +11,7 @@ const BlurOverlay: FC<TBlurOverlayProps> = ({ children, height, width }) => {
     <div
       style={{
         position: "relative",
-        height: height || "100%",
+        height: height || "108%",
         width: width || "100%",
         textAlign: "center",
         display: "flex",
