@@ -31,8 +31,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-console.log("Email creds", process.env.EMAIL_USER, process.env.EMAIL_PASSWORD);
-
 export async function POST(req: NextRequest) {
   try {
     const { customerId, customerEmail, userId } = await req.json();
