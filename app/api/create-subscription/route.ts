@@ -66,16 +66,19 @@ We apologize for the inconvenience. Your payment will be refunded in 5-10 busine
     console.log("Sending email to:", customerEmail);
 
     try {
-      transporter.sendMail(mailOptions, (error, info) => {
-        console.log("transporter.sendMail result", error, info);
-        
-        if (error) {
-          console.error("❌ Error:", error.message);
-        } else {
-          console.log("✅ Email sent:", info.response);
-        }
-      });
-      
+      let mailResult = await transporter.sendMail(mailOptions);
+      console.log("✅ Email sent:", mailResult);
+
+      // transporter.sendMail(mailOptions, (error, info) => {
+      //   console.log("transporter.sendMail result", error, info);
+
+      //   if (error) {
+      //     console.error("❌ Error:", error.message);
+      //   } else {
+      //     console.log("✅ Email sent:", info.response);
+      //   }
+      // });
+
     } catch (error) {
       console.error("Error sending email:", error);
     }
