@@ -11,6 +11,9 @@ import YearsPicker from "../components/mobilePicker/YearsPicker";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
 import AiTracker from "../../../public/AiTracker.png";
 import Image from "next/image";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 type TBirthyearStepProps = TStepMainTypes;
 
@@ -19,6 +22,9 @@ const BirthyearStep: FC<TBirthyearStepProps> = ({ onConitnue }) => {
   const [selectedBirthyear, setSelectedBirthyear] = useState<string | null>(
     onboardingData.birthYear || null
   );
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_4_OPENED);
+  });
 
   const handleChooseYear = () => {
     if (!selectedBirthyear) return;

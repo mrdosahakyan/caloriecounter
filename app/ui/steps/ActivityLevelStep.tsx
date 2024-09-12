@@ -15,6 +15,9 @@ import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import Beginner from "../../../public/icons/beginner.png";
 import Intermedite from "../../../public/icons/intermediate.png";
 import Master from "../../../public/icons/master.png";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const activityLevelOptions: TCardItem[] = [
   {
@@ -54,6 +57,10 @@ const ActivityLevelStep: FC<TStepMainTypes> = ({ onConitnue }) => {
     setOnboardingData({ activityLevel: selectedActivityLevel });
     onConitnue();
   };
+
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_6_OPENED);
+  });
 
   return (
     <>

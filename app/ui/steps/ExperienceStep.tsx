@@ -13,6 +13,9 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import DailyMacros from "../../../public/DailyMacros.png";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 type TExperienceStepProps = TStepMainTypes;
 
@@ -48,6 +51,11 @@ const ExperienceStep: FC<TExperienceStepProps> = ({ onConitnue }) => {
     setOnboardingData({ experienceLevel: selectedExperience });
     onConitnue();
   };
+
+  
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_7_OPENED);
+  });
 
   return (
     <>

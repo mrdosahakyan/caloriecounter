@@ -8,8 +8,14 @@ import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import AiTracker from "../../../public/AiTracker.png";
 import StepperTitle from "../components/stepperLayout/StepperTitle";
 import StepperContentCenterWrapper from "../components/stepperLayout/StepperContentCenterWrapper";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const AiTrackerStep: FC<TStepMainTypes> = ({ onConitnue }) => {
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_9_OPENED);
+  });
   return (
     <>
       <StepperBodyWrapper>

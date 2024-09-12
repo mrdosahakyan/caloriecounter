@@ -15,6 +15,9 @@ import Level1 from "../../../public/icons/level1.png";
 import Level2 from "../../../public/icons/level2.png";
 import Level3 from "../../../public/icons/level3.png";
 import Level4 from "../../../public/icons/level4.png";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 type THeightWeightStepProps = TStepMainTypes;
 
@@ -28,6 +31,10 @@ const HeightWeightStep: FC<THeightWeightStepProps> = ({ onConitnue }) => {
     setOnboardingData({ heightWeight: selectedHeightWeight });
     onConitnue();
   };
+
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_5_OPENED);
+  });
 
   return (
     <>

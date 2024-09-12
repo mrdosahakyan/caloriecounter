@@ -6,13 +6,20 @@ import StepperTitle from "../components/stepperLayout/StepperTitle";
 import ProgressBar from "../components/ProgressBar";
 import TestimonialsCarousel from "../components/carousel/TestimonialsCarousel";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const TailorProgramStep = () => {
   const [completed1, setCompleted1] = useState(false);
   const [completed2, setCompleted2] = useState(false);
   const [completed3, setCompleted3] = useState(false);
   const [completed4, setCompleted4] = useState(false);
-
+  
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_12_OPENED);
+  })
+  
   return (
     <>
       <StepperBodyWrapper>

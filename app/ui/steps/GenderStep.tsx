@@ -13,6 +13,9 @@ import Image from "next/image";
 import StepperBodyWrapper from "../components/stepperLayout/StepperBodyWrapper";
 import StepperSubtitle from "../components/stepperLayout/StepperSubTitle";
 import FoodChoise from "../../../public/FoodChoise.png";
+import useDidMount from "../hooks/useDidMount";
+import mixpanel from "mixpanel-browser";
+import { EMixpanelEvents } from "../integrations/mixpanelEvents";
 
 const genderGoalOptions: TCardItem[] = [
   {
@@ -37,6 +40,9 @@ const GenderStep: FC<TStepMainTypes> = ({ onConitnue }) => {
   const [selectedGender, setSelectedGender] = useState<string | null>(
     onboardingData.gender || null
   );
+  useDidMount(() => {
+    mixpanel.track(EMixpanelEvents.PAGE_3_OPENED);
+  });
 
   const handleChooseGender = () => {
     if (!selectedGender) return;
