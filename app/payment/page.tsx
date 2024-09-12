@@ -228,7 +228,7 @@ const PaymentStep = () => {
 
   return (
     <>
-      <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3">
+      <div className="min-h-svh max-h-svh h-svh w-full flex flex-col justify-between py-2 px-3 max-w-md mx-auto">
         <div className="flex-1 flex flex-col w-full justify-around">
           <PaymentCarousel />
           <div className="mt-5">

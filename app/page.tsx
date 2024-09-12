@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="bg-transparent flex flex-col h-svh">
+      <main className="bg-transparent flex flex-col h-svh max-w-md mx-auto">
         <Header
           currentStep={step}
           onBack={handleBack}

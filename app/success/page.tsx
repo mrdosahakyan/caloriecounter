@@ -17,7 +17,7 @@ const Success = () => {
     mixpanel.track(EMixpanelEvents.PAGE_14_OPENED);
   });
   return (
-    <div className="flex flex-col items-center justify-between h-svh bg-primaryBgColor p-4 pb-0">
+    <div className="flex flex-col items-center justify-between h-svh bg-primaryBgColor p-4 pb-0 max-w-md mx-auto">
       <div className="h-full flex flex-col items-center justify-around">
         <div>
           <Image

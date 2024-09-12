@@ -7,9 +7,7 @@ import {
   Typography,
   InputBase,
 } from "@mui/material";
-import ApplePay from "../../../../public/icons/ApplePay.svg";
 import { FaCheck } from "react-icons/fa";
-import Image from "next/image";
 import { CiCreditCard1 } from "react-icons/ci";
 import { SiApplepay } from "react-icons/si";
 
@@ -22,12 +20,12 @@ const options = [
   {
     label: "Credit Card",
     value: EPaymentMethod.CARD,
-    icon: <CiCreditCard1 fontSize={45} />, // Increase icon size: ;
+    icon: <CiCreditCard1 fontSize={45} />,
   },
   {
     label: "Apple Pay",
     value: EPaymentMethod.APPLE_PAY,
-    icon: <SiApplepay fontSize={45} />, // Increase icon size: ;
+    icon: <SiApplepay fontSize={45} />,
   },
 ];
 
@@ -53,10 +51,10 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           <InputBase
             style={{
               backgroundColor: "#FFF5E5",
-              padding: "4px 12px", // Add padding to the select box
-              border: "none", // Remove border
-              outline: "none", // Remove outline on focus
-              boxShadow: "none", // Remove box-shadow
+              padding: "4px 12px",
+              border: "none",
+              outline: "none",
+              boxShadow: "none",
               height: "30px",
             }}
           />
@@ -73,15 +71,15 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
           PaperProps: {
             style: {
               width: "100%",
-              minWidth: "80%",
-              marginTop: "30px", // Add space between select and dropdown
-              borderRadius: "8px", // Add border radius to dropdown container
+              marginTop: "30px",
+              borderRadius: "8px",
               marginRight: "14px",
+              maxWidth: "300px",
             },
           },
           MenuListProps: {
             style: {
-              paddingTop: 0, // Remove padding from the dropdown
+              paddingTop: 0,
             },
           },
         }}
@@ -106,8 +104,8 @@ const ChoosePaymentMethod: FC<TChoosePaymentMethodProps> = ({
             key={option.value}
             value={option.value}
             style={{
-              backgroundColor: "transparent", // Remove background color of selected option
-              padding: "6px 14px", // Add padding to the options
+              backgroundColor: "transparent",
+              padding: "6px 14px",
             }}
           >
             <Box
