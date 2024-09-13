@@ -20,6 +20,8 @@ import { initializeMixpanel } from "../ui/integrations/mixpanelInit";
 import mixpanel from "mixpanel-browser";
 import { EMixpanelEvents } from "../ui/integrations/mixpanelEvents";
 import useUserId from "../ui/hooks/useUserId";
+import {fbqLeadEvent} from "../ui/integrations/fbqService"
+
 
 const stripeCountryCode = process.env.NEXT_PUBLIC_STRIPE_COUNTRY_CODE || "US";
 const stripeCurrency = process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "usd";
@@ -85,6 +87,8 @@ const PaymentStep = () => {
         setPageLoading(false);
         setPageError(true);
       });
+
+      fbqLeadEvent()
       mixpanel.track(EMixpanelEvents.PAGE_13_OPENED)
   });
 

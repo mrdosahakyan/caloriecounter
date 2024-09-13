@@ -15,6 +15,7 @@ import TailorProgramStep from "./ui/steps/TailorProgramStep";
 import AiTrackerStep from "./ui/steps/AiTrackerStep";
 import DailyMacrosStep from "./ui/steps/DailyMacrosStep";
 import { initializeMixpanel } from "./ui/integrations/mixpanelInit";
+import {fbqViewContent} from "./ui/integrations/fbqService"
 
 export default function Home() {
   initializeMixpanel();
@@ -27,7 +28,11 @@ export default function Home() {
   };
 
   const handleContinue = () => {
-    if (step < totalSteps) setStep(step + 1);
+    const nextStep = step + 1;
+    if (step < totalSteps){
+      fbqViewContent(`Step ${nextStep}`, `Onboarding`, [`Step ${nextStep}`]);
+      setStep(nextStep);
+    } 
   };
 
   const getCurrentStep = () => {
