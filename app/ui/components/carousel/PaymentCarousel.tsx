@@ -38,7 +38,7 @@ const PaymentCarousel = () => {
             src={ScanAi}
             alt=""
             style={{
-              objectFit: "fill",
+              objectFit: "contain",
               height: "100%",
               width: "unset",
             }}
@@ -52,7 +52,7 @@ const PaymentCarousel = () => {
             src={DailyMacros}
             alt=""
             style={{
-              objectFit: "fill",
+              objectFit: "contain",
               height: "100%",
               width: "unset",
             }}
@@ -66,7 +66,7 @@ const PaymentCarousel = () => {
             src={FoodChoise}
             alt=""
             style={{
-              objectFit: "fill",
+              objectFit: "contain",
               height: "100%",
               width: "unset",
             }}
@@ -80,7 +80,7 @@ const PaymentCarousel = () => {
             src={AiTracker}
             alt=""
             style={{
-              objectFit: "fill",
+              objectFit: "contain",
               height: "100%",
               width: "unset",
             }}
