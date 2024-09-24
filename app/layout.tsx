@@ -1,8 +1,12 @@
 import { NextUIProvider } from "@nextui-org/system";
 import "./globals.css";
-import Head from "next/head";
 import Script from "next/script";
 import { v4 as uuidv4 } from "uuid";
+
+export const metadata = {
+  title: "Calorie Counter",
+  description: "Track your calories with ease!",
+};
 
 export default function RootLayout({
   children,
@@ -28,9 +32,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <Head>
-        <title>Calorie Counter</title>
-      </Head>
       <body className="bg-primaryBgColor h-svh">
         <NextUIProvider>{children}</NextUIProvider>
         <Script id="facebook-pixel" strategy="afterInteractive">
