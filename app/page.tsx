@@ -62,6 +62,7 @@ export default function Home() {
           totalSteps={totalSteps}
           stepsNotInSteper={stepsNotInSteper}
           hideBackButton={step === 1}
+          onSkip={handleContinue}
         />
 
         <div
