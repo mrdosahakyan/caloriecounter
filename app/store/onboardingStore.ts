@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { FoodScanResponse } from "../lib/schemas/foodScanSchema";
 // import { persist } from "zustand/middleware";
 
 export interface IHeightWeight {
@@ -14,6 +15,9 @@ export type TOnboardingData = {
   heightWeight: IHeightWeight;
   activityLevel: string;
   experienceLevel: string;
+  scannedImageBase64: string | null;
+  scannedImageResponse: FoodScanResponse | null;
+  imageScanAttempts: number;
 };
 
 interface OnboardingStore {
@@ -33,6 +37,9 @@ const initialState: TOnboardingData = {
   },
   activityLevel: "",
   experienceLevel: "",
+  scannedImageBase64: null,
+  scannedImageResponse: null,
+  imageScanAttempts: 0,
 };
 
 export const useOnboardingStore = create<OnboardingStore>()(
