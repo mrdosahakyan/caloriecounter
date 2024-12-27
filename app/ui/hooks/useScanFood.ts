@@ -54,7 +54,7 @@ export function useFoodScan() {
     try {
       setScanState((prev) => ({ ...prev, isLoading: true, error: null }));
       const options = {
-        maxWidthOrHeight: 445,
+        maxWidthOrHeight: 800,
         useWebWorker: true,
       };
 
