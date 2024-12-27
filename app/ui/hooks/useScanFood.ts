@@ -4,6 +4,7 @@ import { FoodScanResponse } from "@/app/lib/schemas/foodScanSchema";
 import { useOnboardingStore } from "@/app/store/onboardingStore";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import imageCompression from "browser-image-compression";
 
 const MAX_ATTEMPTS = 3;
 
@@ -52,16 +53,20 @@ export function useFoodScan() {
 
     try {
       setScanState((prev) => ({ ...prev, isLoading: true, error: null }));
-      setSelectedPhoto(URL.createObjectURL(file));
+      const options = {
+        maxWidthOrHeight: 445,
+        useWebWorker: true,
+      };
 
-      const base64Image = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(file);
-      });
+      const compressedFile = await imageCompression(file, options);
+      const resizedBase64Image = await imageCompression.getDataUrlFromFile(
+        compressedFile
+      );
+
+      setSelectedPhoto(resizedBase64Image);
 
       const response = await axios.post("/api/analyze-food", {
-        image: base64Image,
+        image: resizedBase64Image,
       });
 
       setScanState({

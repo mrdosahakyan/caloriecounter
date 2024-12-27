@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         },
       ],
       response_format: zodResponseFormat(FoodScanSchema, "foodScan"),
-      max_tokens: 500,
+      max_tokens: 700,
     });
 
     const result = completion.choices[0].message.parsed;
